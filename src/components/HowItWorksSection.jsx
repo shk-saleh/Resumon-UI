@@ -1,7 +1,9 @@
 import React from 'react'
 import { CircleDot, ArrowUpRight } from 'lucide-react';
+import { useNavigate } from "react-router-dom";
 
 const HowItWorksSection = () => {
+    const navigate = useNavigate();
     return (
         <section className="px-4 sm:px-6 lg:px-8 py-12 md:py-16 bg-white">
             <div className="max-w-6xl mx-auto">
@@ -47,7 +49,8 @@ const HowItWorksSection = () => {
                             </div>
                         </div>
 
-                        <button className="bg-[#2DC08D] border border-[#1A9369] text-white px-6 py-2.5 rounded-lg font-medium hover:bg-[#26A97C] transition flex items-center gap-2 cursor-pointer">
+                        <button onClick={() => navigate("/GetStarted")} 
+                            className="bg-[#2DC08D] border border-[#1A9369] text-white px-6 py-2.5 rounded-lg font-medium hover:bg-[#26A97C] transition flex items-center gap-2 cursor-pointer">
                             Try Out Now
                             <ArrowUpRight className="w-4 h-4" />
                         </button>
@@ -90,7 +93,8 @@ const HowItWorksSection = () => {
                         </div>
 
 
-                        <button className="bg-[#EB904A] border border-[#CC6A24] text-white px-6 py-2.5 rounded-lg font-medium hover:bg-[#d67f3d] transition flex items-center gap-2 cursor-pointer">
+                        <button onClick={() => navigate("/GetStarted")} 
+                            className="bg-[#EB904A] border border-[#CC6A24] text-white px-6 py-2.5 rounded-lg font-medium hover:bg-[#d67f3d] transition flex items-center gap-2 cursor-pointer">
                             Try Out Now
                             <ArrowUpRight className="w-4 h-4" />
                         </button>
@@ -126,7 +130,8 @@ const HowItWorksSection = () => {
                             </div>
                         </div>
 
-                        <button className="bg-[#2DC08D] border border-[#1A9369] text-white px-6 py-2.5 rounded-lg font-medium hover:bg-[#26A97C] transition flex items-center gap-2 cursor-pointer">
+                        <button onClick={() => navigate("/GetStarted")} 
+                            className="bg-[#2DC08D] border border-[#1A9369] text-white px-6 py-2.5 rounded-lg font-medium hover:bg-[#26A97C] transition flex items-center gap-2 cursor-pointer">
                             Try Out Now
                             <ArrowUpRight className="w-4 h-4" />
                         </button>
@@ -139,7 +144,7 @@ const HowItWorksSection = () => {
 
                 <div className="grid md:grid-cols-2 gap-8 items-center">
                     <img
-                        src="/src/assets/images/screen2.png" alt="Template Selection"
+                        src="/src/assets/images/screen4.png" alt="Template Selection"
                         className="w-full h-auto order-2 md:order-1"
                     />
                     <div className="order-1 md:order-2">
@@ -179,7 +184,8 @@ const HowItWorksSection = () => {
                             </div>
                         </div>
 
-                        <button className="bg-[#EB904A] border border-[#CC6A24] text-white px-6 py-2.5 rounded-lg font-medium hover:bg-[#d67f3d] transition flex items-center gap-2 cursor-pointer">
+                        <button onClick={() => navigate("/GetStarted")} 
+                            className="bg-[#EB904A] border border-[#CC6A24] text-white px-6 py-2.5 rounded-lg font-medium hover:bg-[#d67f3d] transition flex items-center gap-2 cursor-pointer">
                             Try Out Now
                             <ArrowUpRight className="w-4 h-4" />
                         </button>

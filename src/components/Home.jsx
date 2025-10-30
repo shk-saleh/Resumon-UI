@@ -38,7 +38,7 @@ const Home = () => {
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#24272E] leading-tight mb-5">
                 Build Your{' '}
                 <span
-                  className="text-[#2DC08D] italic underline decoration-2"
+                  className="text-[#2DC08D] underline decoration-2"
                   style={{ fontFamily: "Kaushan Script" }}
                 >
                   Perfect Resume

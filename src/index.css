@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+@import "tailwindcss";
+@plugin "daisyui";
+
+:root{
+    --font-body: 'Poppins', sans-serif;
+    --primary-color: #2DC08D;
+    --secondary-color: orange;
+}
+
+body{
+  font-family: var(--font-body);
+  background-color: white;
+}

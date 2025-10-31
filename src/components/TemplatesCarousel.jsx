@@ -22,7 +22,7 @@ const TemplatesCarousel = () => {
     return (
         <section className="px-4 sm:px-6 lg:px-8 pt-4 pb-16 bg-white">
             <div className="max-w-6xl mx-auto">
-                <h2 className="text-2xl sm:text-3xl md:text-3xl text-[#000000] text-center mb-10">
+                <h2 className="text-2xl sm:text-2xl text-(--dark-color) text-center mb-10">
                     Explore Popular Templates!
                 </h2>
 

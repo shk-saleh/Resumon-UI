@@ -1,16 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
 @import "tailwindcss";
 @plugin "daisyui";
 
 :root{
     --font-body: 'Poppins', sans-serif;
     --primary-color: #2DC08D;
-    --secondary-color: orange;
+    --secondary-color: #EB7C4A;
+    --dark-color: #24272E;
+    --white-color: #ffffff;
+    --gray-color: #858383;
     --font-kaushan: 'Kaushan Script', cursive;
 }
 
 body{
   font-family: var(--font-body);
   background-color: white;
+}
+
+.grad-text{
+  background: linear-gradient(90deg, #114b36 0%, #26ab92 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

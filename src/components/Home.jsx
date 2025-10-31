@@ -6,6 +6,7 @@ import HowItWorksSection from './HowItWorksSection';
 import ToolsSection  from './ToolsSection';
 import { Sparkles, Wand2,ScrollText, CircleGauge, BicepsFlexed} from 'lucide-react';
 
+
 const Home = () => {
   return (
     <div className="min-h-screen bg-white relative ">
@@ -30,26 +31,26 @@ const Home = () => {
               className="fixed -right-0 top-[40vh] w-[700px] h-[800px] object-fill pointer-events-none z-0 opacity-80"
             /> */}
 
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-7xl mx-auto">
             <div className="text-center mb-10">
               <div className="inline-flex items-center gap-2 mb-3">
                 <Sparkles className="w-5 h-5 text-[#EB904A]" />
-                <h2 className="text-2xl sm:text-2xl md:text-3xl text-[#000000]">  Our Features </h2>
+                <h2 className="text-2xl sm:text-3xl text-[#000000]">  Our Features </h2>
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl mx-auto">
-              <div className="bg-[#F3F3F3] rounded-xl p-6 border-t-2 border-r-2 border-[#D9D9D9] border-l border-b">
-                <div className="w-12 h-12 bg-[#149369] rounded-lg flex items-center justify-center mb-4">
+              <div className="bg-[#F3F3F3] rounded-xl p-10 border-t-2 border-r-2 border-[#D9D9D9] border-l border-b">
+                <div className="w-16 h-16 bg-gradient-to-t from-(--primary-color) to-[#106648] rounded-lg flex items-center justify-center mb-4">
                   <Wand2 className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-lg font-[550] text-[#000000] mb-2">AI Resume Builder</h3>
+                <h3 className="text-xl font-medium text-(--dark-color) mb-4">AI Resume Builder</h3>
                 <p className="text-[#858383] text-sm leading-relaxed font-normal">
                   Just write your prompt or select your favourite template and your resume ready boom!
                 </p>
               </div>
 
-              <div className="bg-[#F3F3F3] rounded-xl p-6 border-t-2 border-r-2 border-[#D9D9D9] border-l border-b">
+              <div className="bg-[#F3F3F3] rounded-xl p-10 border-t-2 border-r-2 border-[#D9D9D9] border-l border-b">
                 <div className="w-12 h-12 bg-[#EB904A] rounded-lg flex items-center justify-center mb-4">
                   <BicepsFlexed className="w-6 h-6 text-white" />
                 </div>
@@ -59,7 +60,7 @@ const Home = () => {
                 </p>
               </div>
 
-              <div className="bg-[#F3F3F3] rounded-xl p-6 border-t-2 border-r-2 border-[#D9D9D9] border-l border-b">
+              <div className="bg-[#F3F3F3] rounded-xl p-10 border-t-2 border-r-2 border-[#D9D9D9] border-l border-b">
                 <div className="w-12 h-12 bg-[#149369] rounded-lg flex items-center justify-center mb-4">
                   <CircleGauge className="w-6 h-6 text-white" />
                 </div>
@@ -69,7 +70,7 @@ const Home = () => {
                 </p>
               </div>
 
-              <div className="bg-[#F3F3F3] rounded-xl p-6 border-t-2 border-r-2 border-[#D9D9D9] border-l border-b">
+              <div className="bg-[#F3F3F3] rounded-xl p-10 border-t-2 border-r-2 border-[#D9D9D9] border-l border-b">
                 <div className="w-12 h-12 bg-[#EB904A] rounded-lg flex items-center justify-center mb-4">
                   <ScrollText className="w-6 h-6 text-white" />
                 </div>

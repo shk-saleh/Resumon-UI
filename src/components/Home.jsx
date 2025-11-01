@@ -3,8 +3,13 @@ import HeroSection from './HeroSection';
 import TemplatesCarousel from './TemplatesCarousel';
 import HowItWorksSection from './HowItWorksSection';
 import ToolsSection from './ToolsSection';
+import Review from "./Review";
+import Plans from './Plans';
 import FAQ from './FAQ';
-import { Sparkles, Wand2, ScrollText, CircleGauge, BicepsFlexed } from 'lucide-react';
+import CTA from "./CTA";
+import Footer from "./Footer";
+
+import { Sparkles,Wand2, ScrollText, CircleGauge, BicepsFlexed } from 'lucide-react';
 
 
 const Home = () => {
@@ -12,7 +17,7 @@ const Home = () => {
     <div className="min-h-screen bg-white relative ">
 
       <Navbar />
-      
+
       <img src="/src/assets/images/blob1.png"
         className="absolute top-0 left-0 w-[350px] sm:w-[500px] md:w-[800px] lg:w-[900px] opacity-90 z-10 pointer-events-none select-none"
       />
@@ -85,7 +90,11 @@ const Home = () => {
 
         <HowItWorksSection />
         <ToolsSection />
+        <Review />
+        <Plans />
         <FAQ />
+        <CTA />
+        <Footer />
 
       </div>
     </div>

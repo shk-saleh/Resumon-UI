@@ -16,6 +16,11 @@
 body{
   font-family: var(--font-body);
   background-color: white;
+  scroll-behavior: smooth;
+}
+
+::selection {
+    background: #2DC08D33;                       
 }
 
 .grad-text{

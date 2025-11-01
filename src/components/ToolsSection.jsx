@@ -9,7 +9,7 @@ const ToolsSection = () => {
                     <h2 className="text-xl sm:text-2xl md:text-3xl text-[#000000] mb-4">
                         Why our tools?
                     </h2>
-                    <p className="text-[14px] sm:text-[16px] md:text-[22px] text-[#858383] mb-16">
+                    <p className="text-[14px] sm:text-[16px] md:text-[18px] text-[#858383] mb-16">
                         Creating the perfect resume shouldn't be stressful!
                     </p>
                 </div>

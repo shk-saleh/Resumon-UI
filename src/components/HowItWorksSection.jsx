@@ -1,4 +1,3 @@
-import React from 'react'
 import { CircleDot, ArrowUpRight } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
 
@@ -11,7 +10,7 @@ const HowItWorksSection = () => {
                     <h2 className="text-xl sm:text-2xl md:text-3xl text-[#000000] mb-4">
                         How it works?
                     </h2>
-                    <p className="text-[14px] sm:text-[16px] md:text-[22px] text-[#858383] mb-16">
+                    <p className="text-[14px] sm:text-[16px] md:text-[18px] text-[#858383] mb-16">
                         Generate your next level resume in just seconds!
                     </p>
                 </div>

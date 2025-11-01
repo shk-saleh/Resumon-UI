@@ -1,7 +1,5 @@
-import React from 'react'
 import { ChevronDown, ArrowUpRight } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
-// import GetStarted from "./GetStarted";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {

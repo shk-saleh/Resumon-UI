@@ -1,9 +1,9 @@
-import React from 'react'
 import Navbar from "./Navbar";
 import HeroSection from './HeroSection';
 import TemplatesCarousel from './TemplatesCarousel';
 import HowItWorksSection from './HowItWorksSection';
 import ToolsSection from './ToolsSection';
+import FAQ from './FAQ';
 import { Sparkles, Wand2, ScrollText, CircleGauge, BicepsFlexed } from 'lucide-react';
 
 
@@ -12,7 +12,7 @@ const Home = () => {
     <div className="min-h-screen bg-white relative ">
 
       <Navbar />
-
+      
       <img src="/src/assets/images/blob1.png"
         className="absolute top-0 left-0 w-[350px] sm:w-[500px] md:w-[800px] lg:w-[900px] opacity-90 z-10 pointer-events-none select-none"
       />
@@ -85,36 +85,7 @@ const Home = () => {
 
         <HowItWorksSection />
         <ToolsSection />
-
-        <div>
-          <div tabIndex={0} className="collapse collapse-arrow bg-base-100 border-base-300 border">
-            <div className="collapse-title font-semibold">What is Resumon?</div>
-            <div className="collapse-content text-sm">
-              Resumon is an online resume builder that hepls you craete a professional looking resume in minutes. Just fill in your details,choose a template, and download your resume instantly.
-              </div>
-          </div>
-
-          <div tabIndex={0} className="collapse collapse-arrow bg-base-100 border-base-300 border">
-            <div className="collapse-title font-semibold">Do I need to create an account to use Resumon?</div>
-            <div className="collapse-content text-sm">
-              Yes,
-            </div>
-          </div>
-
-          <div tabIndex={0} className="collapse collapse-arrow bg-base-100 border-base-300 border">
-            <div className="collapse-title font-semibold">Can I download my Resume for free?</div>
-            <div className="collapse-content text-sm">
-              Go to 
-            </div>
-          </div>
-
-          <div tabIndex={0} className="collapse collapse-arrow bg-base-100 border-base-300 border">
-            <div className="collapse-title font-semibold">Is my data safe on Resumon?</div>
-            <div className="collapse-content text-sm">
-              Yes
-            </div>
-          </div>
-        </div>
+        <FAQ />
 
       </div>
     </div>

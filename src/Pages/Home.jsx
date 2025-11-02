@@ -1,16 +1,14 @@
-import Navbar from "./Navbar";
-import HeroSection from './HeroSection';
-import TemplatesCarousel from './TemplatesCarousel';
-import HowItWorksSection from './HowItWorksSection';
-import ToolsSection from './ToolsSection';
-import Review from "./Review";
-import Plans from './Plans';
-import FAQ from './FAQ';
-import CTA from "./CTA";
-import Footer from "./Footer";
-
+import Navbar from "../components/Navbar";
+import Hero from '../components/Hero';
+import Templates from '../components/Templates';
+import Working from '../components/Working';
+import Tools from '../components/Tools';
+import Review from "../components/Review";
+import Plans from '../components/Plans';
+import FAQ from '../components/FAQ';
+import CTA from "../components/CTA";
+import Footer from "../components/Footer";
 import { Sparkles,Wand2, ScrollText, CircleGauge, BicepsFlexed } from 'lucide-react';
-
 
 const Home = () => {
   return (
@@ -24,8 +22,8 @@ const Home = () => {
 
       <div className="pt-20">
 
-        <HeroSection />
-        <TemplatesCarousel />
+        <Hero />
+        <Templates />
 
         <section className="relative px-4 sm:px-6 lg:px-8 py-12 md:py-16 bg-white">
           {/* <img src="/src/assets/images/blob2.png"
@@ -88,8 +86,8 @@ const Home = () => {
           </div>
         </section>
 
-        <HowItWorksSection />
-        <ToolsSection />
+        <Working />
+        <Tools />
         <Review />
         <Plans />
         <FAQ />

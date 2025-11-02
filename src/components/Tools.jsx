@@ -1,7 +1,7 @@
 import React from 'react'
 import { Bot,CircleGauge,StretchHorizontal,ReceiptText,Lock,Sparkles } from 'lucide-react';
 
-const ToolsSection = () => {
+const Tools = () => {
     return (
         <section className="px-4 sm:px-6 lg:px-8 py-12 md:py-16 bg-white">
             <div className="max-w-6xl mx-auto text-justify">
@@ -9,7 +9,7 @@ const ToolsSection = () => {
                     <h2 className="text-xl sm:text-2xl md:text-3xl text-[#000000] mb-4">
                         Why our tools?
                     </h2>
-                    <p className="text-[14px] sm:text-[16px] md:text-[18px] text-[#858383] mb-16">
+                    <p className="text-[14px] md:text-[16px] text-[#858383] mb-16">
                         Creating the perfect resume shouldn't be stressful!
                     </p>
                 </div>
@@ -78,4 +78,4 @@ const ToolsSection = () => {
         </section>
     )
 }
-export default ToolsSection
+export default Tools

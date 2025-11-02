@@ -1,7 +1,7 @@
 import { Sparkles, ArrowRight} from 'lucide-react';
 
 
-const HeroSection = () => {
+const Hero = () => {
   return (
     <section className="relative px-4 sm:px-6 lg:px-8 pt-10 pb-0 md:pt-16 md:pb-0 overflow-hidden">
       <div className="max-w-6xl mx-auto">
@@ -38,4 +38,4 @@ const HeroSection = () => {
     </section>
   )
 }
-export default HeroSection
+export default Hero

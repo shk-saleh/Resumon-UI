@@ -5,52 +5,52 @@ import { motion } from "framer-motion";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#EFEEEE] py-16">
+    <footer className="bg-[#F4F4F4] border border-gray-200 rounded-4xl-tl rounded-4xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-14">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-14 py-20">
           <div className="md:col-span-2 lg:col-span-2">
-            <img src="/src/assets/images/logo.png" alt="Resumon" className="w-33 rounded-lg object-contain"/>
-            <p className="mt-3 mb-13 text-[#24272E]">Create, customize and downlaod in just few clicks!</p>
-            <p className="mb-4 text-[#24272E]">LT 512, New York, America</p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="hover:text-[#3a3c44]">
+            <img src="/src/assets/images/logo.png" alt="Resumon" className="w-36 rounded-lg object-contain"/>
+            <p className="mt-6 text-(--dark-color) text-sm">Create, customize and downlaod in just few clicks!</p>
+            <p className="my-4 text-(--dark-color) text-sm">LT 512, New York, America</p>
+            <div className="flex space-x-3 mt-4 md:mt-0">
+              <a href="#" className="hover:text-[#3a3c44] text-(--dark-color)">
                 <Facebook size={20} strokeWidth={2.3} />
               </a>
-              <a href="#" className="hover:text-[#3a3c44]">
+              <a href="#" className="hover:text-[#3a3c44] text-(--dark-color)">
                 <Github size={20} strokeWidth={2.3}/>
               </a>
-              <a href="#" className="hover:text-[#3a3c44]">
+              <a href="#" className="hover:text-[#3a3c44] text-(--dark-color)">
                 <Linkedin size={20} strokeWidth={2.3}/>
               </a>
             </div>
           </div>
 
           <div>
-            <h3 className="text-[#000000] font-semibold mb-4 text-xl">Tools</h3>
+            <h3 className="text-(--dark-color) font-medium mb-4 text-lg">Tools</h3>
             <ul className="space-y-3 text-[#24272E]">
-              <li><a href="#" className="hover:text-[#3a3c44]">ATS Checker</a></li>
-              <li><a href="#" className="hover:text-[#3a3c44]">AI Resume Builder</a></li>
-              <li><a href="#" className="hover:text-[#3a3c44]">Smart Resume Builder</a></li>
-              <li><a href="#" className="hover:text-[#3a3c44]">Upwork Proposal Gen</a></li>
+              <li><a href="#" className="hover:text-[#3a3c44] text-sm">ATS Checker</a></li>
+              <li><a href="#" className="hover:text-[#3a3c44] text-sm">AI Resume Builder</a></li>
+              <li><a href="#" className="hover:text-[#3a3c44] text-sm">Smart Resume Builder</a></li>
+              <li><a href="#" className="hover:text-[#3a3c44] text-sm">Upwork Proposal Gen</a></li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-[#000000] font-semibold mb-4 text-xl">Company</h3>
-            <ul className="space-y-3 text-[#24272E]">
-              <li><a href="#" className="hover:text-[#3a3c44]">About</a></li>
-              <li><a href="#" className="hover:text-[#3a3c44]">Contact</a></li>
-              <li><a href="#" className="hover:text-[#3a3c44]">FAQ's</a></li>
-              <li><a href="#" className="hover:text-[#3a3c44]">Support</a></li>
+            <h3 className="text-(--dark-color) font-medium mb-4 text-lg">Company</h3>
+            <ul className="space-y-3 text-[#24272E] ">
+              <li><a href="#" className="hover:text-[#3a3c44] text-sm">About</a></li>
+              <li><a href="#" className="hover:text-[#3a3c44] text-sm">Contact</a></li>
+              <li><a href="#" className="hover:text-[#3a3c44] text-sm">FAQ's</a></li>
+              <li><a href="#" className="hover:text-[#3a3c44] text-sm">Support</a></li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-12 pt-8 text-[#858383] border-t border-[#7A7A7A] flex flex-col md:flex-row justify-between items-center">
-          <p>Copyright reserved 2025 by resumon</p>
+        <div className="py-4 text-[#858383] border-t border-[#d6d6d6] flex flex-col md:flex-row justify-between items-center">
+          <p className='text-sm'>Copyright reserved 2025 by resumon</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="/terms" className="underline">Terms & Conditions</a>
-            <a href="/privacy" className="underline">Privacy Policy</a>
+            <a href="/terms" className="underline text-sm">Terms & Conditions</a>
+            <a href="/privacy" className="underline text-sm">Privacy Policy</a>
           </div>
         </div>
       </div>

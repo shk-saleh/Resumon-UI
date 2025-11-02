@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Clock, Zap, BarChart3} from "lucide-react";
-import Login from "./Login";
-import Signup from "./Signup";
+import Login from '../components/Login';
+import Signup from '../components/Signup';
 import logo from "/src/assets/images/logo.png";
 
 const GetStarted = () => {
-    const [mode, setMode] = useState("login");
+  
+  const [mode, setMode] = useState("login");
     
   return (
     <div className="min-h-screen h-auto flex">

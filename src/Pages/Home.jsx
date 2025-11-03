@@ -8,7 +8,7 @@ import Plans from '../components/Plans';
 import FAQ from '../components/FAQ';
 import CTA from "../components/CTA";
 import Footer from "../components/Footer";
-import { Sparkles,Wand2, ScrollText, CircleGauge, BicepsFlexed } from 'lucide-react';
+import { Sparkles, Wand2, ScrollText, CircleGauge, BicepsFlexed } from 'lucide-react';
 
 const Home = () => {
   return (
@@ -34,7 +34,7 @@ const Home = () => {
               className="fixed -right-0 top-[40vh] w-[700px] h-[800px] object-fill pointer-events-none z-0 opacity-80"
             /> */}
 
-          <div className="max-w-7xl mx-auto">
+          <div className="max-w-5xl mx-auto">
             <div className="text-center mb-10">
               <div className="inline-flex items-center gap-2 mb-3">
                 <Sparkles className="w-5 h-5 text-[#EB904A]" />
@@ -42,9 +42,13 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl mx-auto">
-              <div className="bg-[#F3F3F3] rounded-xl p-10 border-t-2 border-r-2 border-[#D9D9D9] border-l border-b">
-                <div className="w-16 h-16 bg-gradient-to-t from-(--primary-color) to-[#106648] rounded-lg flex items-center justify-center mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mx-auto">
+              <div className="bg-[#F3F3F3] rounded-xl p-10"
+                style={{
+                  border: "3px solid", borderImageSlice: 3,
+                  borderImage: "linear-gradient(135deg, #2DC08D 0%, #FFFFFF 50%, #2DC08D 100%) 1",
+                }}>
+                <div className="w-16 h-16 bg-gradient-to-t from-(--primary-color) to-[#106648] rounded-lg flex items-center justify-center mb-7">
                   <Wand2 className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-xl font-medium text-(--dark-color) mb-4">AI Resume Builder</h3>
@@ -53,31 +57,48 @@ const Home = () => {
                 </p>
               </div>
 
-              <div className="bg-[#F3F3F3] rounded-xl p-10 border-t-2 border-r-2 border-[#D9D9D9] border-l border-b">
-                <div className="w-12 h-12 bg-[#EB904A] rounded-lg flex items-center justify-center mb-4">
+              <div className="bg-[#F3F3F3] rounded-xl p-10"
+                style={{
+                  border: "3px solid", borderImageSlice: 3,
+                  borderImage: "linear-gradient(135deg, #EB904A 0%, #FFFFFF 50%, #EB904A 100%) 1",
+                }}>
+                <div className="w-16 h-16 bg-gradient-to-t from-[#EB904A] to-[#EB7C4A] rounded-lg flex items-center justify-center mb-7">
                   <BicepsFlexed className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-lg font-[550] text-[#000000] mb-2">Smart Resume Builder</h3>
+                <h3 className="text-xl font-medium text-(--dark-color) mb-4">Smart Resume Builder</h3>
                 <p className="text-[#858383] text-sm leading-relaxed font-normal">
                   Select your favourite template enter your details and your downloadable + shareable resume get ready!
                 </p>
               </div>
 
-              <div className="bg-[#F3F3F3] rounded-xl p-10 border-t-2 border-r-2 border-[#D9D9D9] border-l border-b">
-                <div className="w-12 h-12 bg-[#149369] rounded-lg flex items-center justify-center mb-4">
+              <div className="bg-[#F3F3F3] rounded-xl p-10"
+                style={{
+                  border: "3px solid", borderImageSlice: 3,
+                  borderImage: "linear-gradient(135deg, #2DC08D 0%, #FFFFFF 50%, #2DC08D 100%) 1",
+                }}>
+                <div className="w-16 h-16 bg-gradient-to-t from-(--primary-color) to-[#106648] rounded-lg flex items-center justify-center mb-7">
                   <CircleGauge className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-lg font-[550] text-[#000000] mb-2">ATS Score Checker</h3>
+                <h3 className="text-xl font-medium text-(--dark-color) mb-4">ATS Score Checker</h3>
                 <p className="text-[#858383] text-sm leading-relaxed font-normal">
                   Just write your prompt or select your favourite template and your resume ready boom!
                 </p>
               </div>
 
-              <div className="bg-[#F3F3F3] rounded-xl p-10 border-t-2 border-r-2 border-[#D9D9D9] border-l border-b">
-                <div className="w-12 h-12 bg-[#EB904A] rounded-lg flex items-center justify-center mb-4">
-                  <ScrollText className="w-6 h-6 text-white" />
+              <div className="bg-[#F3F3F3] rounded-xl p-10"
+                style={{
+                  border: "3px solid", borderImageSlice: 3,
+                  borderImage: "linear-gradient(135deg, #EB904A 0%, #FFFFFF 50%, #EB904A 100%) 1",
+                }}>
+                <div className="flex items-start justify-between mb-7">
+                  <div className="w-16 h-16 bg-gradient-to-t from-[#EB904A] to-[#EB7C4A] rounded-lg flex items-center justify-center">
+                    <ScrollText className="w-6 h-6 text-white" />
+                  </div>
+                  <button className="bg-white text-(--dark-color) text-base font-medium px-3 py-1 rounded-3xl">
+                    Coming soon!
+                  </button>
                 </div>
-                <h3 className="text-lg font-[550] text-[#000000] mb-2">Upwork Proposal Gen</h3>
+                <h3 className="text-xl font-medium text-(--dark-color) mb-4">Upwork Proposal Gen</h3>
                 <p className="text-[#858383] text-sm leading-relaxed font-normal">
                   Just need to provide the client job requirements we will generate your optimized proposal!
                 </p>

@@ -1,7 +1,7 @@
-import Navbar from "./Navbar";
-import FAQ from './FAQ';
-import CTA from "./CTA";
-import Footer from "./Footer";
+import Navbar from "../components/Navbar";
+import FAQ from '../components/FAQ';
+import CTA from "../components/CTA";
+import Footer from "../components/Footer";
 
 
 const Support = () => {

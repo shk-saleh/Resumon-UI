@@ -1,7 +1,6 @@
 import React from 'react';
 import { Facebook, Github, Linkedin } from 'lucide-react';
-import { motion } from "framer-motion";
-
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -13,35 +12,35 @@ const Footer = () => {
             <p className="mt-6 text-(--dark-color) text-sm">Create, customize and downlaod in just few clicks!</p>
             <p className="my-4 text-(--dark-color) text-sm">LT 512, New York, America</p>
             <div className="flex space-x-3 mt-4 md:mt-0">
-              <a href="#" className="hover:text-[#3a3c44] text-(--dark-color)">
+              <Link to="#" className="hover:text-[#3a3c44] text-(--dark-color)">
                 <Facebook size={20} strokeWidth={2.3} />
-              </a>
-              <a href="#" className="hover:text-[#3a3c44] text-(--dark-color)">
+              </Link>
+              <Link to="#" className="hover:text-[#3a3c44] text-(--dark-color)">
                 <Github size={20} strokeWidth={2.3}/>
-              </a>
-              <a href="#" className="hover:text-[#3a3c44] text-(--dark-color)">
+              </Link>
+              <Link to="#" className="hover:text-[#3a3c44] text-(--dark-color)">
                 <Linkedin size={20} strokeWidth={2.3}/>
-              </a>
+              </Link>
             </div>
           </div>
 
           <div>
             <h3 className="text-(--dark-color) font-medium mb-4 text-lg">Tools</h3>
             <ul className="space-y-3 text-[#24272E]">
-              <li><a href="#" className="hover:text-[#3a3c44] text-sm">ATS Checker</a></li>
-              <li><a href="#" className="hover:text-[#3a3c44] text-sm">AI Resume Builder</a></li>
-              <li><a href="#" className="hover:text-[#3a3c44] text-sm">Smart Resume Builder</a></li>
-              <li><a href="#" className="hover:text-[#3a3c44] text-sm">Upwork Proposal Gen</a></li>
+              <li><Link to="#" className="hover:text-[#3a3c44] text-sm">ATS Checker</Link></li>
+              <li><Link to="#" className="hover:text-[#3a3c44] text-sm">AI Resume Builder</Link></li>
+              <li><Link to="#" className="hover:text-[#3a3c44] text-sm">Smart Resume Builder</Link></li>
+              <li><Link to="#" className="hover:text-[#3a3c44] text-sm">Upwork Proposal Gen</Link></li>
             </ul>
           </div>
 
           <div>
             <h3 className="text-(--dark-color) font-medium mb-4 text-lg">Company</h3>
             <ul className="space-y-3 text-[#24272E] ">
-              <li><a href="#" className="hover:text-[#3a3c44] text-sm">About</a></li>
-              <li><a href="#" className="hover:text-[#3a3c44] text-sm">Contact</a></li>
-              <li><a href="#" className="hover:text-[#3a3c44] text-sm">FAQ's</a></li>
-              <li><a href="#" className="hover:text-[#3a3c44] text-sm">Support</a></li>
+              <li><Link to="/about" className="hover:text-[#3a3c44] text-sm">About</Link></li>
+              <li><Link to="/contact" className="hover:text-[#3a3c44] text-sm">Contact</Link></li>
+              <li><Link to="#" className="hover:text-[#3a3c44] text-sm">FAQ's</Link></li>
+              <li><Link to="/support" className="hover:text-[#3a3c44] text-sm">Support</Link></li>
             </ul>
           </div>
         </div>
@@ -49,8 +48,8 @@ const Footer = () => {
         <div className="py-4 text-[#858383] border-t border-[#d6d6d6] flex flex-col md:flex-row justify-between items-center">
           <p className='text-sm'>Copyright reserved 2025 by resumon</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="/terms" className="underline text-sm">Terms & Conditions</a>
-            <a href="/privacy" className="underline text-sm">Privacy Policy</a>
+            <Link to="#" className="underline text-sm">Terms & Conditions</Link>
+            <Link to="#" className="underline text-sm">Privacy Policy</Link>
           </div>
         </div>
       </div>

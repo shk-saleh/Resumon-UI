@@ -2,6 +2,8 @@ import { Routes, Route } from 'react-router-dom'
 import Home from './Pages/Home'
 import NotFound from './components/404'
 import GetStarted from './Pages/GetStarted'
+import Pricing from './Pages/Pricing'
+import Support from './Pages/Support'
 
 function App() {
   return (
@@ -10,6 +12,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/GetStarted" element={<GetStarted/>} />
+          <Route path="/pricing" element={<Pricing/>} />
+          <Route path="/support" element={<Support/>} />
           <Route path="*" element={<NotFound/>} />                       
         </Routes>
       </main>

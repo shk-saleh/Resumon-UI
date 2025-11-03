@@ -13,7 +13,7 @@ const Tools = () => {
                         Creating the perfect resume shouldn't be stressful!
                     </p>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-4xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mx-auto">
                     <div className="rounded-xl p-6 border border-[#D9D9D9]">
                         <div className="w-12 h-12 bg-[#EB7C4A]/30 rounded-lg flex items-center justify-center mb-4">
                             <Bot className="w-6 h-6 text-[#EB7C4A]" />

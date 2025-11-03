@@ -1,14 +1,14 @@
-import React from 'react'
-import Navbar from '../components/Navbar'
-import TemplatesHero from '../components/TemplatesHero'
+import React from "react";
+import Navbar from "../components/Navbar";
+import TemplatesHero from "../components/TemplatesHero";
 
 const Templates = () => {
   return (
     <div>
-        <Navbar/>
-        <TemplatesHero/>
+      <Navbar />
+      <TemplatesHero />
     </div>
-  )
-}
+  );
+};
 
-export default Templates
+export default Templates;

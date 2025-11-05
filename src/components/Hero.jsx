@@ -1,11 +1,10 @@
 import { Sparkles, ArrowRight} from 'lucide-react';
 
-
 const Hero = () => {
   return (
-    <section className="relative px-4 sm:px-6 lg:px-8 pt-10 pb-0 md:pt-16 md:pb-0 overflow-hidden">
+    <section className="relative px-4 sm:px-6 lg:px-8 pb-0 md:pt-16 md:pb-0 overflow-hidden">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center max-w-4xl mx-auto ">
+        <div className="text-center max-w-4xl mx-auto mt-20">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-(--dark-color) leading-tight mb-5">
             Build Your{' '}
             <span className="text-[#2DC08D] underline font-medium" style={{fontFamily: "var(--font-kaushan)"}} >

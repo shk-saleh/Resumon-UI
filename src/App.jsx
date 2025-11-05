@@ -16,7 +16,7 @@ function App() {
           <Route path="/pricing" element={<Pricing/>} />
           <Route path="/support" element={<Support/>} />
           <Route path="/templates" element={<Templates/>} />
-          <Route path="*" element={<NotFound/>} />                       
+          <Route path="*" element={<NotFound/>} />
         </Routes>
       </main>
     </div>

@@ -1,15 +1,7 @@
-const Compare = () => {
-  const features = [
-    { name: "Resume Creation", free: true, pro: true, elite: true },
-    { name: "Access to premium templates", free: false, pro: true, elite: true },
-    { name: "Multilingual", free: true, pro: true, elite: true },
-    { name: "Save as PDF", free: true, pro: true, elite: true },
-    { name: "Access to AI Feature", free: false, pro: true, elite: true },
-    { name: "Share on Social Media", free: false, pro: false, elite: true },
-    { name: "Auto-Suggestion", free: false, pro: true, elite: true },
-    { name: "Unlimited Resumes", free: false, pro: false, elite: true },
-  ];
+import React from 'react'
+import { cmpData } from "../data/cmpData";
 
+const Comparison = () => {
   return (
     <section className="w-full max-w-6xl mx-auto pt-10 pb-20 px-4">
       <h2 className="text-center text-2xl md:text-3xl font-semibold mb-10 text-gray-800">
@@ -28,7 +20,7 @@ const Compare = () => {
           </thead>
 
           <tbody>
-            {features.map((item, index) => (
+            {cmpData.map((item, index) => (
               <tr key={index} className="border-b border-gray-200">
                 <td className="py-3 text-gray-800">{item.name}</td>
                 <td className="text-center text-gray-500">{item.free ? "✅" : "❌"}</td>
@@ -40,7 +32,6 @@ const Compare = () => {
         </table>
       </div>
     </section>
-  );
-};
-
-export default Compare;
+  )
+}
+export default Comparison

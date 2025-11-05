@@ -1,60 +1,7 @@
-import React from "react";
 import TemplateCard from "./TemplateCard";
-import FAQ from "../components/FAQ";
-import Footer from "../components/Footer";
+import { cardData } from "../data/cardData";
 
 const TemplatesHero = () => {
-  const cardData = [
-    {
-      image: "/img1.jpg",
-      title: "Persona",
-      text: "Lorem ipsum",
-      bgColor: "bg-[#DFDFDF]",
-    },
-    {
-      image: "/img2.jpg",
-      title: "Silk",
-      text: "Lorem ipsum",
-      bgColor: "bg-[#F2D2C4]",
-    },
-    {
-      image: "/img3.jpg",
-      title: "Batch",
-      text: "Lorem ipsum",
-      bgColor: "bg-[#DFDFDF]",
-    },
-    {
-      image: "/img4.jpg",
-      title: "Navy",
-      text: "Lorem ipsum",
-      bgColor: "bg-blue-100",
-    },
-    {
-      image: "/img5.jpg",
-      title: "Navy",
-      text: "Lorem ipsum",
-      bgColor: "bg-blue-100",
-    },
-    {
-      image: "/img6.jpg",
-      title: "Batch",
-      text: "Lorem ipsum",
-      bgColor: "bg-[#DFDFDF]",
-    },
-    {
-      image: "/img7.jpg",
-      title: "Silk",
-      text: "Lorem ipsum",
-      bgColor: "bg-[#F2D2C4]",
-    },
-    {
-      image: "/img8.jpg",
-      title: "Persona",
-      text: "Lorem ipsum",
-      bgColor: "bg-[#DFDFDF]",
-    },
-  ];
-
   return (
     <section>
       <div className="w-full flex flex-col justify-center items-center py-40 text-black">
@@ -107,13 +54,7 @@ const TemplatesHero = () => {
           Load More
         </button>
       </div>
-
-      {/* FAQ's */}
-      <FAQ />
-      {/* Footer */}
-      <Footer />
     </section>
   );
 };
-
 export default TemplatesHero;

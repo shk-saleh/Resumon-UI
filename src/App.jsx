@@ -8,7 +8,7 @@ import Templates from './Pages/Templates'
 
 function App() {
   return (
-    <div className='bg-(--white-color) min-h-screen'>
+    <div className='bg-(--white-color) min-h-screen overflow-x-hidden'>
       <main>
         <Routes>
           <Route path="/" element={<Home/>} />

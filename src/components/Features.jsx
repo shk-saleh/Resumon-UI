@@ -22,12 +22,12 @@ const Features = () => {
           {featuresData.map((feature, index) => {
             const IconComponent = feature.icon;
             return (
-              <div key={index} className="rounded-2xl p-[1.5px] z-1"
+              <div key={index} className="rounded-2xl p-[2px] z-1"
                 style={{
                   background: `linear-gradient(135deg, ${feature.color} 0%, #FFFFFF 50%, ${feature.color} 100%)`
                 }}
               >
-                <div className="bg-gray-100 rounded-2xl p-10 z-10">
+                <div className="bg-gray-100 rounded-2xl p-10 z-10 h-full">
                   <div className="flex items-start justify-between mb-7">
                     <div
                       className={`w-16 h-16 rounded-lg flex items-center justify-center mb-7`}

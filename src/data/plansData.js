@@ -3,7 +3,7 @@ import { Crown, Key, Swords } from "lucide-react";
 export const plansData = [
   {
     name: "Free", icon: Key,
-    price: "$0/", subText: "month",
+    price: 0,
     description: "Start generating your resume today!",
     badgeColor: "text-[#2DC08D]",
     buttonBg: "bg-[#EAEAEA]",
@@ -21,7 +21,7 @@ export const plansData = [
   },
   {
     name: "Pro", icon: Swords,
-    price: "$6.5/", subText: "month",
+    price: 6.5,
     description: "Increase your chance by 80%",
     badgeColor: "text-[#2DC08D]",
     buttonBg: "bg-[#2DC08D]",
@@ -39,7 +39,7 @@ export const plansData = [
   },
   {
     name: "Elite", icon: Crown,
-    price: "$12.5/", subText: "month",
+    price: 12.5,
     description: "Start generating your resume today!",
     badgeColor: "text-[#2DC08D]",
     buttonBg: "bg-[#2DC08D]",

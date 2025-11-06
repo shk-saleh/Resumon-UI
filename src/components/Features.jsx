@@ -22,7 +22,7 @@ const Features = () => {
           {featuresData.map((feature, index) => {
             const IconComponent = feature.icon;
             return (
-              <div key={index} className="rounded-2xl p-[1px] z-1"
+              <div key={index} className="rounded-2xl p-[1.5px] z-1"
                 style={{
                   background: `linear-gradient(135deg, ${feature.color} 0%, #FFFFFF 50%, ${feature.color} 100%)`
                 }}

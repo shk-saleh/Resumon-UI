@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { ArrowUpRight } from "lucide-react";
 
 export default function CustomPlanSection() {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ export default function CustomPlanSection() {
         <button onClick={() => navigate("/Support")}
         className="bg-white text-gray-800 font-medium px-6 py-3 rounded-xl shadow-md hover:bg-gray-50 hover:shadow-lg transition inline-flex items-center gap-2 cursor-pointer">
           Talk to Support
-          <span className="text-xl">↗</span>
+          <ArrowUpRight className="w-4 h-4" />
         </button>
       </div>
     </section>

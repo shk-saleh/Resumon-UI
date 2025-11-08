@@ -1,22 +1,21 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useAuthStore } from '../store/useAuthStore';
 
 const Signup = ({ setMode }) => {
   
   const [formData, setFormData] = useState({ fullname: '', email: '', password: '' });
-  const [error, setError] = useState('');
+  const {signup, loading, err} = useAuthStore;
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit =  async (e) => {
     e.preventDefault();
-    const { fullname, email, password} = formData;
-    try {
-     
-    } catch (err) {
-      setError(err.message);
+    const res = await signup(formData);
+    if(res.success){
+      console.log("auth done");
     }
   };
 
@@ -55,9 +54,9 @@ const Signup = ({ setMode }) => {
       <button type="submit"
         className="w-full bg-[#2DC08D] text-white py-3 cursor-pointer rounded-lg font-semibold hover:bg-[#26A97C] transition shadow-md"
       >
-        Sign up
+        { loading ?  "Creating ..." : "Sign up"}
       </button>
-      {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+      {err && <p className="text-red-500 text-sm text-center">{err}</p>}
     </div>
 
     </form>

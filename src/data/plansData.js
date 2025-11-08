@@ -1,0 +1,58 @@
+import { Crown, Key, Swords } from "lucide-react";
+
+export const plansData = [
+  {
+    name: "Free", icon: Key,
+    price: 0,
+    description: "Start generating your resume today!",
+    badgeColor: "text-[#2DC08D]",
+    buttonBg: "bg-[#EAEAEA]",
+    buttonHover: "hover:bg-[#D6D6D6]",
+    buttonText: "Start Free Trial",
+    buttonTextColor: "text-[#24272E]",
+    arrowColor: "text-[#2DC08D]",
+    features: [
+      { text: "Resume Creation", included: true },
+      { text: "Access to 5+ Template", included: true },
+      { text: "No Watermark", included: false },
+      { text: "Multilingual", included: true },
+      { text: "Save as pdf", included: true },
+    ],
+  },
+  {
+    name: "Pro", icon: Swords,
+    price: 6.5,
+    description: "Increase your chance by 80%",
+    badgeColor: "text-[#2DC08D]",
+    buttonBg: "bg-[#2DC08D]",
+    buttonHover: "hover:bg-[#26A97C]",
+    buttonText: "Buy Now",
+    buttonTextColor: "text-white",
+    arrowColor: "text-white",
+    features: [
+      { text: "Resume Creation", included: true },
+      { text: "Access to 5+ Template", included: true },
+      { text: "No Watermark", included: true },
+      { text: "Multilingual", included: true },
+      { text: "Save as pdf", included: true },
+    ],
+  },
+  {
+    name: "Elite", icon: Crown,
+    price: 12.5,
+    description: "Start generating your resume today!",
+    badgeColor: "text-[#2DC08D]",
+    buttonBg: "bg-[#2DC08D]",
+    buttonHover: "hover:bg-[#26A97C]",
+    buttonText: "Buy Now",
+    buttonTextColor: "text-white",
+    arrowColor: "text-white",
+    features: [
+      { text: "Resume Creation", included: true },
+      { text: "Access to 5+ Template", included: true },
+      { text: "No Watermark", included: true },
+      { text: "Multilingual", included: true },
+      { text: "Save as pdf", included: true },
+    ],
+  },
+];

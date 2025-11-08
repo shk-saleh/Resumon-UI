@@ -9,10 +9,10 @@ const GetStarted = () => {
   const [mode, setMode] = useState("login");
     
   return (
-    <div className="min-h-screen h-auto flex">
-      <section className="hidden md:flex flex-col justify-between w-1/2 rounded-tr-4xl rounded-br-4xl bg-gradient-to-b from-(--primary-color) to-(--primary-color)/10 p-16">
+    <div className="h-[100vh] flex gap-20">
+      <section className="hidden md:flex flex-col justify-between w-1/2 rounded-3xl bg-gradient-to-b from-(--primary-color) to-(--primary-color)/10 m-2 p-12">
         <div className="space-y-4">
-          <h1 className="my-16 text-5xl font-semibold grad-text">
+          <h1 className="my-10 text-5xl font-semibold grad-text">
             Create a resume you are proud of!
           </h1>
           <div className="flex items-center gap-2">
@@ -42,7 +42,7 @@ const GetStarted = () => {
         </div>
       </section>
 
-      <section className="flex-1 flex justify-center px-6 py-20">
+      <section className="w-1/2 flex justify-center px-6 py-20 overflow-y-scroll">
         <div className="w-full max-w-md">
           <div className="text-center mb-12">
             <img src={logo} alt="Resumon" className="w-40 h-full object-contain block mx-auto" />
@@ -80,7 +80,7 @@ const GetStarted = () => {
             <div className="flex-1 h-px bg-gray-300" />
           </div>
 
-          <button className="w-full flex items-center justify-center cursor-pointer gap-3 border-2 border-gray-300 py-3 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition">
+          <button className="w-full flex items-center justify-center cursor-pointer gap-3 border-2 border-gray-300 py-3 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition mb-10">
             <img src="/src/assets/images/google.png" alt="Google" className="w-5 h-5" />
             <span className="text-sm font-normal text-gray-700">
               Continue with Google

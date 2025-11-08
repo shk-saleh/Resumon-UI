@@ -1,5 +1,6 @@
 import TemplateCard from "./TemplateCard";
 import { cardData } from "../data/cardData";
+import { Search } from "lucide-react";
 
 const TemplatesHero = () => {
   return (
@@ -28,11 +29,14 @@ const TemplatesHero = () => {
         </div>
 
         {/* Right Searchbar */}
-        <input
-          type="text"
-          placeholder="Search for template"
-          className="border border-[#E2E2E2] text-black p-1 rounded-lg bg-[#E2E2E2]"
-        />
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 w-5 h-5" />
+          <input
+            type="text"
+            placeholder="Search for template"
+            className="border border-[#E2E2E2] text-black p-1 rounded-lg bg-[#E2E2E2] pl-10"
+          />
+        </div>
       </div>
 
       {/* Cards Row 1 */}
@@ -50,7 +54,7 @@ const TemplatesHero = () => {
       </div>
 
       <div className="flex justify-center items-center">
-        <button className="p-2 text-white bg-[#1A9369] rounded-md">
+        <button className="p-2 text-white bg-[#1A9369] rounded-md mt-40">
           Load More
         </button>
       </div>

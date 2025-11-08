@@ -1,50 +1,55 @@
+import Persona from '../assets/images/Persona.png'
+import Navy from '../assets/images/Navy.png'
+import Silk from '../assets/images/Silk.png'
+import Batch from '../assets/images/Batch.png'
+
 export const cardData = [
     {
-      image: "/img1.jpg",
+      image: Persona,
       title: "Persona",
-      text: "Lorem ipsum",
+      text: "Technical",
       bgColor: "bg-[#DFDFDF]",
     },
     {
-      image: "/img2.jpg",
+      image: Silk,
       title: "Silk",
-      text: "Lorem ipsum",
+      text: "Industry",
       bgColor: "bg-[#F2D2C4]",
     },
     {
-      image: "/img3.jpg",
+      image: Batch,
       title: "Batch",
-      text: "Lorem ipsum",
+      text: "Industry",
       bgColor: "bg-[#DFDFDF]",
     },
     {
-      image: "/img4.jpg",
+      image: Navy,
       title: "Navy",
-      text: "Lorem ipsum",
+      text: "Education",
       bgColor: "bg-blue-100",
     },
     {
-      image: "/img5.jpg",
+      image: Navy,
       title: "Navy",
-      text: "Lorem ipsum",
+      text: "Education",
       bgColor: "bg-blue-100",
     },
     {
-      image: "/img6.jpg",
+      image:Batch,
       title: "Batch",
-      text: "Lorem ipsum",
+      text: "Industry",
       bgColor: "bg-[#DFDFDF]",
     },
     {
-      image: "/img7.jpg",
+      image: Silk,
       title: "Silk",
-      text: "Lorem ipsum",
+      text: "Industry",
       bgColor: "bg-[#F2D2C4]",
     },
     {
-      image: "/img8.jpg",
+      image: Persona,
       title: "Persona",
-      text: "Lorem ipsum",
+      text: "Technical",
       bgColor: "bg-[#DFDFDF]",
     },
   ];

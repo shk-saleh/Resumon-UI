@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import { useAuthStore } from '../store/useAuthStore';
 
 const Login = () => {
+
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: '', password: '' });
   const { login, loading, err } = useAuthStore;
 
@@ -12,8 +15,14 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const res = await login(formData);
-    if (res.success) {
+    if (res.success) 
+      {
       console.log("Login successful");
+    }
+    else
+    {
+      console.log("Login failed: " , err);
+      //navigate("/dashboard");
     }
   };
 
@@ -44,7 +53,7 @@ const Login = () => {
         <button type="submit"
           className="w-full bg-[#2DC08D] text-white py-3 cursor-pointer rounded-lg font-semibold hover:bg-[#26A97C] transition shadow-md"
         >
-          Login
+          { loading ?  "Logging in..." : "Login"}
         </button>
         {err && <p className="text-red-500 text-sm text-center">{err}</p>}
       </div>

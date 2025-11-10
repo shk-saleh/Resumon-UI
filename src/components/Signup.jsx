@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import { useAuthStore } from '../store/useAuthStore';
 
 const Signup = ({ setMode }) => {
   
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({ fullname: '', email: '', password: '' });
   const {signup, loading, err} = useAuthStore;
 
@@ -13,8 +15,13 @@ const Signup = ({ setMode }) => {
   const handleSubmit =  async (e) => {
     e.preventDefault();
     const res = await signup(formData);
-    if(res.success){
-      console.log("auth done");
+    if(res.success)
+      {
+      console.log("Signup/Auth successful");
+      setMode("login");
+    }
+    else{
+      console.log("Signup/Auth failed:", err);
     }
   };
 
@@ -53,7 +60,7 @@ const Signup = ({ setMode }) => {
       <button type="submit"
         className="w-full bg-[#2DC08D] text-white py-3 cursor-pointer rounded-lg font-semibold hover:bg-[#26A97C] transition shadow-md"
       >
-        { loading ?  "Creating ..." : "Sign up"}
+        { loading ?  "Signing up..." : "Sign Up"}
       </button>
       {err && <p className="text-red-500 text-sm text-center">{err}</p>}
     </div>

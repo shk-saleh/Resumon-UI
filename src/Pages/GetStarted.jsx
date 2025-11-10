@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
-import { Clock, Zap, BarChart3} from "lucide-react";
+import { Clock, Zap, BarChart3 } from "lucide-react";
 import Login from '../components/Login';
 import Signup from '../components/Signup';
 import logo from "/src/assets/images/logo.png";
 
 const GetStarted = () => {
-  
+
   const [mode, setMode] = useState("login");
-    
+
   return (
     <div className="h-[100vh] flex gap-20">
-      <section className="hidden md:flex flex-col justify-between w-1/2 rounded-3xl bg-gradient-to-b from-(--primary-color) to-(--primary-color)/10 m-2 p-12">
+      <section className="hidden md:flex flex-col justify-between w-1/2 relative rounded-3xl bg-gradient-to-b from-(--primary-color) to-(--primary-color)/10 m-2 p-12 overflow-hidden">
+
+        <img src="/src/assets/images/Templates.png"
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 md:w-[100%] lg:w-[90%] object-contain pointer-events-none"
+        />
+
         <div className="space-y-4">
           <h1 className="my-10 text-5xl font-semibold grad-text">
             Create a resume you are proud of!
@@ -27,7 +32,7 @@ const GetStarted = () => {
               Gain the edge with practical, expert-driven insights
             </p>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 ">
             <BarChart3 strokeWidth={2.5} className="w-5 h-5 shrink-0 mt-1 text-(--dark-color)" />
             <p className="text-sm text-(--dark-color)">
               Showcase your success through powerful, eye-catching visuals
@@ -35,44 +40,43 @@ const GetStarted = () => {
           </div>
         </div>
         <div>
-          <p className="text-sm opacity-90 text-[#075338]">
+          <p className="text-base text-[#075338]">
             Explore <span className="text-[#BA3800] font-semibold">10+ templates</span>{" "}
             & Generate your resume in seconds!
           </p>
         </div>
       </section>
 
-      <section className="w-1/2 flex justify-center px-6 py-20 overflow-y-scroll">
+
+      <section className="flex-1 md:w-1/2 flex justify-center px-6 py-20 overflow-y-scroll">
         <div className="w-full max-w-md">
           <div className="text-center mb-12">
             <img src={logo} alt="Resumon" className="w-40 h-full object-contain block mx-auto" />
             <p className="text-xs text-gray-600 mt-4">Build your professional Resume in minutes</p>
           </div>
 
-           <div className="flex justify-center space-x-2 mb-6 bg-white border border-gray-400 p-1 rounded-full">
+          <div className="flex justify-center space-x-2 mb-6 bg-white border border-gray-400 p-1 rounded-full">
             <button
               onClick={() => setMode("login")}
-              className={`cursor-pointer flex-1 px-4 py-2 rounded-full text-sm font-normal transition ${
-                mode === "login"
+              className={`cursor-pointer flex-1 px-4 py-2 rounded-full text-sm font-normal transition ${mode === "login"
                   ? " border border-gray-300 text-gray-900"
                   : "text-gray-700 hover:bg-gray-100"
-              }`}
+                }`}
             >
               Login
             </button>
             <button
               onClick={() => setMode("signup")}
-              className={` cursor-pointer flex-1 px-4 py-2 rounded-full text-sm font-normal transition ${
-                mode === "signup"
+              className={` cursor-pointer flex-1 px-4 py-2 rounded-full text-sm font-normal transition ${mode === "signup"
                   ? " border border-gray-300 text-gray-900 "
                   : "text-gray-700 hover:bg-gray-100"
-              }`}
+                }`}
             >
               Sign up
             </button>
           </div>
 
-          {mode === "login" ? <Login /> : <Signup setMode={setMode}/>}
+          {mode === "login" ? <Login /> : <Signup setMode={setMode} />}
 
           <div className="flex items-center my-4">
             <div className="flex-1 h-px bg-gray-300" />

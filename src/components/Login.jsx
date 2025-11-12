@@ -22,7 +22,7 @@ const Login = () => {
     else
     {
       console.log("Login failed: " , err);
-      //navigate("/dashboard");
+      navigate("/buildResume");
     }
   };
 

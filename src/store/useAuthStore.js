@@ -15,7 +15,7 @@ export const useAuthStore = create(
                 try 
                 {
                     set({ loading: true, error: null })
-                    const res = await api.post("/api/login", { email, password });
+                    const res = await api.post("/auth/login", { email, password });
 
                     set({
                         user: res.data.user,
@@ -36,12 +36,13 @@ export const useAuthStore = create(
                 try 
                 {
                     set({ loading: true, error: null })
-                    const res = await api.post("/api/signup", { name, email, password });
+                    const res = await api.post("/auth/register", { name, email, password });
                     set({
                         user: res.data.user,
                         loading: false,
                         token: res.data.token
                     });
+                    console.log(res);
                     localStorage.setItem("token", res.data.token);
                     return { success: true };
                 }
@@ -59,5 +60,8 @@ export const useAuthStore = create(
                 set({ user: null, token: null })
             },
         }),
+        {
+            name: "auth-storage",
+        }
     )
 );

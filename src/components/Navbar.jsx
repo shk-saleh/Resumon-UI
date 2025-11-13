@@ -24,9 +24,9 @@ const Navbar = () => {
 
 
   return (
-    <div className="fixed top-0 left-0 mt-4 right-0 z-[100] px-4 sm:px-6 lg:px-10">
-      <nav className="max-w-7xl mx-auto bg-white/40 backdrop-blur-md rounded-2xl shadow-sm border border-gray-200 transition duration-300 text-gray-900">
-        <div className="flex items-center justify-between h-14 px-4">
+    <div className="fixed top-0 left-0 mt-4 right-0 z-[100] px-2 sm:px-2 lg:px-10">
+      <nav className="max-w-5xl mx-auto bg-white/40 backdrop-blur-md rounded-2xl shadow-sm border border-gray-200 transition duration-300 text-gray-900">
+        <div className="flex items-center justify-between h-16 px-4">
           <div className="flex items-center gap-2">
             <img src="/src/assets/images/logo.png" alt="Resumon"
               className="w-30 rounded-lg object-contain" />
@@ -66,8 +66,8 @@ const Navbar = () => {
 
 
           <div className="hidden sm:flex">
-            <button onClick={() => navigate("/GetStarted")}
-              className="flex justify-center items-center bg-[#EB904A] text-white px-4 py-2.5 m-2 rounded-lg font-normal text-sm sm:text-xs md:text-base duration-200 transition-all hover:bg-[#d67f3d] cursor-pointer">
+            <button onClick={() => navigate("/get-started")}
+              className="flex justify-center items-center bg-[#EB904A] text-white px-4 py-2.5 rounded-lg font-normal text-sm sm:text-xs md:text-base duration-200 transition-all hover:bg-[#d67f3d] cursor-pointer">
               Get Started
               <ArrowUpRight className="w-4 h-4 inline-block ml-1" />
             </button>

@@ -5,8 +5,8 @@ import { useAuthStore } from '../store/useAuthStore';
 const Signup = ({ setMode }) => {
   
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({ fullname: '', email: '', password: '' });
-  const {signup, loading, err} = useAuthStore;
+  const [formData, setFormData] = useState({ name: '', email: '', password: '' });
+  const {signup, loading, err} = useAuthStore();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -21,7 +21,8 @@ const Signup = ({ setMode }) => {
       setMode("login");
     }
     else{
-      console.log("Signup/Auth failed:", err);
+      console.log("Signup/Auth failed:", res);
+      navigate("/");
     }
   };
 
@@ -32,7 +33,7 @@ const Signup = ({ setMode }) => {
       <div>
         <label htmlFor="fullname" className="block text-sm font-medium text-gray-700 mb-2"> Full Name </label>
         <input
-          type="text" id="fullName" name="fullname" placeholder="Enter your name" value={formData.fullname} onChange={handleChange} required
+          type="text" id="fullName" name="name" placeholder="Enter your name" value={formData.name} onChange={handleChange} required
           className="w-full px-4 py-2.5 text-(--gray-color) rounded-lg border border-gray-300 focus:outline-none focus:ring-1 focus:ring-[#1A9B7F] focus:border-transparent transition"
         />
       </div>

@@ -6,7 +6,7 @@ const Login = () => {
 
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: '', password: '' });
-  const { login, loading, err } = useAuthStore;
+  const { login, loading, err } = useAuthStore();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -18,11 +18,12 @@ const Login = () => {
     if (res.success) 
       {
       console.log("Login successful");
+      navigate("/build-resume");
     }
     else
     {
       console.log("Login failed: " , err);
-      navigate("/buildResume");
+      navigate("/");
     }
   };
 

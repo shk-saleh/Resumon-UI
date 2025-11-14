@@ -2,6 +2,7 @@ import React, { useState, useEffect} from "react";
 import { ChevronDown, ChevronUp, ArrowUpRight, Menu, X } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { tools } from "../data/tools";
+import logo from '../assets/images/logo.png'
 
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
@@ -28,7 +29,7 @@ const Navbar = () => {
       <nav className="max-w-5xl mx-auto bg-white/40 backdrop-blur-md rounded-2xl shadow-sm border border-gray-200 transition duration-300 text-gray-900">
         <div className="flex items-center justify-between h-16 px-4">
           <div className="flex items-center gap-2">
-            <img src="/src/assets/images/logo.png" alt="Resumon"
+            <img src={logo} alt="Resumon"
               className="w-30 rounded-lg object-contain" />
           </div>
 

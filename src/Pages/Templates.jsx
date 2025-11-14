@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import TemplatesHero from "../components/TemplatesHero";
 import FAQ from "../components/FAQ";
 import Footer from "../components/Footer";
+import CTA from "../components/CTA";
 
 const Templates = () => {
   return (
@@ -10,6 +11,7 @@ const Templates = () => {
       <Navbar />
       <TemplatesHero />
       <FAQ />
+      <CTA />
       <Footer />
     </>
   );

@@ -36,7 +36,7 @@ const TemplatesHero = () => {
 
   return (
     <section>
-      <div className="w-full flex flex-col justify-center items-center py-40 text-black">
+      <div className="w-full flex flex-col justify-center items-center pt-40 pb-20 text-black">
         <h1 className="text-4xl mb-6 font-semibold">
           Find a<span className="text-[#2DC08D]"> Template </span>
           that suits you!
@@ -47,7 +47,7 @@ const TemplatesHero = () => {
         </p>
       </div>
 
-      <div className="flex justify-between items-center ml-14 mr-14">
+      <div className="flex justify-between items-center ml-6 mr-14">
         <div className="flex gap-5">
           {["All", "Technical", "Education", "Industry"].map((label) => (
             <button
@@ -56,7 +56,7 @@ const TemplatesHero = () => {
                 setActiveCategory(label);
                 setVisibleCards(8);
               }}
-              className={`border border-[#E2E2E2] text-black p-1 rounded-xl transition-colors ${
+              className={`border border-[#E2E2E2] text-black py-0.5 px-3 rounded-xl transition-colors ${
                 activeCategory === label
                   ? "bg-[#2DC08D] text-white"
                   : "bg-[#e2e2e2cc]"
@@ -99,7 +99,7 @@ const TemplatesHero = () => {
       )}
 
       <div className="flex justify-center items-center">
-        <button className="flex items-center gap-2 p-3.5 text-white bg-[#1A9369] rounded-lg mt-6 mb-6">
+        <button className="flex items-center gap-2 p-3.5 text-white bg-[#2DC08D] rounded-lg mt-16 mb-6">
           Load More
           <Loader2 className="w-5 h-5 text-white" />{" "}
         </button>

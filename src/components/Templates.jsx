@@ -1,15 +1,19 @@
 import React from "react";
 import Marquee from "react-fast-marquee";
+import temp1 from "/src/assets/images/temp-1.png";
+import temp2 from "/src/assets/images/temp-2.png";
+import temp3 from "/src/assets/images/temp-3.png";
+import temp4 from "/src/assets/images/temp-4.png";
 
 const Templates = () => {
 
   const templates = [
-    { id: 1, image: "/src/assets/images/temp-1.png" },
-    { id: 2, image: "/src/assets/images/temp-2.png" },
-    { id: 3, image: "/src/assets/images/temp-3.png" },
-    { id: 4, image: "/src/assets/images/temp-4.png" },
-    { id: 5, image: "/src/assets/images/temp-1.png" },
-    { id: 6, image: "/src/assets/images/temp-2.png" },
+    { id: 1, image: temp1 },
+    { id: 2, image: temp2 },
+    { id: 3, image: temp3 },
+    { id: 4, image: temp4 },
+    { id: 5, image: temp1 },
+    { id: 6, image: temp2 },
   ];
 
   return (

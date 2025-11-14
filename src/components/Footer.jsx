@@ -1,6 +1,7 @@
 import React from "react";
 import { Facebook, Github, Linkedin } from "lucide-react";
 import { Link } from "react-router-dom";
+import logo from '../assets/images/logo.png'
 
 const Footer = () => {
   return (
@@ -9,7 +10,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-14 py-20">
           <div className="md:col-span-2 lg:col-span-2">
             <img
-              src="/src/assets/images/logo.png"
+              src= {logo}
               alt="Resumon"
               className="w-36 rounded-lg object-contain"
             />

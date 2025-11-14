@@ -1,3 +1,9 @@
+import React from "react";
+import image1 from "/src/assets/images/screen1.png";
+import image2 from "/src/assets/images/screen2.png";
+import image3 from "/src/assets/images/screen3.png";
+import image4 from "/src/assets/images/screen4.png";
+
 export const steps = [
     {
       id: 1,
@@ -8,7 +14,7 @@ export const steps = [
         { type: "Manual Mode", text: "Prefer control? Fill out step-by-step forms to craft your resume manually.", color: "text-[#2DC08D]" }
       ],
       button: { bg: "bg-[#2DC08D]",border: "border border-[#1A9369]", hoverBg: "hover:bg-[#26A97C]",},
-      image: "/src/assets/images/screen1.png"
+      image: image1
     },
     {
       id: 2,
@@ -18,7 +24,7 @@ export const steps = [
         { text: "Each template is ATS-friendly and customizable, ensuring your resume stands out to recruiters and systems alike.", color: "text-[#EB904A]" }
       ],
       button: { bg: "bg-[#EB904A]", border: "border border-[#CC6A24]",hoverBg: "hover:bg-[#d67f3d]",},
-      image: "/src/assets/images/screen2.png"
+      image: image2
     },
     {
       id: 3,
@@ -28,7 +34,7 @@ export const steps = [
         { text: "In Manual Mode, you can input your education, experience, projects, and skills using simple guided forms.", color: "text-[#2DC08D]" }
       ],
       button: {bg: "bg-[#2DC08D]",border: "border border-[#1A9369]",hoverBg: "hover:bg-[#26A97C]",},
-      image: "/src/assets/images/screen3.png"
+      image: image3
     },
     {
       id: 4,
@@ -39,6 +45,6 @@ export const steps = [
         { text: "Print or share it directly with recruiters.", color: "text-[#EB904A]" }
       ],
       button: {bg: "bg-[#EB904A]",border: "border border-[#CC6A24]",hoverBg: "hover:bg-[#d67f3d]",},
-      image: "/src/assets/images/screen4.png"
+      image: image4
     }
   ];

@@ -23,9 +23,9 @@ body{
   scroll-behavior: smooth;
 }
 
-::selection {
+/* ::selection {
     background: #2DC08D33;                       
-}
+} */
 
 .grad-text{
   background: linear-gradient(90deg, #114b36 0%, #26ab92 100%);

@@ -9,12 +9,13 @@ import FAQ from '../components/FAQ';
 import CTA from "../components/CTA";
 import Footer from "../components/Footer";
 import Features from "../components/Features";
+import blob1 from '/src/assets/images/blob1.png';
 
 const Home = () => {
   return (
     <div className="min-h-screen bg-white relative ">
 
-      <img src="/src/assets/images/blob1.png"
+      <img src={blob1}
         className="absolute top-0 left-0 w-[350px] sm:w-[500px] md:w-[800px] lg:w-[900px] opacity-90 z-10 pointer-events-none select-none"
       />
       <Navbar />

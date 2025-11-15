@@ -4,7 +4,7 @@ import Login from '../components/Login';
 import Signup from '../components/Signup';
 import logo from "/src/assets/images/logo.png";
 import GoogleLoginButton from '../components/GoogleLoginButton'
-import Template1 from '/src/assets/images/templates.png';
+import mockup from '/src/assets/images/Templates.png';
 
 const GetStarted = () => {
 
@@ -14,7 +14,7 @@ const GetStarted = () => {
     <div className="h-[100vh] flex gap-20">
       <section className="hidden md:flex flex-col justify-between w-1/2 relative rounded-3xl bg-gradient-to-b from-(--primary-color) to-(--primary-color)/10 m-2 p-12 overflow-hidden">
 
-        <img src= {Template1}
+        <img src= {mockup}
           className="absolute bottom-0 left-1/2 -translate-x-1/2 md:w-[100%] lg:w-[90%] object-contain pointer-events-none"
         />
 

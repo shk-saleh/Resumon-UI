@@ -53,6 +53,26 @@ export const useAuthStore = create(
                 }
             },
 
+            googleLogin: async ({ credential }) => {
+                try 
+                {
+                    set({ loading: true, error: null })
+                    const res = await api.post("/auth/google", { credential });
+                    set({
+                        user: res.data.user,
+                        loading: false,
+                        token: res.data.token
+                    });
+                    console.log(res);
+                    localStorage.setItem("token", res.data.token);
+                    return { success: true };
+                }
+                catch (err) 
+                {
+                    set({ error: err.response?.data.message || "Google Login Failed!", loading: false });
+                    return { success: false };
+                }
+            },
 
             logout: () => 
             {

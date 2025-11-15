@@ -1,5 +1,5 @@
 import { Sparkles, ArrowRight } from 'lucide-react';
-import mockup from '../assets/images/home-mockup.png'
+import imgHero from '/src/assets/images/home-mockup.png';
 
 const Hero = () => {
   return (
@@ -33,7 +33,7 @@ const Hero = () => {
           </div>
 
           <div className="mt-12 flex justify-center">
-            <img src={mockup} className="w-auto max-w-full h-auto" />
+            <img src= {imgHero} className="w-auto max-w-full h-auto" />
           </div>
         </div>
       </div>

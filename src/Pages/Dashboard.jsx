@@ -22,6 +22,6 @@ const Dashboard = () => {
         </div>
         <Footer />
     </div>
-  )
-}
-export default Dashboard
+  );
+};
+export default Dashboard;

@@ -3,7 +3,7 @@ import { info } from "../data/info";
 export default function ContactInfo() {
 
   return (
-    <section className="px-8 lg:px-20 bg-white">
+    <section className="px-8 lg:px-20 bg-white mb-15">
       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
         {info.map((item, index) => (
           <div key={index}

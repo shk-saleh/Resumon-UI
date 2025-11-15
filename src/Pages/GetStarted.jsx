@@ -86,13 +86,6 @@ const GetStarted = () => {
             <div className="flex-1 h-px bg-gray-300" />
           </div>
 
-          {/* <button className="w-full flex items-center justify-center cursor-pointer gap-3 border-2 border-gray-300 py-3 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition mb-10">
-            <img src="/src/assets/images/google.png" alt="Google" className="w-5 h-5" />
-            <span className="text-sm font-normal text-gray-700">
-              Continue with Google
-            </span>
-          </button> */}
-
           <GoogleLoginButton />
 
         </div>

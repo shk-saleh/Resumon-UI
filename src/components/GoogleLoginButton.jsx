@@ -12,7 +12,7 @@ const GoogleLoginButton = () => {
     const res = await googleLogin({ credential: credentialResponse.credential });
     if (res.success) {
       console.log("Google login successful");
-      navigate('/dashboard'); // Redirect after success
+      navigate('/dashboard');
     } else {
       console.error("Google login failed");
     }
@@ -35,5 +35,4 @@ const GoogleLoginButton = () => {
     </div>
   );
 };
-
 export default GoogleLoginButton;

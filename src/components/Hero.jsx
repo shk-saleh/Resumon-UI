@@ -1,7 +1,9 @@
 import { Sparkles, ArrowRight } from 'lucide-react';
+import { useNavigate} from "react-router-dom";
 import imgHero from '/src/assets/images/home-mockup.png';
 
 const Hero = () => {
+   const navigate = useNavigate();
   return (
     <section className="relative px-4 sm:px-6 lg:px-8 pt-32 lg:pt-38 pb-0 overflow-hidden">
       <div className="max-w-6xl mx-auto">
@@ -22,11 +24,15 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <button className="w-full sm:w-auto bg-[#EB904A] border border-[#BC5729] text-white px-6 py-2.5 rounded-lg font-medium hover:bg-[#d67f3d] transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 text-sm">
+            <button 
+              onClick={() => navigate("/get-started")}
+              className="w-full sm:w-auto bg-[#EB904A] border border-[#BC5729] text-white px-6 py-2.5 rounded-lg font-medium hover:bg-[#d67f3d] transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 text-sm">
               Create your resume
               <Sparkles className="w-4 h-4" />
             </button>
-            <button className="w-full sm:w-auto bg-[#2DC08D] border border-[#1A9369] text-white px-6 py-2.5 rounded-lg font-medium hover:bg-[#26A97C] cursor-pointer transition-all duration-200 flex items-center justify-center gap-2 text-sm">
+            <button 
+              onClick={() => navigate("/templates")}
+              className="w-full sm:w-auto bg-[#2DC08D] border border-[#1A9369] text-white px-6 py-2.5 rounded-lg font-medium hover:bg-[#26A97C] cursor-pointer transition-all duration-200 flex items-center justify-center gap-2 text-sm">
               Explore Templates
               <ArrowRight className="w-4 h-4" />
             </button>
@@ -40,5 +46,4 @@ const Hero = () => {
     </section>
   );
 };
-
 export default Hero;

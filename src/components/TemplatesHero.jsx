@@ -24,7 +24,6 @@ const TemplatesHero = () => {
 
   const handleLoadMore = () => {
     setIsLoading(true);
-    // Simulate loading delay
     setTimeout(() => {
       setVisibleCards((prev) => prev + 8);
       setIsLoading(false);
@@ -48,10 +47,9 @@ const TemplatesHero = () => {
       </div>
 
       <div className="flex justify-between items-center">
-        <div className="flex gap-5">
+        <div className="flex gap-5 rounded-3xl">
           {["All", "Technical", "Education", "Industry"].map((label) => (
-            <button
-              key={label}
+            <button key={label}
               onClick={() => {
                 setActiveCategory(label);
                 setVisibleCards(8);
@@ -67,12 +65,10 @@ const TemplatesHero = () => {
           ))}
         </div>
 
-        {/* Right Searchbar */}
         <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 w-5 h-5" />
           <input
-            type="text"
-            placeholder="Search for template"
+            type="text" placeholder="Search for template"
             value={searchQuery}
             onChange={(e) => {
               setSearchQuery(e.target.value);
@@ -83,7 +79,6 @@ const TemplatesHero = () => {
         </div>
       </div>
 
-      {/* Cards Display */}
       {displayedCards.length === 0 ? (
         <div className="text-center py-20 text-gray-500">
           No templates found matching your criteria
@@ -98,8 +93,8 @@ const TemplatesHero = () => {
         </div>
       )}
 
-      <div className="flex justify-center items-center">
-        <button className="flex items-center gap-2 p-3.5 text-white bg-[#2DC08D] rounded-lg mt-16 mb-6">
+      <div className="flex justify-center items-center mb-10 mt-14">
+        <button className="flex items-center gap-2 p-3.5 text-white bg-[#2DC08D] rounded-lg">
           Load More
           <Loader2 className="w-5 h-5 text-white" />{" "}
         </button>
@@ -108,5 +103,4 @@ const TemplatesHero = () => {
     </section>
   );
 };
-
 export default TemplatesHero;

@@ -18,7 +18,7 @@ const Login = () => {
     if (res.success) 
       {
       console.log("Login successful");
-      navigate("/build-resume");
+      navigate("/dashboard");
     }
     else
     {

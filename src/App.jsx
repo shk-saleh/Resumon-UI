@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import Home from './Pages/Home'
 import NotFound from './components/404'
@@ -8,15 +9,22 @@ import Templates from './Pages/Templates'
 import Dashboard from './Pages/Dashboard'
 import BuildResume from './components/BuildResume'
 import { useAuthStore } from './store/useAuthStore'
+import initLenis from './lib/lenis'
+import ScrollToTop from './components/ScrollToTop'
 
 function App() {
 
   const { user, token } = useAuthStore();
+
+  useEffect(() => {
+    const lenis = initLenis();
+    return () => lenis.destroy();
+  }, []);
   
   return (
     <div className='bg-(--white-color) min-h-screen overflow-x-hidden'>
-      <main>
-        <Routes>
+        <ScrollToTop/>
+        <Routes>    
           <Route path="/" element={<Home />} />
           <Route path="/get-started" element={<GetStarted />} />
           <Route path="/pricing" element={<Pricing />} />
@@ -28,7 +36,6 @@ function App() {
           />  */}
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </main>
     </div>
   )
 }

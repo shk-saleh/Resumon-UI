@@ -13,10 +13,6 @@
     --font-kaushan: 'Kaushan Script', cursive;
 }
 
-@theme {
-  --breakpoint-xs: 30rem;    /* 480px */
-}
-
 body{
   font-family: var(--font-body);
   background-color: white;

@@ -3,6 +3,8 @@ import { Clock, Zap, BarChart3 } from "lucide-react";
 import Login from '../components/Login';
 import Signup from '../components/Signup';
 import logo from "/src/assets/images/logo.png";
+import GoogleLoginButton from '../components/GoogleLoginButton'
+import mockup from '/src/assets/images/Templates.png';
 
 const GetStarted = () => {
 
@@ -12,7 +14,7 @@ const GetStarted = () => {
     <div className="h-[100vh] flex gap-20">
       <section className="hidden md:flex flex-col justify-between w-1/2 relative rounded-3xl bg-gradient-to-b from-(--primary-color) to-(--primary-color)/10 m-2 p-12 overflow-hidden">
 
-        <img src="/src/assets/images/Templates.png"
+        <img src= {mockup}
           className="absolute bottom-0 left-1/2 -translate-x-1/2 md:w-[100%] lg:w-[90%] object-contain pointer-events-none"
         />
 
@@ -84,12 +86,14 @@ const GetStarted = () => {
             <div className="flex-1 h-px bg-gray-300" />
           </div>
 
-          <button className="w-full flex items-center justify-center cursor-pointer gap-3 border-2 border-gray-300 py-3 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition mb-10">
+          {/* <button className="w-full flex items-center justify-center cursor-pointer gap-3 border-2 border-gray-300 py-3 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition mb-10">
             <img src="/src/assets/images/google.png" alt="Google" className="w-5 h-5" />
             <span className="text-sm font-normal text-gray-700">
               Continue with Google
             </span>
-          </button>
+          </button> */}
+
+          <GoogleLoginButton />
 
         </div>
       </section>

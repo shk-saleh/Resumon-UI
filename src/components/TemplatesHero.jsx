@@ -35,8 +35,8 @@ const TemplatesHero = () => {
   const hasMoreCards = visibleCards < filteredCards.length;
 
   return (
-    <section>
-      <div className="w-full flex flex-col justify-center items-center py-40 text-black">
+    <section className="max-w-6xl mx-auto">
+      <div className="w-full flex flex-col justify-center items-center pt-40 pb-20 text-black">
         <h1 className="text-4xl mb-6 font-semibold">
           Find a<span className="text-[#2DC08D]"> Template </span>
           that suits you!
@@ -47,7 +47,7 @@ const TemplatesHero = () => {
         </p>
       </div>
 
-      <div className="flex justify-between items-center ml-14 mr-14">
+      <div className="flex justify-between items-center">
         <div className="flex gap-5">
           {["All", "Technical", "Education", "Industry"].map((label) => (
             <button
@@ -56,10 +56,10 @@ const TemplatesHero = () => {
                 setActiveCategory(label);
                 setVisibleCards(8);
               }}
-              className={`border border-[#E2E2E2] text-black p-1 rounded-xl transition-colors ${
+              className={`border border-[#E2E2E2] text-black py-1 px-3 rounded-3xl transition-colors text-sm cursor-pointer ${
                 activeCategory === label
                   ? "bg-[#2DC08D] text-white"
-                  : "bg-[#e2e2e2cc]"
+                  : "bg-gray-100"
               }`}
             >
               {label}
@@ -78,7 +78,7 @@ const TemplatesHero = () => {
               setSearchQuery(e.target.value);
               setVisibleCards(8);
             }}
-            className="border border-[#E2E2E2] text-black p-1 rounded-lg bg-[#E2E2E2] pl-10"
+            className="border border-[#E2E2E2] text-black p-1 rounded-lg bg-gray-100 pl-10 outline-none text-sm w-72s py-2"
           />
         </div>
       </div>
@@ -99,7 +99,7 @@ const TemplatesHero = () => {
       )}
 
       <div className="flex justify-center items-center">
-        <button className="flex items-center gap-2 p-3.5 text-white bg-[#1A9369] rounded-lg mt-6 mb-6">
+        <button className="flex items-center gap-2 p-3.5 text-white bg-[#2DC08D] rounded-lg mt-16 mb-6">
           Load More
           <Loader2 className="w-5 h-5 text-white" />{" "}
         </button>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowRight } from "lucide-react";
 import { toast, Toaster } from 'react-hot-toast'
+import supportImage from '/src/assets/images/Support.png';
 
 const ContactForm = () =>{
 
@@ -34,7 +35,7 @@ const ContactForm = () =>{
           </p>
 
           <div className="w-80 h-72 border-dashed border-gray-300 rounded-xl flex items-center justify-center text-gray-400">
-            <img src="src/assets/images/support.png" className="w-full h-full object-contain" />
+            <img src={supportImage} className="w-full h-full object-contain" />
           </div>
         </div>
 

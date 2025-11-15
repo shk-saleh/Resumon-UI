@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowRight } from "lucide-react";
 import { toast, Toaster } from 'react-hot-toast'
-import supportImage from '/src/assets/images/support.png';
+import supportImage from '/src/assets/images/Support.png';
 
 const ContactForm = () =>{
 

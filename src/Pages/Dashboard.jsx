@@ -11,13 +11,12 @@ const Dashboard = () => {
     <div className="flex h-screen bg-gradient-to-r from-[#FFFFFF] to-[#F1FFFB]">
       <Sidebar sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
 
-      <div className="flex-1 flex flex-col">
-
-        <Topbar/>
-        <MainContent/>
-        
+      <div className="flex-1 flex flex-col min-h-0">
+        <Topbar />
+        <MainContent />
       </div>
     </div>
   );
 };
+
 export default Dashboard;

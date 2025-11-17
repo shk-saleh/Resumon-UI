@@ -23,7 +23,6 @@ const Navbar = () => {
     };
   }, [toolsOpen]);
 
-
   return (
     <div className="fixed top-0 left-0 mt-4 right-0 z-[100] px-2 sm:px-2 lg:px-10">
       <nav className="max-w-5xl mx-auto bg-white/40 backdrop-blur-md rounded-2xl shadow-sm border border-gray-200 transition duration-300 text-gray-900">
@@ -64,7 +63,6 @@ const Navbar = () => {
             </NavLink>
           </div>
 
-
           <div className="hidden sm:flex">
             <button onClick={() => navigate("/get-started")}
               className="flex justify-center items-center bg-[#EB904A] text-white px-4 py-2.5 rounded-lg font-normal text-sm sm:text-xs md:text-base duration-200 transition-all hover:bg-[#d67f3d] cursor-pointer">
@@ -72,7 +70,6 @@ const Navbar = () => {
               <ArrowUpRight className="w-4 h-4 inline-block ml-1" />
             </button>
           </div>
-
 
           <div className="sm:hidden flex items-center">
             <button onClick={() => setMenu(!menu)}
@@ -82,7 +79,6 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-
 
       {menu && (
         <div className="absolute top-14 right-4 bg-white rounded-lg shadow-md flex flex-col w-37 py-2 px-2 transition-all duration-300 sm:hidden z-40">

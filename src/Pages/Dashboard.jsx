@@ -12,7 +12,7 @@ const Dashboard = () => {
   const activePage = useDashboardStore((state) => state.activePage);
 
   return (
-    <div className="flex h-screen bg-gradient-to-r from-[#FFFFFF] to-[#F1FFFB]">
+    <div className="flex h-screen min-h-0 bg-gradient-to-r from-[#FFFFFF] to-[#F1FFFB]">
       <Sidebar sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
 
       <div className="flex-1 flex flex-col min-h-0 overflow-y-auto">

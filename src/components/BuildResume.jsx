@@ -3,6 +3,7 @@ import { BicepsFlexed, Sparkles, ChevronLeft } from 'lucide-react';
 import { useResumeStore } from "../store/useResumeStore";
 import { cardData } from "../data/cardData";
 import { ArrowUpRight } from 'lucide-react'
+import loader from "/src/assets/images/Loader2.gif";
 
 const BuildResume = () => {
   const {
@@ -30,6 +31,7 @@ const BuildResume = () => {
   useEffect(() => {
     if (currentStep === 3) {
       const timer = setTimeout(() => {
+        //setCurrentStep(4);
         resetResumeBuilder();
       }, 5000);
       return () => clearTimeout(timer);
@@ -65,12 +67,6 @@ const BuildResume = () => {
                 Custom Build
               </span>
             </button>
-          </div>
-          <div className="bottom-0 mt-30 flex flex-col items-center justify-center text-center text-sm text-gray-500 font-light ">
-            <span> Your data will be processed in accordance with our{" "}
-              <span className="underline cursor-pointer">Privacy Policy</span>
-            </span>
-            <span className="mt-1"> &copy; 2025, Resumon. All rights reserved.</span>
           </div>
         </div>
       )}
@@ -112,13 +108,6 @@ const BuildResume = () => {
               </div>
             ))}
           </div>
-
-          <div className="mt-30 flex flex-col items-center justify-center text-center text-sm text-gray-500 font-light">
-            <span> Your data will be processed in accordance with our{" "}
-              <span className="underline cursor-pointer">Privacy Policy</span>
-            </span>
-            <span className="mt-1"> &copy; 2025, Resumon. All rights reserved.</span>
-          </div>
         </div>
       )}
 
@@ -127,7 +116,7 @@ const BuildResume = () => {
           <h3 className="text-xl md:text-2xl text-(--dark-color) text-center font-medium mb-4">
             Creating environment for you!
           </h3>
-          <img src="/src/assets/images/loader.gif" alt="Loading..." className="w-40 h-40 md:w-24 md:h-24 mt-4 bg-none" />
+          <img src={loader} alt="Loading..." className="w-40 h-40 md:w-24 md:h-24 mt-4 bg-none" />
         </div>
       )}
     </div>

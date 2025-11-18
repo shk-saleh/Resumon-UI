@@ -41,7 +41,7 @@ const Working = () => {
               </div>
 
               <button
-                onClick={() => navigate("/GetStarted")}
+                onClick={() => navigate("/get-started")}
                 className={`text-white px-6 py-2.5 rounded-lg font-medium transition flex items-center gap-2 cursor-pointer ${step.button.bg} ${step.button.border} ${step.button.hoverBg}`}>
                 Try Out Now
                 <ArrowUpRight className="w-4 h-4" />

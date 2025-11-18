@@ -24,7 +24,6 @@ const TemplatesHero = () => {
 
   const handleLoadMore = () => {
     setIsLoading(true);
-    // Simulate loading delay
     setTimeout(() => {
       setVisibleCards((prev) => prev + 8);
       setIsLoading(false);
@@ -36,77 +35,69 @@ const TemplatesHero = () => {
 
   return (
     <section className="max-w-6xl mx-auto">
-      <div className="w-full flex flex-col justify-center items-center pt-40 pb-20 text-black">
+      <div className="w-full flex flex-col justify-center items-center pt-40 pb-20 text-black text-center">
         <h1 className="text-4xl mb-6 font-semibold">
-          Find a<span className="text-[#2DC08D]"> Template </span>
-          that suits you!
+          Find a<span className="text-[#2DC08D]"> Template </span> that suits you!
         </h1>
-        <p>
-          Select from our wide collection of designs, filter by profession and
-          personalize them in just a few clicks.
+        <p className="text-sm sm:text-base md:text-lg max-w-2xl">
+          Select from our wide collection of designs, filter by profession and personalize them in just a few clicks.
         </p>
       </div>
 
-      <div className="flex justify-between items-center">
-        <div className="flex gap-5">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 sm:gap-0 w-full px-4 sm:px-6">
+        <div className="flex flex-wrap gap-2 sm:gap-5 rounded-3xl">
           {["All", "Technical", "Education", "Industry"].map((label) => (
-            <button
-              key={label}
+            <button key={label}
               onClick={() => {
                 setActiveCategory(label);
                 setVisibleCards(8);
               }}
-              className={`border border-[#E2E2E2] text-black py-1 px-3 rounded-3xl transition-colors text-sm cursor-pointer ${
-                activeCategory === label
+              className={`border border-[#E2E2E2] text-black py-1 px-3 rounded-3xl transition-colors text-sm cursor-pointer ${activeCategory === label
                   ? "bg-[#2DC08D] text-white"
                   : "bg-gray-100"
-              }`}
+                }`}
             >
               {label}
             </button>
           ))}
         </div>
 
-        {/* Right Searchbar */}
-        <div className="relative">
+        <div className="relative w-full sm:w-72">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 w-5 h-5" />
           <input
-            type="text"
-            placeholder="Search for template"
+            type="text" placeholder="Search for template"
             value={searchQuery}
             onChange={(e) => {
               setSearchQuery(e.target.value);
               setVisibleCards(8);
             }}
-            className="border border-[#E2E2E2] text-black p-1 rounded-lg bg-gray-100 pl-10 outline-none text-sm w-72s py-2"
+            className="w-full sm:w-full border border-[#E2E2E2] text-black py-2 pl-10 pr-3 rounded-lg bg-gray-100 text-sm outline-none"
           />
         </div>
       </div>
 
-      {/* Cards Display */}
-      {displayedCards.length === 0 ? (
-        <div className="text-center py-20 text-gray-500">
-          No templates found matching your criteria
-        </div>
-      ) : (
-        <div className="max-w-[1222px] mx-auto mt-12">
-          <div className="grid grid-cols-4 gap-6">
+      <div className="max-w-7xl mx-auto mt-12 px-4">
+        {displayedCards.length === 0 ? (
+          <div className="text-center py-20 text-gray-500">
+            No templates found matching your criteria
+          </div>
+        ) : (
+          <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {displayedCards.map((card, index) => (
               <TemplateCard key={index} {...card} />
             ))}
           </div>
-        </div>
-      )}
+        )}
+      </div>
 
-      <div className="flex justify-center items-center">
-        <button className="flex items-center gap-2 p-3.5 text-white bg-[#2DC08D] rounded-lg mt-16 mb-6">
+      <div className="flex justify-center items-center mb-10 mt-14">
+        <button className="flex items-center gap-2 p-3.5 text-white bg-[#2DC08D] rounded-lg">
           Load More
           <Loader2 className="w-5 h-5 text-white" />{" "}
         </button>
       </div>
-      
+
     </section>
   );
 };
-
 export default TemplatesHero;

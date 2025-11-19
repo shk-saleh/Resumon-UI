@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { ChartPie, PanelRightOpen, LogOut, User, Files, Settings, FileText, FileCheck, CheckCheck } from "lucide-react";
-import useDashboardStore from "../store/useDashboardStore";
+import {useDashboardStore} from "../store/useDashboardStore";
 import logo from '../assets/images/logo.png';
 import Logout from "./Logout";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 
-const Sidebar = ({ sidebarOpen, toggleSidebar }) => {
+
+const Sidebar = () => {
   const [isLogoutOpen, setIsLogoutOpen] = useState(false);
 
+  const sidebarOpen = useDashboardStore((s) => s.sidebarOpen);
+  const toggleSidebar = useDashboardStore((s) => s.toggleSidebar);
   const activePage = useDashboardStore((state) => state.activePage);
   const setActivePage = useDashboardStore((state) => state.setActivePage);
 
@@ -43,7 +46,7 @@ const Sidebar = ({ sidebarOpen, toggleSidebar }) => {
           >
             <ChartPie className="w-5 h-5 text-[#2DC08D]" />
             {sidebarOpen && (
-              <span className="text-[#1A9369] text-sm font-medium">Overview</span>
+              <span className="text-[#1A9369] text-sm">Overview</span>
             )}
           </button>
         </Tippy>

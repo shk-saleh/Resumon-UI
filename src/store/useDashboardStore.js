@@ -1,9 +1,18 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
-const useDashboardStore = create(
-    (set) => ({
-        activePage: "overview",
-        setActivePage: (page) => set({ activePage: page }),
-    }));
+export const useDashboardStore = create(
+  persist(
+    (set, get) => ({
+      activePage: "overview",
+      sidebarOpen: true,
 
-export default useDashboardStore;
+      setActivePage: (page) => set({ activePage: page }),
+      setSidebarOpen: (open) => set({ sidebarOpen: open }),
+      toggleSidebar: () => set((s) => ({ sidebarOpen: !s.sidebarOpen })),
+    }),
+    {
+      name: "dashboard-store",
+    }
+  )
+);

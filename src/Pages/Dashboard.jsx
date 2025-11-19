@@ -1,19 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import Sidebar from "../components/Sidebar";
 import Topbar from "../components/Topbar";
 import BuildResume from "../components/BuildResume";
 import Settings from "../components/Settings";
 import Overview from "../components/Overview";
-import useDashboardStore from "../store/useDashboardStore";
+import {useDashboardStore} from "../store/useDashboardStore";
+import { useResumeStore } from "../store/useResumeStore";
 
-const Dashboard = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
-  const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
-  const activePage = useDashboardStore((state) => state.activePage);
+const Dashboard = () => 
+{
+  const activePage = useDashboardStore((s) => s.activePage);
+  const setSidebarOpen = useDashboardStore((s) => s.setSidebarOpen);
+  
+  const currentStep = useResumeStore((s) => s.currentStep);
+
+  useEffect(() => {
+    if (activePage === "buildresume" && currentStep === 4) {
+      setSidebarOpen(false);
+    }
+  }, [activePage, currentStep]);
 
   return (
     <div className="flex h-screen min-h-0 bg-gradient-to-r from-[#FFFFFF] to-[#F1FFFB]">
-      <Sidebar sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
+      <Sidebar />
 
       <div className="flex-1 flex flex-col min-h-0 overflow-y-auto">
         <Topbar />

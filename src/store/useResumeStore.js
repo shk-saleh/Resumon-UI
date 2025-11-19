@@ -8,11 +8,14 @@ export const useResumeStore = create(
 
       method: null,          // custom or ai
       template: null,        // selected template ID
-      currentStep: 1,        // 1 → 5 flow control
+      currentStep: 1,        // 1 to 5 flow control
+      activeTab: "Basic Info",
+
 
       setMethod: (m) => set({ method: m }),
       setTemplate: (t) => set({ template: t }),
       setCurrentStep: (step) => set({ currentStep: step }),
+      setActiveTab: (tab) => set({ activeTab: tab }),
 
 
 

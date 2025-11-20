@@ -22,11 +22,9 @@ const Sidebar = () => {
     }`;
 
   return (
-    <div
-      className={`relative flex flex-col bg-white border border-gray-200 overflow-y-auto transition-all duration-300 ${sidebarOpen ? "w-64" : "w-16"
-        } rounded-2xl m-2`}
+    <div className={`sticky top-0 flex flex-col bg-white border border-gray-200 transition-all duration-300 ${sidebarOpen ? "w-80" : "w-16 items-center"} rounded-2xl m-2`}
     >
-      <div className="mt-4 px-2 flex gap-2 justify-between">
+      <div className="mt-4 px-2 flex gap-2 justify-between items-center">
         {sidebarOpen && (
           <img src={logo} alt="Resumon" className="w-28 md:w-32 ml-2 rounded-lg object-contain" />
         )}
@@ -44,18 +42,18 @@ const Sidebar = () => {
             onClick={() => setActivePage("overview")}
             className={`${getButton("overview")} mt-10`}
           >
-            <ChartPie className="w-5 h-5 text-[#2DC08D]" />
+            <ChartPie className="w-5 h-5 text-[#BCBBBB]" />
             {sidebarOpen && (
-              <span className="text-[#1A9369] text-sm">Overview</span>
+              <span className="text-[#24272E] text-sm">Overview</span>
             )}
           </button>
         </Tippy>
 
         {sidebarOpen && (
-          <span className="text-[#B1B1B1] text-sm ml-2 mt-1">TOOLS</span>
+          <span className="text-[#B1B1B1] text-sm ml-2 mt-1">Tools</span>
         )}
 
-        <div className={`flex flex-col gap-2 ${sidebarOpen ? "pl-4" : "pl-0"}`}>
+        <div className={`flex flex-col gap-2 ${sidebarOpen ? "pl-2" : "pl-0"}`}>
           <Tippy content="Resume Builder" placement="right" disabled={sidebarOpen}>
             <button
               onClick={() => setActivePage("buildresume")}

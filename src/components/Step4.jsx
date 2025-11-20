@@ -39,7 +39,7 @@ const Step4 = () => {
           })}
         </div>
 
-        <div className="mt-6">
+        <div className="mt-10">
           {activeTab === "Basic Info" && <BasicInfo />}
           {activeTab === "Experience" && <Experience />}
           {activeTab === "Education" && <Education />}

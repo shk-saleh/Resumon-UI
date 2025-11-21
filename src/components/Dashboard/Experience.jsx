@@ -70,7 +70,7 @@ const Experience = () => {
               <select
                 value={exp.type || employmentTypes[0]}
                 onChange={(e) => updateExperience(exp.id, { type: e.target.value })}
-                className="border border-[#C8C8C8] text-gray-700 bg-white px-3 py-2 rounded-lg"
+                className="border border-[#C8C8C8] text-gray-700 bg-white px-3 py-2 rounded-lg focus:outline-none"
               >
                 {employmentTypes.map((type) => (
                   <option key={type} value={type}>{type}</option>
@@ -83,7 +83,7 @@ const Experience = () => {
               <select
                 value={exp.location || locations[0]}
                 onChange={(e) => updateExperience(exp.id, { location: e.target.value })}
-                className="border border-[#C8C8C8] text-gray-700 bg-white px-3 py-2 rounded-lg"
+                className="border border-[#C8C8C8] text-gray-700 bg-white px-3 py-2 rounded-lg focus:outline-none"
               >
                 {locations.map((loc) => (
                   <option key={loc} value={loc}>{loc}</option>
@@ -109,7 +109,7 @@ const Experience = () => {
             />
           </div>
 
-          <div className="mt-4 flex items-center gap-2">
+          <div className="mt-6 flex items-center gap-2">
             <input
               type="checkbox"
               checked={exp.currentlyWorking || false}
@@ -117,6 +117,7 @@ const Experience = () => {
                 updateExperience(exp.id, { currentlyWorking: e.target.checked, end: "" })
               }
               id={`current-${exp.id}`}
+               className="w-4 h-4 accent-[#2DC08D]"
             />
             <label htmlFor={`current-${exp.id}`} className="text-sm text-[#000000]">
               I am currently working here

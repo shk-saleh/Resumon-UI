@@ -93,7 +93,7 @@ const Education = () => {
             />
           </div>
 
-          <div className="mt-4 flex items-center gap-2">
+          <div className="mt-6 flex items-center gap-2">
             <input
               type="checkbox"
               checked={edu.currentlyEnrolled || false}
@@ -101,6 +101,7 @@ const Education = () => {
                 updateEducation(edu.id, { currentlyEnrolled: e.target.checked, endDate: "" })
               }
               id={`current-${edu.id}`}
+              className="w-4 h-4 accent-[#2DC08D]"
             />
             <label htmlFor={`current-${edu.id}`} className="text-sm">
               I am currently enrolled here

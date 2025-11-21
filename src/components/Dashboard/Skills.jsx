@@ -60,7 +60,7 @@ const Skills = () => {
         </div>
         <button
           onClick={handleAddSkill}
-          className="flex items-center gap-1 px-4 py-3 cursor-pointer border border-[#2DC08D] bg-[#2DC08D]/10 text-[#000000] rounded-lg text-sm hover:bg-[#2DC08D]/20"
+          className="flex items-center gap-1 px-4 py-3 cursor-pointer border border-[#2DC08D] bg-[#2DC08D]/10 text-[#000000] rounded-md text-sm hover:bg-[#2DC08D]/20"
         >
           <Plus size={18} color="#2DC08D" />
           Add

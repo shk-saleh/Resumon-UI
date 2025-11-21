@@ -128,13 +128,13 @@ const Experience = () => {
               <label className="text-base font-normal text-[#000000]">
                 Job Description and Achievements
               </label>
-          
+
               <button className="px-3 py-1 text-sm bg-[#2DC08D]/10 border border-[#2DC08D] rounded-lg flex items-center gap-1 cursor-pointer">
                 <Sparkles size={16} color="#2DC08D" />
-                  AI Generate
+                AI Generate
               </button>
             </div>
-          
+
             <textarea
               placeholder="I have worked ...."
               className="w-full mt-4 p-3 bg-white border text-gray-700 placeholder-[#9CA3AF] border-[#C8C8C8] rounded-md h-40 outline-none"
@@ -143,12 +143,15 @@ const Experience = () => {
         </div>
       ))}
 
-      <button onClick={addExperience}
-        className="w-full flex items-center justify-center gap-2 mt-6 mb-12 px-3 py-2 border border-dashed border-[#2DC08D] text-[#000000]/60 rounded-lg bg-transparent"
-      >
-        <Plus size={16} color="#2DC08D" />
-        Add Another Experience
-      </button>
+
+      <div className="px-4">
+        <button onClick={addExperience}
+          className="w-full flex items-center justify-center gap-2 mt-6 mb-12 px-3 py-2 border border-dashed border-[#2DC08D] text-[#000000]/60 rounded-lg bg-transparent"
+        >
+          <Plus size={16} color="#2DC08D" />
+          Add Another Experience
+        </button>
+      </div>
 
       <div className="flex justify-between mt-12">
         <button onClick={() => setTab("Basic Info")}

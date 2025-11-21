@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ArrowRight, ArrowLeft, Plus, Trash2 } from "lucide-react";
-import { useResumeStore } from "../store/useResumeStore";
+import { useResumeStore } from "../../store/useResumeStore";
 import InputField from "./InputField";
 
 const Education = () => {

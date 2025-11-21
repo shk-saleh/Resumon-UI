@@ -1,13 +1,13 @@
 // Step4.jsx
 import React, { useState } from "react";
-import { useDashboardStore } from "../store/useDashboardStore";
+import { useDashboardStore } from "../../store/useDashboardStore";
 import BasicInfo from "./BasicInfo";
 import Experience from "./Experience";
 import Education from "./Education";
-import Skills from "./Skills";
+import Skills from "../Skills";
 import Certifications from "./Certifications";
-import { useResumeStore } from "../store/useResumeStore";
-import { tipsData } from "../data/tipsData";
+import { useResumeStore } from "../../store/useResumeStore";
+import { tipsData } from "../../data/tipsData";
 import Classic from "./Templates/Classic";
 
 const Step4 = () => {

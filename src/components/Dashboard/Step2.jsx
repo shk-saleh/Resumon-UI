@@ -1,7 +1,7 @@
 import React from "react";
 import { ChevronLeft,ArrowUpRight } from "lucide-react";
-import { cardData } from "../data/cardData";
-import { useResumeStore } from "../store/useResumeStore";
+import { cardData } from "../../data/cardData";
+import { useResumeStore } from "../../store/useResumeStore";
 
 const Step2 = () => {
 

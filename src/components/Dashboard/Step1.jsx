@@ -1,6 +1,6 @@
 import React from "react";
 import { BicepsFlexed, Sparkles } from "lucide-react";
-import { useResumeStore } from "../store/useResumeStore";
+import { useResumeStore } from "../../store/useResumeStore";
 
 const Step1 = () => {
 

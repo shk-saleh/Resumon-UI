@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react'
-import Topbar from "../components/Topbar";
-import BuildResume from "../components/BuildResume";
-import Settings from "../components/Settings";
-import Overview from "../components/Overview";
+import Topbar from "./Dashboard/Topbar";
+import BuildResume from "./Dashboard/BuildResume";
+import Settings from "./Dashboard/Settings";
+import Overview from "./Dashboard/Overview";
 import { useDashboardStore } from "../store/useDashboardStore";
 import { useResumeStore } from "../store/useResumeStore";
 

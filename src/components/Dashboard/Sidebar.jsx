@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { ChartPie, PanelRightOpen, LogOut, User, Files, Settings, FileText, FileCheck, CheckCheck } from "lucide-react";
-import {useDashboardStore} from "../store/useDashboardStore";
+import {useDashboardStore} from "../../store/useDashboardStore";
 import logo from '../assets/images/logo.png';
-import Logout from "./Logout";
+import Logout from "../Logout";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 
@@ -22,7 +22,7 @@ const Sidebar = () => {
     }`;
 
   return (
-    <div className={`sticky top-0 flex flex-col bg-white border border-gray-200 transition-all duration-300 ${sidebarOpen ? "w-80" : "w-16 items-center"} rounded-2xl m-2`}
+    <div className={`h-screen sticky top-0 flex flex-col bg-white border border-gray-200 transition-all duration-300 ${sidebarOpen ? "w-80" : "w-16 items-center"} rounded-2xl m-2`}
     >
       <div className="mt-4 px-2 flex gap-2 justify-between items-center">
         {sidebarOpen && (

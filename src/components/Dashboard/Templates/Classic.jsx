@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Phone, Mail, MapPin } from 'lucide-react';
-import {resumeData} from '../../data/resumeData';
+import {resumeData} from '../../../data/resumeData';
 
 
 const ResumeTemplate = ({ data = resumeData}) => {

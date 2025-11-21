@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ArrowRight, ArrowLeft, Plus, Trash2, Sparkles } from "lucide-react";
-import { useResumeStore } from "../store/useResumeStore";
+import { useResumeStore } from "../../store/useResumeStore";
 import InputField from "./InputField";
 
 const Experience = () => {
@@ -70,7 +70,7 @@ const Experience = () => {
               <select
                 value={exp.type || employmentTypes[0]}
                 onChange={(e) => updateExperience(exp.id, { type: e.target.value })}
-                className="border border-[#C8C8C8] bg-white px-3 py-2 rounded-lg"
+                className="border border-[#C8C8C8] text-gray-700 bg-white px-3 py-2 rounded-lg"
               >
                 {employmentTypes.map((type) => (
                   <option key={type} value={type}>{type}</option>
@@ -83,7 +83,7 @@ const Experience = () => {
               <select
                 value={exp.location || locations[0]}
                 onChange={(e) => updateExperience(exp.id, { location: e.target.value })}
-                className="border border-[#C8C8C8] bg-white px-3 py-2 rounded-lg"
+                className="border border-[#C8C8C8] text-gray-700 bg-white px-3 py-2 rounded-lg"
               >
                 {locations.map((loc) => (
                   <option key={loc} value={loc}>{loc}</option>
@@ -118,14 +118,14 @@ const Experience = () => {
               }
               id={`current-${exp.id}`}
             />
-            <label htmlFor={`current-${exp.id}`} className="text-sm">
+            <label htmlFor={`current-${exp.id}`} className="text-sm text-[#000000]">
               I am currently working here
             </label>
           </div>
 
           <div className="mt-12">
             <div className="flex justify-between items-center">
-              <label className="text-base font-normal">
+              <label className="text-base font-normal text-[#000000]">
                 Job Description and Achievements
               </label>
           
@@ -137,7 +137,7 @@ const Experience = () => {
           
             <textarea
               placeholder="I have worked ...."
-              className="w-full mt-4 p-3 bg-white border border-[#C8C8C8] rounded-md h-40"
+              className="w-full mt-4 p-3 bg-white border text-gray-700 placeholder-[#9CA3AF] border-[#C8C8C8] rounded-md h-40 outline-none"
             />
           </div>
         </div>

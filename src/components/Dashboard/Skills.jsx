@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ArrowRight, ArrowLeft, Plus, X } from "lucide-react";
-import { useResumeStore } from "../store/useResumeStore";
+import { useResumeStore } from "../../store/useResumeStore";
 
 const Skills = () => {
   const setTab = useResumeStore((s) => s.setActiveTab);
@@ -30,7 +30,7 @@ const Skills = () => {
 
   return (
     <div>
-      <label className="text-base font-normal">
+      <label className="text-lg font-normal">
         Skills
       </label>
       <div className="flex items-center gap-2 mt-3 mb-2">
@@ -38,7 +38,7 @@ const Skills = () => {
           {skills.map((skill, idx) => (
             <div
               key={idx}
-              className="flex items-center gap-2 bg-[#F1F0F0] px-4 py-1 rounded-lg text-base"
+              className="flex items-center gap-2 bg-[#F1F0F0] px-4 py-1 rounded-md text-sm"
             >
               {skill}
               <button
@@ -54,13 +54,13 @@ const Skills = () => {
             type="text"
             value={inputSkill}
             onChange={(e) => setInputSkill(e.target.value)}
-            className="flex-1 outline-none py-1 text-base"
+            className="flex-1 outline-none text-base  text-gray-700"
             onKeyDown={(e) => e.key === "Enter" && handleAddSkill()}
           />
         </div>
         <button
           onClick={handleAddSkill}
-          className="flex items-center gap-2 px-5 py-3.5 cursor-pointer border border-[#2DC08D] bg-[#2DC08D]/10 text-[#000000] rounded-lg text-sm hover:bg-[#2DC08D]/20"
+          className="flex items-center gap-1 px-4 py-3 cursor-pointer border border-[#2DC08D] bg-[#2DC08D]/10 text-[#000000] rounded-lg text-sm hover:bg-[#2DC08D]/20"
         >
           <Plus size={18} color="#2DC08D" />
           Add

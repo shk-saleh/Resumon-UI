@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ChartPie, PanelRightOpen, LogOut, User, Files, Settings, FileText, FileCheck, CheckCheck } from "lucide-react";
 import {useDashboardStore} from "../../store/useDashboardStore";
-import logo from '../assets/images/logo.png';
+import logo from "../../assets/images/logo.png";
 import Logout from "../Logout";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";

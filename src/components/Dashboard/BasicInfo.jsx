@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ArrowRight, Sparkles } from "lucide-react";
-import { useResumeStore } from "../store/useResumeStore";
+import { useResumeStore } from "../../store/useResumeStore";
 import InputField from "./InputField";
 
 const BasicInfo = () => {
@@ -99,7 +99,7 @@ const BasicInfo = () => {
 
       <div className="mt-12">
         <div className="flex justify-between items-center">
-          <label className="text-base font-normal">
+          <label className="text-base font-normal  text-[#000000]">
             Professional Summary (About Yourself)
           </label>
 
@@ -111,7 +111,7 @@ const BasicInfo = () => {
 
         <textarea
           placeholder="I am a full stack developer....."
-          className="w-full mt-4 p-3 bg-white border border-[#C8C8C8] rounded-md h-40"
+          className="w-full mt-4 p-3 bg-white border border-[#C8C8C8] text-gray-700 placeholder-[#9CA3AF] rounded-md h-40 outline-none"
         />
       </div>
 

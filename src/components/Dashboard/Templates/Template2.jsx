@@ -1,5 +1,6 @@
 import React from 'react';
 import { Phone, Mail, MapPin, Globe } from 'lucide-react';
+import {resumeData} from '../../../data/resumeData';
 
 const ResumeTemplate2 = ({ data }) => {
   return (

@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Phone, Mail, MapPin } from 'lucide-react';
-import {resumeData} from '../../../data/resumeData';
+import { useResumeStore } from '../../../store/useResumeStore';
 
-
-const ResumeTemplate = ({ data = resumeData}) => {
+const ResumeTemplate = () => {
+  const getFormattedResumeData = useResumeStore((s) => s.getFormattedResumeData);
+  const data = getFormattedResumeData();
   return (
     <div className="w-[70vw] bg-white p-12 text-black  ">
-      {/* Header */}
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold tracking-wider mb-2">
           {data.personalInfo.fullName}
@@ -95,7 +95,7 @@ const ResumeTemplate = ({ data = resumeData}) => {
         <h2 className="text-lg font-bold tracking-widest mb-4 pb-2 border-b-2 border-gray-800">
           {data.skills.title}
         </h2>
-        <div className="grid grid-cols-3 gap-8">
+        {/* <div className="grid grid-cols-3 gap-8">
           {data.skills.items.map((column, colIndex) => (
             <ul key={colIndex} className="space-y-2">
               {column.map((skill, skillIndex) => (
@@ -108,7 +108,7 @@ const ResumeTemplate = ({ data = resumeData}) => {
               ))}
             </ul>
           ))}
-        </div>
+        </div> */}
       </div>
     </div>
   );

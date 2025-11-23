@@ -36,7 +36,7 @@ const Certifications = () => {
   return (
     <div>
       {certifications.map((cert, idx) => (
-        <div key={cert.id} className="relative p-4 rounded-lg mb-6">
+        <div key={cert.id} className="relative rounded-lg mb-6">
           {idx > 0 && (
             <button
               onClick={() => removeCertification(cert.id)}
@@ -79,9 +79,9 @@ const Certifications = () => {
         </div>
       ))}
 
-      <div className="px-4">
+      <div>
         <button onClick={addCertification}
-          className="w-full flex items-center justify-center gap-2 mt-6 mb-12 px-3 py-2 border border-dashed border-[#2DC08D] text-[#000000]/60 rounded-lg bg-transparent"
+          className="w-full flex items-center justify-center gap-2 mt-6 mb-12 py-2 border border-dashed border-[#2DC08D] text-[#000000]/60 rounded-lg bg-transparent"
         >
           <Plus size={16} color="#2DC08D" />
           Add Another Certificate

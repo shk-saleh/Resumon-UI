@@ -99,11 +99,11 @@ const BasicInfo = () => {
 
       <div className="mt-12">
         <div className="flex justify-between items-center">
-          <label className="text-base font-normal  text-[#000000]">
+          <label className="text-sm font-normal  text-[#000000]">
             Professional Summary (About Yourself)
           </label>
 
-          <button className="px-3 py-1 text-sm bg-[#2DC08D]/10 border border-[#2DC08D] rounded-lg flex items-center gap-1 cursor-pointer">
+          <button className="px-3 py-1 text-sm bg-[#2DC08D]/10 text-[#2DC08D] border border-[#2DC08D] rounded-lg flex items-center gap-1 cursor-pointer">
             <Sparkles size={16} color="#2DC08D" />
             AI Generate
           </button>
@@ -111,11 +111,13 @@ const BasicInfo = () => {
 
         <textarea
           placeholder="I am a full stack developer....."
-          className="w-full mt-4 p-3 bg-white border border-[#C8C8C8] text-gray-700 placeholder-[#9CA3AF] rounded-md h-40 outline-none"
+          value={profile.summary}
+          onChange={(e) => setField("summary", e.target.value)}
+          className="w-full mt-4 p-3 text-sm bg-white border border-[#C8C8C8] text-gray-700 placeholder-[#9CA3AF] rounded-md h-40 outline-none"
         />
       </div>
 
-      <div className="flex justify-end mt-12">
+      <div className="flex justify-end my-10">
         <button onClick={handleNext}
           className="px-3 py-1 bg-white border border-[#D9D9D9] text-[#000000] rounded-lg flex items-center gap-2 cursor-pointer"
         >

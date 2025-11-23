@@ -38,7 +38,7 @@ const Education = () => {
   return (
     <div>
       {educationList.map((edu, idx) => (
-        <div key={edu.id} className="relative p-4 rounded-lg mb-6">
+        <div key={edu.id} className="relative rounded-lg mb-6">
           {idx > 0 && (
             <button onClick={() => removeEducation(edu.id)}
               className="absolute top-2 right-2 p-1 hover:bg-red-100 rounded-full"
@@ -107,10 +107,22 @@ const Education = () => {
               I am currently enrolled here
             </label>
           </div>
+
+          <div className="mt-6">
+            <label className="text-base font-normal text-[#000000]">
+              Description / Achievements
+            </label>
+            <textarea
+              placeholder="What did you learn or achieve..."
+              value={edu.description}
+              onChange={(e) => updateEducation(edu.id, { description: e.target.value })}
+              className="w-full mt-3 p-3 bg-white border border-[#C8C8C8] text-gray-700 placeholder-[#9CA3AF] rounded-md h-32 outline-none"
+            />
+          </div>
         </div>
       ))}
 
-      <div className="px-4">
+      <div>
         <button onClick={addEducation}
           className="w-full flex items-center justify-center gap-2 mt-6 mb-12 px-3 py-2 border border-dashed border-[#2DC08D] text-[#000000]/60 rounded-lg bg-transparent"
         >

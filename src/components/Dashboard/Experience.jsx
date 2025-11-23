@@ -39,7 +39,7 @@ const Experience = () => {
   return (
     <div>
       {experiences.map((exp, idx) => (
-        <div key={exp.id} className="relative p-4 rounded-lg mb-6">
+        <div key={exp.id} className="relative rounded-lg mb-6">
           {idx > 0 && (
             <button
               onClick={() => removeExperience(exp.id)}
@@ -66,7 +66,7 @@ const Experience = () => {
             />
 
             <div className="flex flex-col">
-              <label className="text-base mb-2">Employment Type</label>
+              <label className="mb-2 text-[#000000] text-sm">Employment Type</label>
               <select
                 value={exp.type || employmentTypes[0]}
                 onChange={(e) => updateExperience(exp.id, { type: e.target.value })}
@@ -79,7 +79,7 @@ const Experience = () => {
             </div>
 
             <div className="flex flex-col">
-              <label className="text-base mb-2">Location</label>
+              <label className="text-sm text-[#000000] mb-2">Location</label>
               <select
                 value={exp.location || locations[0]}
                 onChange={(e) => updateExperience(exp.id, { location: e.target.value })}
@@ -138,6 +138,8 @@ const Experience = () => {
 
             <textarea
               placeholder="I have worked ...."
+              value={exp.description}
+              onChange={(e) => updateExperience(exp.id, { description: e.target.value })}
               className="w-full mt-4 p-3 bg-white border text-gray-700 placeholder-[#9CA3AF] border-[#C8C8C8] rounded-md h-40 outline-none"
             />
           </div>
@@ -145,7 +147,7 @@ const Experience = () => {
       ))}
 
 
-      <div className="px-4">
+      <div>
         <button onClick={addExperience}
           className="w-full flex items-center justify-center gap-2 mt-6 mb-12 px-3 py-2 border border-dashed border-[#2DC08D] text-[#000000]/60 rounded-lg bg-transparent"
         >

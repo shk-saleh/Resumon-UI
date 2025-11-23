@@ -6,7 +6,7 @@ import Overview from "./Dashboard/Overview";
 import { useDashboardStore } from "../store/useDashboardStore";
 import { useResumeStore } from "../store/useResumeStore";
 
-const Main = () => {
+const Main = ({className = ""}) => {
   
   const activePage = useDashboardStore((s) => s.activePage);
   const setSidebarOpen = useDashboardStore((s) => s.setSidebarOpen);
@@ -20,9 +20,9 @@ const Main = () => {
 
 
   return (
-    <div className="flex flex-col h-auto w-full">
+    <div className={`flex w-full flex-col ${className}`}>
         <Topbar />
-        <div className="overflow-y-auto p-4 pt-4">
+        <div className="p-4 pt-20">
           {activePage === "overview" && <Overview />}
           {activePage === "buildresume" && <BuildResume />}
           {activePage === "upwork" && <div>Upwork Proposal Content</div>}

@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import Sidebar from "../components/Dashboard/Sidebar";
 import Main from "../components/Main";
+import {useDashboardStore} from "../store/useDashboardStore";
+
 
 const Dashboard = () => {
 
+  const sidebarOpen = useDashboardStore((s) => s.sidebarOpen);
+
   return (
-    <div className="min-h-screen flex bg-gradient-to-r from-[#FFFFFF] to-[#F1FFFB]">
+    <div className="flex w-full min-h-screen bg-gray-50/40">
       <Sidebar />
-      <Main/>
+      <Main className={`${sidebarOpen ? "ml-72" : "ml-16"} transition-all duration-300`}/>
     </div>
   );
 };

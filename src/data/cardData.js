@@ -1,4 +1,4 @@
-import Persona from '../assets/images/Persona.png';
+import Persona from '../assets/images/Persona.webp';
 import Navy from '../assets/images/Navy.png';
 import Silk from '../assets/images/Silk.png';
 import Batch from '../assets/images/Batch.png';

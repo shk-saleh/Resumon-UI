@@ -1,8 +1,14 @@
 import React from 'react';
 import { Phone, Mail, MapPin, Globe } from 'lucide-react';
+import { useResumeStore } from '../../../store/useResumeStore';
 
-const ResumeTemplate2 = ({ data }) => {
-  return (
+
+const Modern = () => {
+  
+    const getFormattedResumeData = useResumeStore((s) => s.getFormattedResumeData);
+    const data = getFormattedResumeData();
+  
+    return (
     <div className="w-[70vw] bg-white p-12 text-black">
 
       {/* TOP HEADER */}
@@ -46,18 +52,18 @@ const ResumeTemplate2 = ({ data }) => {
           WORK EXPERIENCE
         </h2>
 
-        {data.workExperience.map((job, index) => (
+        {data.workExperience.items.map((job, index) => (
           <div key={index} className="mb-5">
             <div className="flex justify-between">
               <p className="font-bold text-gray-900">{job.position}, {job.company}</p>
               <p className="text-gray-600 text-sm">{job.duration}</p>
             </div>
 
-            <ul className="text-sm text-gray-700 list-disc ml-5 mt-2 space-y-1">
+            {/* <ul className="text-sm text-gray-700 list-disc ml-5 mt-2 space-y-1">
               {job.responsibilities.map((item, idx) => (
                 <li key={idx}>{item}</li>
               ))}
-            </ul>
+            </ul> */}
           </div>
         ))}
       </div>
@@ -68,7 +74,7 @@ const ResumeTemplate2 = ({ data }) => {
           EDUCATION
         </h2>
 
-        {data.education.map((edu, index) => (
+        {data.education.items.map((edu, index) => (
           <div key={index} className="mb-5">
             <div className="flex justify-between">
               <p className="font-bold text-gray-900">{edu.degree}</p>
@@ -78,11 +84,11 @@ const ResumeTemplate2 = ({ data }) => {
             <p className="text-sm text-gray-700">{edu.institution}</p>
 
             {/* Bullet Points */}
-            <ul className="text-sm text-gray-700 list-disc ml-5 mt-2 space-y-1">
+            {/* <ul className="text-sm text-gray-700 list-disc ml-5 mt-2 space-y-1">
               {edu.details.map((d, idx) => (
                 <li key={idx}>{d}</li>
               ))}
-            </ul>
+            </ul> */}
           </div>
         ))}
       </div>
@@ -93,14 +99,14 @@ const ResumeTemplate2 = ({ data }) => {
           ADDITIONAL INFORMATION
         </h2>
 
-        <ul className="text-sm text-gray-700 space-y-2">
+        {/* <ul className="text-sm text-gray-700 space-y-2">
           {data.additionalInfo.map((info, index) => (
             <li key={index}>• {info}</li>
           ))}
-        </ul>
+        </ul> */}
       </div>
     </div>
   );
 };
 
-export default ResumeTemplate2;
+export default Modern;

@@ -130,7 +130,7 @@ const Experience = () => {
                 Job Description and Achievements
               </label>
 
-              <button className="px-3 py-1 text-sm bg-[#2DC08D]/10 border border-[#2DC08D] rounded-lg flex items-center gap-1 cursor-pointer">
+              <button className="px-3 py-1 text-sm bg-[#2DC08D]/10 text-[#2DC08D] border border-[#2DC08D] rounded-lg flex items-center gap-1 cursor-pointer">
                 <Sparkles size={16} color="#2DC08D" />
                 AI Generate
               </button>

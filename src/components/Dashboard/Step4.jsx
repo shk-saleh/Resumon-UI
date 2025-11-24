@@ -10,6 +10,8 @@ import { useResumeStore } from "../../store/useResumeStore";
 import { tipsData } from "../../data/tipsData";
 import Classic from "./Templates/Classic";
 import Modern from "./Templates/Modern"
+import Template3 from "./Templates/Template3";
+import DownShare from "./DownShare";
 
 const Step4 = () => {
 
@@ -83,6 +85,7 @@ const Step4 = () => {
           {activeTab === "Education" && <Education />}
           {activeTab === "Skills" && <Skills />}
           {activeTab === "Certifications" && <Certifications />}
+          {activeTab === "Download&Share" && <DownShare />}
         </div>
       </div>
 
@@ -93,11 +96,12 @@ const Step4 = () => {
             <div
               className="p-3 rounded-xl bg-white h-[350px] border border-gray-300 cursor-pointer group-hover:brightness-95 transition-all duration-200"
               onClick={() => setIsPreviewOpen(true)}
-            >
-              <div className="w-full h-full overflow-hidden rounded-lg flex items-center justify-center">
+            > 
+              <div className="w-full h-full rounded-lg flex items-center justify-center">
                 <div className="transform origin-center scale-[0.28]">
                   { template == 1 && <Modern /> }
                   { template == 2 && <Classic /> }
+                  { template == 3 && <Template3 /> }
                 </div>
               </div>
             </div>
@@ -107,7 +111,7 @@ const Step4 = () => {
           <div className="pt-1">
             <h3 className="text-lg font-medium mb-2 text-[#2DC08D]">Tips</h3>
             <ul className="list-disc list-outside text-xs font-light text-[#858383] marker:text-[#000000]/40 space-y-2 ps-4">
-              {tipsData[activeTab].map((tip, index) => (
+              {(tipsData[activeTab] || tipsData["Basic Info"] || []).map((tip, index) => (
                 <li key={index}>{tip}</li>
               ))}
             </ul>

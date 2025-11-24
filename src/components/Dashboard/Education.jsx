@@ -103,7 +103,7 @@ const Education = () => {
               id={`current-${edu.id}`}
               className="w-4 h-4 accent-[#2DC08D]"
             />
-            <label htmlFor={`current-${edu.id}`} className="text-sm">
+            <label htmlFor={`current-${edu.id}`} className="text-sm text-gray-800">
               I am currently enrolled here
             </label>
           </div>

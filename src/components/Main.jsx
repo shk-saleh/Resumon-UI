@@ -22,7 +22,7 @@ const Main = ({className = ""}) => {
   return (
     <div className={`flex w-full flex-col ${className}`}>
         <Topbar />
-        <div className="p-4 pt-20">
+        <div className="p-4 pt-8">
           {activePage === "overview" && <Overview />}
           {activePage === "buildresume" && <BuildResume />}
           {activePage === "upwork" && <div>Upwork Proposal Content</div>}

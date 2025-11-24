@@ -30,7 +30,7 @@ const Certifications = () => {
 
   const handleNext = () => {
     if (!validate()) return;
-    //setTab("");
+    setTab("Download&Share");
   };
 
   return (
@@ -101,7 +101,7 @@ const Certifications = () => {
           onClick={handleNext}
           className="px-3 py-1 bg-white border border-[#D9D9D9] text-[#000000] rounded-lg flex items-center gap-2 cursor-pointer"
         >
-          Next
+          Finish
           <ArrowRight size={18} color="#2DC08D" />
         </button>
       </div>

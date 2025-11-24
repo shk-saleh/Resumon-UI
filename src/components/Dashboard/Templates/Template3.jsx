@@ -3,7 +3,7 @@ import React from "react";
 import { Phone, Mail, MapPin } from "lucide-react";
 import {resumeData} from '../../../data/resumeData';
 
-const Resume = ({ data }) => {
+const Template3 = ({ data = resumeData }) => {
   return (
     <div className="w-[70vw] bg-white p-12 text-black mx-auto shadow-lg">
       {/* HEADER SECTION */}
@@ -52,7 +52,7 @@ const Resume = ({ data }) => {
           EDUCATION
         </h2>
 
-        {data.education.map((edu, index) => (
+        {data.education.items.map((edu, index) => (
           <div key={index} className="mb-6">
             <div className="flex justify-between mb-2">
               <p className="font-semibold text-gray-600">
@@ -79,7 +79,7 @@ const Resume = ({ data }) => {
           WORK EXPERIENCE
         </h2>
 
-        {data.workExperience.map((work, index) => (
+        {data.workExperience.items.map((work, index) => (
           <div key={index} className="mb-6">
             <div className="flex justify-between mb-2">
               <p className="font-semibold text-gray-600">
@@ -107,7 +107,7 @@ const Resume = ({ data }) => {
         </h2>
 
         <div className="grid grid-cols-3 gap-4">
-          {data.skills.map((skill, index) => (
+          {data.skills.items.map((skill, index) => (
             <div key={index} className="flex items-start gap-2">
               <span className="text-gray-900">•</span>
               <span className="text-sm text-gray-700">{skill}</span>
@@ -122,4 +122,4 @@ const Resume = ({ data }) => {
   );
 };
 
-export default Resume;
+export default Template3;

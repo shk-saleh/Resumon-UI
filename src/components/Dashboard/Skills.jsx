@@ -30,15 +30,15 @@ const Skills = () => {
 
   return (
     <div>
-      <label className="text-lg font-normal">
+      <label className="text-lg font-normal text-gray-800">
         Skills
       </label>
       <div className="flex items-center gap-2 mt-3 mb-2">
-        <div className="flex flex-wrap items-center gap-2 bg-white border border-[#C8C8C8] rounded-lg px-3 py-2 flex-1">
+        <div className="flex flex-wrap items-center gap-2 bg-white border border-[#C8C8C8] rounded-lg px-2 py-2 flex-1">
           {skills.map((skill, idx) => (
             <div
               key={idx}
-              className="flex items-center gap-2 bg-[#F1F0F0] px-4 py-1 rounded-md text-sm"
+              className="flex items-center gap-2 bg-[#F1F0F0] text-gray-700 px-4 py-1 rounded-md text-sm"
             >
               {skill}
               <button
@@ -68,13 +68,13 @@ const Skills = () => {
       </div>
       {error && ( <p className="text-red-500 text-sm mt-1 mb-4">{error}</p>)}
 
-      <div className="mb-18">
-        <h3 className="text-base font-normal mb-3 text-[#2DC08D]">Suggested Skills</h3>
+      <div className="mt-6 mb-20">
+        <h3 className="text-sm font-normal mb-3 text-[#2DC08D]">Suggested Skills</h3>
         <div className="flex gap-2">
           {["React", "Redux", "Tailwind"].map((skill) => (
             <button
               key={skill}
-              className="px-4 py-1 bg-white border border-[#C8C8C8] rounded-2xl text-sm"
+              className="px-4 py-1 bg-white text-gray-700 border border-[#C8C8C8] rounded-2xl text-sm"
             >
               {skill}
             </button>

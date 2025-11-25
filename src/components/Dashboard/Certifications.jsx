@@ -30,7 +30,7 @@ const Certifications = () => {
 
   const handleNext = () => {
     if (!validate()) return;
-    setTab("DownloadShare");
+    setTab("Download");
   };
 
   return (

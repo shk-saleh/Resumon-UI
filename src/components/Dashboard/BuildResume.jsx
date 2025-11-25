@@ -7,9 +7,8 @@ import Step4 from "./Step4";
 import Step5 from "./Step5";
 
 const BuildResume = () => {
-  const {
-    method, template, currentStep, setCurrentStep, resetResumeBuilder,
-  } = useResumeStore();
+  const { method, template, currentStep, setCurrentStep, resetResumeBuilder } =
+    useResumeStore();
 
   useEffect(() => {
     if (currentStep === 1 && method) {
@@ -41,5 +40,5 @@ const BuildResume = () => {
       {currentStep === 5 && <Step5 />}
     </div>
   );
-}
-export default BuildResume
+};
+export default BuildResume;

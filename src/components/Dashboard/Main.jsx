@@ -5,6 +5,7 @@ import Settings from "./Settings";
 import Overview from "./Overview";
 import { useDashboardStore } from "../../store/useDashboardStore";
 import { useResumeStore } from "../../store/useResumeStore";
+import ATS from './ATS';
 
 const Main = ({className = ""}) => {
   
@@ -24,8 +25,8 @@ const Main = ({className = ""}) => {
         <div className="p-4 pt-8">
           {activePage === "overview" && <Overview />}
           {activePage === "buildresume" && <BuildResume />}
-          {activePage === "upwork" && <ATS/>}
-          {activePage === "ats score" && <div>ATS Score Page</div>}
+          {activePage === "upwork" && <div>Upwork Proposal Page</div>}
+          {activePage === "ats score" && <ATS/>}
           {activePage === "templates" && <div>Templates Page</div>}
           {activePage === "settings" && <Settings />}
         </div>

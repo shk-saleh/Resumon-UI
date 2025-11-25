@@ -36,7 +36,7 @@ const Certifications = () => {
   return (
     <div>
       {certifications.map((cert, idx) => (
-        <div key={cert.id} className="relative rounded-lg mb-6">
+        <div key={cert.id} className="rounded-lg mb-6">
           {idx > 0 && (
             <button
               onClick={() => removeCertification(cert.id)}

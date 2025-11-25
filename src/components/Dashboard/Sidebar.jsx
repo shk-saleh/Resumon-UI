@@ -22,7 +22,6 @@ const Sidebar = () => {
   const setMethod = useResumeStore((s) => s.setMethod);
   const setCurrentStep = useResumeStore((s) => s.setCurrentStep);
 
-  // MENU CONFIG
   const menuSections = [
     {
       label: null,
@@ -77,7 +76,6 @@ const Sidebar = () => {
         sidebarOpen ? "w-72" : "w-14"
       }`}
     >
-      {/* LOGO + TOGGLE */}
       <div className="mt-4 px-2 flex gap-2 justify-between items-center">
         {sidebarOpen && (
           <img src={logo} alt="Logo" className="w-28 md:w-32 ml-2 rounded-lg object-contain" />
@@ -90,19 +88,16 @@ const Sidebar = () => {
         </button>
       </div>
 
-      {/* MENU */}
       <div className="px-2 flex flex-col gap-3 mt-2">
         {menuSections.map((section, index) => (
           <div key={index}>
 
-            {/* LABEL */}
             {section.label && sidebarOpen && (
               <span className="text-[#B1B1B1] text-sm ml-2 mb-1 block">
                 {section.label}
               </span>
             )}
 
-            {/* ITEMS */}
             <div className={`${sidebarOpen ? "pl-2" : ""} flex flex-col gap-2`}>
               {section.items.map(({ page, icon: Icon, label, gapTop }) => (
                 <Tippy key={page} content={label} placement="right" disabled={sidebarOpen}>
@@ -120,7 +115,6 @@ const Sidebar = () => {
         ))}
       </div>
 
-      {/* USER + LOGOUT */}
       <div
         className={`absolute bottom-0 mb-4 w-full px-2 flex items-center ${
           sidebarOpen ? "justify-between" : "justify-center"
@@ -148,7 +142,6 @@ const Sidebar = () => {
         <Logout isOpen={isLogoutOpen} onClose={() => setIsLogoutOpen(false)} />
       </div>
 
-      {/* CONFIRMATION MODAL */}
       {showConfirm && (
         <div className="fixed inset-0 z-100 flex items-center justify-center bg-black/60">
           <div className="bg-white rounded-xl shadow-2xl p-6 max-w-md w-full mx-4">
@@ -178,5 +171,4 @@ const Sidebar = () => {
     </div>
   );
 };
-
 export default Sidebar;

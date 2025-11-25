@@ -172,7 +172,6 @@ export const useResumeStore = create(
           certifications: [],
         }),
     }),
-
     {
       name: "resume-store",
     }

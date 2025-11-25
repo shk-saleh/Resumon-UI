@@ -40,13 +40,11 @@ const Overview = () => {
 
   return (
     <div className="min-h-screen space-y-6">
-      {/* Welcome Header */}
       <div>
         <h1 className="text-2xl font-semibold text-gray-800">Welcome back, John!</h1>
         <p className="text-gray-500 text-sm mt-1">Ready to create your next professional document?</p>
       </div>
 
-      {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {stats.map((stat, index) => (
           <div key={index} className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm">
@@ -64,7 +62,6 @@ const Overview = () => {
         ))}
       </div>
 
-      {/* Quick Actions */}
       <div>
         <h2 className="text-lg font-semibold text-gray-800 mb-4">Quick actions</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -81,7 +78,6 @@ const Overview = () => {
         </div>
       </div>
 
-      {/* Recent Documents */}
       <div>
         <h2 className="text-lg font-semibold text-gray-800 mb-4">Recent Documents</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -115,5 +111,4 @@ const Overview = () => {
     </div>
   );
 };
-
 export default Overview;

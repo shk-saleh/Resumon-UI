@@ -39,7 +39,7 @@ const Experience = () => {
   return (
     <div>
       {experiences.map((exp, idx) => (
-        <div key={exp.id} className="relative rounded-lg mb-6">
+        <div key={exp.id} className="rounded-lg mb-6">
           {idx > 0 && (
             <button
               onClick={() => removeExperience(exp.id)}

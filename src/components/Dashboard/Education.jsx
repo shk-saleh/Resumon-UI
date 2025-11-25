@@ -38,7 +38,7 @@ const Education = () => {
   return (
     <div>
       {educationList.map((edu, idx) => (
-        <div key={edu.id} className="relative rounded-lg mb-6">
+        <div key={edu.id} className="rounded-lg mb-6">
           {idx > 0 && (
             <button onClick={() => removeEducation(edu.id)}
               className="absolute top-2 right-2 p-1 hover:bg-red-100 rounded-full"

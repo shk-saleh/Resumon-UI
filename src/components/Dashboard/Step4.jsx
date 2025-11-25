@@ -11,25 +11,20 @@ import { tipsData } from "../../data/tipsData";
 import Classic from "./Templates/Classic";
 import Modern from "./Templates/Modern"
 import Template3 from "./Templates/Template3";
-import DownShare from "./DownShare";
 
 const Step4 = () => {
 
-  const tabs = ["Basic Info", "Experience", "Education", "Skills", "Certifications", "Download & Share"];
+  const tabs = ["Basic Info", "Experience", "Education", "Skills", "Certifications"];
   const sidebarOpen = useDashboardStore((s) => s.sidebarOpen);
-  const activeTab = useResumeStore((s) => s.activeTab);
-  const setMethod = useResumeStore((s) => s.setMethod);
-  const setCurrentStep = useResumeStore((s) => s.setCurrentStep);
-  const template = useResumeStore((s) => s.template);
+  const { activeTab, template,resetResumeBuilder} = useResumeStore();
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
-
+  const setActivePage = useDashboardStore((s) => s.setActivePage);
 
   const handleSaveAsDraft = () => {
-    setMethod(null);
-    setCurrentStep(1);
+    //Here we can call an API to save the current store data, then reset store
+    resetResumeBuilder();
+    setActivePage("overview");
   };
-
-  
 
   return (
     <div className="flex gap-10 w-full">
@@ -62,13 +57,11 @@ const Step4 = () => {
                   active ? "opacity-100" : "opacity-60"
                 }`}
               >
-                <div
-                  className={`h-2 w-2 rounded-full mt-1 ${
+                <div className={`h-2 w-2 rounded-full mt-1 ${
                     active ? "bg-[#2DC08D]" : "bg-[#D9D9D9]"
                   }`}
                 />
-                <span
-                  className={`text-md font-normal ${
+                <span className={`text-md font-normal ${
                     active ? "text-[#2DC08D]" : "text-[#D9D9D9]"
                   }`}
                 >
@@ -85,13 +78,11 @@ const Step4 = () => {
           {activeTab === "Education" && <Education />}
           {activeTab === "Skills" && <Skills />}
           {activeTab === "Certifications" && <Certifications />}
-          {activeTab === "DownloadShare" && <DownShare />}
         </div>
       </div>
 
       {!sidebarOpen && (
         <div className="w-[310px] flex flex-col gap-6 pt-30">
-          {/* CLICKABLE PREVIEW CARD */}
           <div className="relative group">
             <div
               className="p-3 rounded-xl bg-white h-[350px] border border-gray-300 cursor-pointer group-hover:brightness-95 transition-all duration-200"
@@ -105,7 +96,6 @@ const Step4 = () => {
                 </div>
               </div>
             </div>
-            {/* <Scaling className="text-white w-12 h-12 top-38 left-34 cursor-pointer group-hover:absolute transition-all duration-200" /> */}
           </div>
 
           <div className="pt-1">
@@ -119,7 +109,6 @@ const Step4 = () => {
         </div>
       )}
 
-      {/* FULLSCREEN MODAL PREVIEW */}
       {isPreviewOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
           <div className="relative bg-white rounded-xl shadow-2xl w-full max-w-5xl max-h-[90vh] overflow-y-auto p-8">
@@ -133,12 +122,11 @@ const Step4 = () => {
 
             <div className="flex justify-center">
                { template == 1 && <Modern /> }
-                { template == 2 && <Classic /> }
+               { template == 2 && <Classic /> }
             </div>
           </div>
         </div>
       )}
-
     </div>
   );
 };

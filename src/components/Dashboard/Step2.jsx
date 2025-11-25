@@ -11,7 +11,7 @@ const Step2 = () => {
     <div className="w-full flex flex-col items-center justify-center mt-20">
       <div className="flex items-start justify-start gap-60 w-full max-w-4xl mb-10">
          <button onClick={() => { setMethod(null); setCurrentStep(1); }}
-          className="px-3 py-1 border border-[#D9D9D9] text-[#000000] rounded-lg flex items-center gap-2 cursor-pointer"
+          className="px-3 py-1 bg-white border border-[#D9D9D9] text-[#000000] rounded-lg flex items-center gap-2 cursor-pointer"
         >
           <ChevronLeft size={18} color="#2DC08D" />
           Back

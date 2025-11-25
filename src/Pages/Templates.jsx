@@ -6,7 +6,6 @@ import Footer from "../components/Footer";
 import CTA from "../components/CTA";
 import blob1 from '/src/assets/images/blob1.png';
 
-
 const Templates = () => {
   return (
     <>
@@ -18,6 +17,8 @@ const Templates = () => {
       <FAQ />
       <CTA />
       <Footer />
+    
+      
     </>
   );
 };

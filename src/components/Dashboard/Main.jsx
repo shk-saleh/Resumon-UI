@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react'
-import Topbar from "./Dashboard/Topbar";
-import BuildResume from "./Dashboard/BuildResume";
-import Settings from "./Dashboard/Settings";
-import Overview from "./Dashboard/Overview";
-import { useDashboardStore } from "../store/useDashboardStore";
-import { useResumeStore } from "../store/useResumeStore";
+import Topbar from "./Topbar";
+import BuildResume from "./BuildResume";
+import Settings from "./Settings";
+import Overview from "./Overview";
+import { useDashboardStore } from "../../store/useDashboardStore";
+import { useResumeStore } from "../../store/useResumeStore";
 
 const Main = ({className = ""}) => {
   
@@ -18,14 +18,13 @@ const Main = ({className = ""}) => {
     }
   }, [activePage, currentStep]);
 
-
   return (
     <div className={`flex w-full flex-col ${className}`}>
         <Topbar />
         <div className="p-4 pt-8">
           {activePage === "overview" && <Overview />}
           {activePage === "buildresume" && <BuildResume />}
-          {activePage === "upwork" && <div>Upwork Proposal Content</div>}
+          {activePage === "upwork" && <ATS/>}
           {activePage === "ats score" && <div>ATS Score Page</div>}
           {activePage === "templates" && <div>Templates Page</div>}
           {activePage === "settings" && <Settings />}
@@ -33,5 +32,4 @@ const Main = ({className = ""}) => {
     </div>
   )
 }
-
 export default Main

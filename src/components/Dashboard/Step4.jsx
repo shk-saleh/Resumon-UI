@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { ChevronLeft, File, Scaling } from "lucide-react";
+import { File} from "lucide-react";
+import { useResumeStore } from "../../store/useResumeStore";
 import { useDashboardStore } from "../../store/useDashboardStore";
 import BasicInfo from "./BasicInfo";
 import Experience from "./Experience";
 import Education from "./Education";
 import Skills from "./Skills";
 import Certifications from "./Certifications";
-import { useResumeStore } from "../../store/useResumeStore";
 import { tipsData } from "../../data/tipsData";
 import Classic from "./Templates/Classic";
 import Modern from "./Templates/Modern"
@@ -14,15 +14,18 @@ import Template3 from "./Templates/Template3";
 
 const Step4 = () => {
 
-<<<<<<< HEAD
+   const renderTemplate = () => {
+    if (template === 1) return <Modern />;
+    if (template === 2) return <Classic />;
+    if (template === 3) return <Template3 />;
+    return null;
+  };
+
   const tabs = ["Basic Info", "Experience", "Education", "Skills", "Certifications"];
-=======
-  const tabs = ["Basic Info", "Experience", "Education", "Skills", "Certifications", "Download"];
->>>>>>> 7601866cef06a4bec9156e876aaa3a38052d3393
   const sidebarOpen = useDashboardStore((s) => s.sidebarOpen);
+  const setActivePage = useDashboardStore((s) => s.setActivePage);
   const { activeTab, template,resetResumeBuilder} = useResumeStore();
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
-  const setActivePage = useDashboardStore((s) => s.setActivePage);
 
   const handleSaveAsDraft = () => {
     //Here we can call an API to save the current store data, then reset store
@@ -61,12 +64,8 @@ const Step4 = () => {
                   active ? "opacity-100" : "opacity-60"
                 }`}
               >
-<<<<<<< HEAD
-                <div className={`h-2 w-2 rounded-full mt-1 ${
-=======
                 <div
                   className={`h-2 w-2 rounded-full ${
->>>>>>> 7601866cef06a4bec9156e876aaa3a38052d3393
                     active ? "bg-[#2DC08D]" : "bg-[#D9D9D9]"
                   }`}
                 />
@@ -87,10 +86,6 @@ const Step4 = () => {
           {activeTab === "Education" && <Education />}
           {activeTab === "Skills" && <Skills />}
           {activeTab === "Certifications" && <Certifications />}
-<<<<<<< HEAD
-=======
-          {activeTab === "Download" && <DownShare />}
->>>>>>> 7601866cef06a4bec9156e876aaa3a38052d3393
         </div>
       </div>
 
@@ -101,12 +96,8 @@ const Step4 = () => {
               className="p-3 rounded-xl bg-white h-[350px] border border-gray-300 cursor-pointer group-hover:brightness-95 transition-all duration-200"
               onClick={() => setIsPreviewOpen(true)}
             > 
-              <div className="w-full h-full rounded-lg flex items-center justify-center">
-                <div className="transform origin-center scale-[0.28]">
-                  { template == 1 && <Modern /> }
-                  { template == 2 && <Classic /> }
-                  { template == 3 && <Template3 /> }
-                </div>
+              <div className="w-full h-[580px] rounded-lg flex items-center justify-center">
+                <div className="transform origin-top mt-7 scale-[0.28]"> {renderTemplate()} </div>
               </div>
             </div>
           </div>
@@ -132,11 +123,7 @@ const Step4 = () => {
             >
               ✕
             </button>
-
-            <div className="flex justify-center">
-               { template == 1 && <Modern /> }
-               { template == 2 && <Classic /> }
-            </div>
+            <div className="flex justify-center"> {renderTemplate()} </div>
           </div>
         </div>
       )}

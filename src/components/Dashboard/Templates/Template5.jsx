@@ -2,9 +2,9 @@ import React from 'react';
 import { useResumeStore } from '../../../store/useResumeStore';
 
 const Template5 = () => {
-    const getFormattedResumeData = useResumeStore((s) => s.getFormattedResumeData);
-    const data = getFormattedResumeData();
-      
+  const getFormattedResumeData = useResumeStore((s) => s.getFormattedResumeData);
+  const data = getFormattedResumeData();
+
   return (
     <div className="w-[70vw] bg-[#F8F7F3] p-12 text-[#454641]">
       <div className="text-center mb-8">
@@ -78,13 +78,11 @@ const Template5 = () => {
               <h2 className="text-xl font-semibold text-[#030301]">KEY SKILLS</h2>
             </div>
             <div className="flex-1 grid grid-cols-2 gap-x-8">
-              {data.skills.columns.map((column, colIndex) => (
-                <ul key={colIndex} className="list-disc pl-4 space-y-1">
-                  {column.map((skill, skillIndex) => (
-                    <li key={skillIndex} className="text-sm">{skill}</li>
-                  ))}
-                </ul>
-              ))}
+              <ul className="list-disc pl-4 space-y-1 col-span-2">
+                {data.skills.items.map((skill, i) => (
+                  <li key={i} className="text-sm">{skill}</li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>

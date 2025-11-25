@@ -1,32 +1,19 @@
 import React, { useState } from "react";
-import Sidebar from "../components/Sidebar";
-import Topbar from "../components/Topbar";
-import BuildResume from "../components/BuildResume";
-import Settings from "../components/Settings";
-import Overview from "../components/Overview";
-import useDashboardStore from "../store/useDashboardStore";
+import Sidebar from "../components/Dashboard/Sidebar";
+import Main from "../components/Main";
+import {useDashboardStore} from "../store/useDashboardStore";
+
 
 const Dashboard = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
-  const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
-  const activePage = useDashboardStore((state) => state.activePage);
+
+  const sidebarOpen = useDashboardStore((s) => s.sidebarOpen);
 
   return (
-    <div className="flex h-screen bg-gradient-to-r from-[#FFFFFF] to-[#F1FFFB]">
-      <Sidebar sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
-
-      <div className="flex-1 flex flex-col min-h-0 overflow-y-auto">
-        <Topbar />
-        <div className="p-6 pt-4">
-          {activePage === "overview" && <Overview />}
-          {activePage === "buildresume" && <BuildResume />}
-          {activePage === "upwork" && <div>Upwork Proposal Content</div>}
-          {activePage === "ats score" && <div>ATS Score Page</div>}
-          {activePage === "templates" && <div>Templates Page</div>}
-          {activePage === "settings" && <Settings />}
-        </div>
-      </div>
+    <div className="flex w-full min-h-screen bg-gray-50/40">
+      <Sidebar />
+      <Main className={`${sidebarOpen ? "ml-72" : "ml-16"} transition-all duration-300`}/>
     </div>
   );
 };
+
 export default Dashboard;

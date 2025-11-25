@@ -11,14 +11,11 @@ import { tipsData } from "../../data/tipsData";
 import Classic from "./Templates/Classic";
 import Modern from "./Templates/Modern"
 import Template3 from "./Templates/Template3";
+import DownShare from "./DownShare";
 
 const Step4 = () => {
 
-<<<<<<< HEAD
-  const tabs = ["Basic Info", "Experience", "Education", "Skills", "Certifications"];
-=======
   const tabs = ["Basic Info", "Experience", "Education", "Skills", "Certifications", "Download"];
->>>>>>> 7601866cef06a4bec9156e876aaa3a38052d3393
   const sidebarOpen = useDashboardStore((s) => s.sidebarOpen);
   const { activeTab, template,resetResumeBuilder} = useResumeStore();
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
@@ -61,12 +58,8 @@ const Step4 = () => {
                   active ? "opacity-100" : "opacity-60"
                 }`}
               >
-<<<<<<< HEAD
-                <div className={`h-2 w-2 rounded-full mt-1 ${
-=======
                 <div
                   className={`h-2 w-2 rounded-full ${
->>>>>>> 7601866cef06a4bec9156e876aaa3a38052d3393
                     active ? "bg-[#2DC08D]" : "bg-[#D9D9D9]"
                   }`}
                 />
@@ -87,10 +80,7 @@ const Step4 = () => {
           {activeTab === "Education" && <Education />}
           {activeTab === "Skills" && <Skills />}
           {activeTab === "Certifications" && <Certifications />}
-<<<<<<< HEAD
-=======
           {activeTab === "Download" && <DownShare />}
->>>>>>> 7601866cef06a4bec9156e876aaa3a38052d3393
         </div>
       </div>
 

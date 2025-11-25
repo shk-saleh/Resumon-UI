@@ -10,7 +10,7 @@ const DownShare = () => {
   const progress = (score / 100) * circumference;
 
   return (
-    <div className="min-h-screen bg-teal-50 flex items-center justify-center p-8">
+    <div className="min-h-screen flex items-center justify-center p-8">
       <div className="bg-white rounded-3xl shadow-2xl p-12 max-w-lg w-full">
         {/* Title */}
         <h1 className="text-3xl font-bold text-gray-800 text-center mb-8 leading-tight">

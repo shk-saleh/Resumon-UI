@@ -15,7 +15,7 @@ import DownShare from "./DownShare";
 
 const Step4 = () => {
 
-  const tabs = ["Basic Info", "Experience", "Education", "Skills", "Certifications"];
+  const tabs = ["Basic Info", "Experience", "Education", "Skills", "Certifications", "Download & Share"];
   const sidebarOpen = useDashboardStore((s) => s.sidebarOpen);
   const activeTab = useResumeStore((s) => s.activeTab);
   const setMethod = useResumeStore((s) => s.setMethod);
@@ -85,7 +85,7 @@ const Step4 = () => {
           {activeTab === "Education" && <Education />}
           {activeTab === "Skills" && <Skills />}
           {activeTab === "Certifications" && <Certifications />}
-          {activeTab === "Download&Share" && <DownShare />}
+          {activeTab === "DownloadShare" && <DownShare />}
         </div>
       </div>
 

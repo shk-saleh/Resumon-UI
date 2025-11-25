@@ -46,7 +46,7 @@ const DownShare = () => {
               className="transition-all duration-1000 ease-out"
             />
 
-            {/* Gradient */}
+            
             <defs>
               <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="#ef4444" />
@@ -65,7 +65,7 @@ const DownShare = () => {
             </div>
           </div>
 
-          {/* Labels */}
+          
           <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
             <span className="absolute top-8 left-1/2 -translate-x-1/2 text-xs font-bold text-green-600">
               EXCELLENT
@@ -76,7 +76,7 @@ const DownShare = () => {
           </div>
         </div>
 
-        {/* Buttons - Now using exact #2DC08D */}
+        
         <div className="flex gap-5 justify-center mt-12">
           <button
             style={{ backgroundColor: "#2DC08D" }}

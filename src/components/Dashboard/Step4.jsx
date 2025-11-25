@@ -15,7 +15,7 @@ import DownShare from "./DownShare";
 
 const Step4 = () => {
 
-  const tabs = ["Basic Info", "Experience", "Education", "Skills", "Certifications", "Download & Share"];
+  const tabs = ["Basic Info", "Experience", "Education", "Skills", "Certifications", "Download"];
   const sidebarOpen = useDashboardStore((s) => s.sidebarOpen);
   const activeTab = useResumeStore((s) => s.activeTab);
   const setMethod = useResumeStore((s) => s.setMethod);
@@ -63,7 +63,7 @@ const Step4 = () => {
                 }`}
               >
                 <div
-                  className={`h-2 w-2 rounded-full mt-1 ${
+                  className={`h-2 w-2 rounded-full ${
                     active ? "bg-[#2DC08D]" : "bg-[#D9D9D9]"
                   }`}
                 />
@@ -85,7 +85,7 @@ const Step4 = () => {
           {activeTab === "Education" && <Education />}
           {activeTab === "Skills" && <Skills />}
           {activeTab === "Certifications" && <Certifications />}
-          {activeTab === "DownloadShare" && <DownShare />}
+          {activeTab === "Download" && <DownShare />}
         </div>
       </div>
 

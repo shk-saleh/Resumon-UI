@@ -1,4 +1,3 @@
-// Resume.jsx
 import React from "react";
 import { Phone, Mail, MapPin } from "lucide-react";
 import {resumeData} from '../../../data/resumeData';
@@ -6,7 +5,6 @@ import {resumeData} from '../../../data/resumeData';
 const Template3 = ({ data = resumeData }) => {
   return (
     <div className="w-[70vw] bg-white p-12 text-black mx-auto shadow-lg">
-      {/* HEADER SECTION */}
       <div className="text-center mb-8">
         <h1 className="text-5xl font-bold tracking-wider mb-2">
           {data.personalInfo.fullName}
@@ -15,7 +13,6 @@ const Template3 = ({ data = resumeData }) => {
           {data.personalInfo.title}
         </p>
 
-        {/* Contact Info */}
         <div className="flex justify-center items-center gap-8 text-sm text-gray-700">
           <div className="flex items-center gap-2">
             <Phone size={16} />
@@ -33,8 +30,6 @@ const Template3 = ({ data = resumeData }) => {
       </div>
 
       <hr className="border-t-2 border-gray-300 my-6" />
-
-      {/* ABOUT ME SECTION */}
       <div className="mb-8">
         <h2 className="text-2xl font-bold tracking-widest mb-4 pb-1">
           ABOUT ME
@@ -45,8 +40,6 @@ const Template3 = ({ data = resumeData }) => {
       </div>
 
       <hr className="border-t-2 border-gray-300 my-6" />
-
-      {/* EDUCATION SECTION */}
       <div className="mb-8">
         <h2 className="text-2xl font-bold tracking-widest mb-4 pb-1">
           EDUCATION
@@ -55,25 +48,17 @@ const Template3 = ({ data = resumeData }) => {
         {data.education.items.map((edu, index) => (
           <div key={index} className="mb-6">
             <div className="flex justify-between mb-2">
-              <p className="font-semibold text-gray-600">
-                {edu.university} | {edu.period}
-              </p>
+              <p className="font-semibold text-gray-600"> {edu.university} | {edu.period} </p>
             </div>
 
-            <p className="font-bold text-gray-900 text-lg mb-2">
-              {edu.position}
-            </p>
-
-            <p className="text-sm text-gray-700 leading-relaxed">
-              {edu.description}
-            </p>
+            <p className="font-bold text-gray-900 text-lg mb-2"> {edu.position} </p>
+            <p className="text-sm text-gray-700 leading-relaxed"> {edu.description} </p>
           </div>
         ))}
       </div>
 
       <hr className="border-t-2 border-gray-300 my-6" />
 
-      {/* WORK EXPERIENCE SECTION */}
       <div className="mb-8">
         <h2 className="text-2xl font-bold tracking-widest mb-4 pb-1">
           WORK EXPERIENCE
@@ -99,8 +84,6 @@ const Template3 = ({ data = resumeData }) => {
       </div>
 
       <hr className="border-t-2 border-gray-300 my-6" />
-
-      {/* SKILLS SECTION */}
       <div className="mb-8">
         <h2 className="text-2xl font-bold tracking-widest mb-4 pb-1">
           SKILLS
@@ -115,11 +98,8 @@ const Template3 = ({ data = resumeData }) => {
           ))}
         </div>
       </div>
-
-      {/* FOOTER */}
       <div className="bg-gray-700 h-12 -mx-12 -mb-12 mt-8"></div>
     </div>
   );
 };
-
 export default Template3;

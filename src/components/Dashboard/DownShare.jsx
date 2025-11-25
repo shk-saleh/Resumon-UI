@@ -12,11 +12,8 @@ const DownShare = () => {
   return (
     <div className="min-h-screen flex items-center justify-center p-8">
       <div className="bg-white rounded-3xl shadow-2xl p-12 max-w-lg w-full">
-        {/* Title */}
         <h1 className="text-3xl font-bold text-gray-800 text-center mb-8 leading-tight">
-          Hurrah! You have build your
-          <br />
-          resume!
+          Hurrah! You have build your resume!
         </h1>
 
         {/* Circular ATS Score Gauge */}
@@ -57,7 +54,6 @@ const DownShare = () => {
             </defs>
           </svg>
 
-          {/* Center Text */}
           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
             <div className="text-7xl font-black text-[#2DC08D]">{score}%</div>
             <div className="text-lg font-medium text-gray-600 mt-1">
@@ -65,7 +61,6 @@ const DownShare = () => {
             </div>
           </div>
 
-          
           <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
             <span className="absolute top-8 left-1/2 -translate-x-1/2 text-xs font-bold text-green-600">
               EXCELLENT
@@ -76,11 +71,9 @@ const DownShare = () => {
           </div>
         </div>
 
-        
         <div className="flex gap-5 justify-center mt-12">
           <button
-            style={{ backgroundColor: "#2DC08D" }}
-            className="flex items-center gap-3 text-white font-semibold px-10 py-4 rounded-2xl shadow-lg transition transform hover:scale-105 hover:shadow-xl hover:brightness-105"
+            className="flex items-center gap-3 bg-[#2DC08D] text-white font-semibold px-10 py-4 rounded-2xl shadow-lg transition transform hover:scale-105 hover:shadow-xl hover:brightness-105"
           >
             <Download size={24} />
             Download
@@ -91,14 +84,9 @@ const DownShare = () => {
             Share
           </button>
         </div>
-
-        {/* Footer */}
-        <p className="text-center text-xs text-gray-400 mt-10">
-          *Your Data remain saved to us and will not be exposed
-        </p>
+        <p className="text-center text-xs text-gray-400 mt-10">Your Data remain saved to us and will not be exposed</p>
       </div>
     </div>
   );
 };
-
 export default DownShare;

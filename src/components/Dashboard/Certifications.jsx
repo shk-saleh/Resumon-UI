@@ -4,11 +4,11 @@ import { useResumeStore } from "../../store/useResumeStore";
 import InputField from "./InputField";
 
 const Certifications = () => {
-  const setTab = useResumeStore((s) => s.setActiveTab);
-  const certifications = useResumeStore((s) => s.certifications);
-  const addCertification = useResumeStore((s) => s.addCertification);
-  const updateCertification = useResumeStore((s) => s.updateCertification);
-  const removeCertification = useResumeStore((s) => s.removeCertification);
+  const {
+    setActiveTab,setCurrentStep,
+    certifications, addCertification, updateCertification, removeCertification,
+  } = useResumeStore();
+
 
   const [errors, setErrors] = useState({});
 
@@ -30,7 +30,7 @@ const Certifications = () => {
 
   const handleNext = () => {
     if (!validate()) return;
-    setTab("Download");
+    setCurrentStep(5);
   };
 
   return (
@@ -90,15 +90,14 @@ const Certifications = () => {
 
       <div className="flex justify-between mt-12">
         <button
-          onClick={() => setTab("Skills")}
+          onClick={() => setActiveTab("Skills")}
           className="px-3 py-1 border border-[#D9D9D9] text-[#000000] rounded-lg flex items-center gap-2 cursor-pointer"
         >
           <ArrowLeft size={18} color="#2DC08D" />
           Back
         </button>
 
-        <button
-          onClick={handleNext}
+        <button onClick={handleNext}
           className="px-3 py-1 bg-white border border-[#D9D9D9] text-[#000000] rounded-lg flex items-center gap-2 cursor-pointer"
         >
           Finish

@@ -12,13 +12,11 @@ export const useResumeStore = create(
       activeTab: "Basic Info",
       hasUnsavedChanges: false, // Track if form has unsaved changes
 
-
       setMethod: (m) => set({ method: m }),
       setTemplate: (t) => set({ template: t }),
       setCurrentStep: (step) => set({ currentStep: step }),
       setActiveTab: (tab) => set({ activeTab: tab }),
       setHasUnsavedChanges: (value) => set({ hasUnsavedChanges: value }),
-
 
 
       // Profile Section

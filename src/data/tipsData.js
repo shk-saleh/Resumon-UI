@@ -32,12 +32,5 @@ export const tipsData = {
     "Add numbers: “Increased conversions by 18%”, “Reduced load time by 40%”",
     "Focus on achievements, not duties",
     "3-5 bullet points per job is enough"
-  ],
-  "Download&Share":
-   [
-    "Use action verbs: Built, Led, Designed, Improved, Optimized",
-    "Add numbers: “Increased conversions by 18%”, “Reduced load time by 40%”",
-    "Focus on achievements, not duties",
-    "3-5 bullet points per job is enough"
   ]
 };  

@@ -4,12 +4,7 @@ import { useResumeStore } from "../../store/useResumeStore";
 import InputField from "./InputField";
 
 const Experience = () => {
-  const setTab = useResumeStore((s) => s.setActiveTab);
-  const experiences = useResumeStore((s) => s.experiences);
-  const addExperience = useResumeStore((s) => s.addExperience);
-  const updateExperience = useResumeStore((s) => s.updateExperience);
-  const removeExperience = useResumeStore((s) => s.removeExperience);
-
+  const { setActiveTab, experiences, addExperience, updateExperience, removeExperience} = useResumeStore();
   const [errors, setErrors] = useState({});
 
   const employmentTypes = ["Full Time", "Part Time", "Internship", "Contract"];
@@ -32,29 +27,63 @@ const Experience = () => {
   };
 
   const validateFormat = () => {
-    const newErrors = {};
-    experiences.forEach((exp, idx) => {
+  const newErrors = {};
+  const today = new Date();
+
+  const dateRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
+
+  const parseDate = (d) => {
+    const [day, month, year] = d.split("/");
+    return new Date(`${year}-${month}-${day}`);
+  };
+
+  experiences.forEach((exp, idx) => {
+
       if (!/^[A-Za-z\s\.\-']+$/.test(exp.jobTitle))
         newErrors[`jobTitle-${idx}`] = "Title can contain only letters, spaces, or .,-";
 
       if (!/^[A-Za-z\s\.\-']+$/.test(exp.company))
         newErrors[`company-${idx}`] = "Company Name can contain only letters, spaces, or .,-";
 
-      if (!/^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/.test(exp.start))
-        newErrors[`start-${idx}`] = "Enter a valid date (DD/MM/YYYY)";
+    if (!dateRegex.test(exp.start)) {
+      newErrors[`start-${idx}`] = "Enter a valid date (DD/MM/YYYY)";
+      return;
+    }
 
-      if (!/^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/.test(exp.end))
-        newErrors[`end-${idx}`] = "Enter a valid date (DD/MM/YYYY)";
-    });
+    // Validate (only if user is not currently working)
+    if (!exp.currentlyWorking && exp.end && !dateRegex.test(exp.end)) {
+      newErrors[`end-${idx}`] = "Enter a valid date (DD/MM/YYYY)";
+      return;
+    }
 
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+    const startDate = parseDate(exp.start);
+    const endDate = exp.currentlyWorking ? null : exp.end ? parseDate(exp.end) : null;
+
+    //START DATE <= TODAY
+    if (startDate > today) {
+      newErrors[`start-${idx}`] = "Start date cannot be in the future.";
+    }
+
+    //END DATE <= TODAY
+    if (endDate && endDate > today) {
+      newErrors[`end-${idx}`] = "End date cannot be in the future.";
+    }
+
+    //START < END (if end exists)
+    if (endDate && startDate >= endDate) {
+      newErrors[`end-${idx}`] = "End date must be greater than start date.";
+    }
+  });
+
+  setErrors(newErrors);
+  return Object.keys(newErrors).length === 0;
+};
+
 
   const handleNext = () => {
     if (!validateRequired()) return;
     if (!validateFormat()) return;
-    setTab("Education");
+    setActiveTab("Education");
   };
 
   return (
@@ -125,8 +154,8 @@ const Experience = () => {
               placeholder="DD/MM/YYYY"
               value={exp.end}
               error={errors[`end-${idx}`]}
-              onChange={(v) => updateExperience(exp.id, { end: v })}
               disabled={exp.currentlyWorking}
+              onChange={(v) => updateExperience(exp.id, { end: v })}
             />
           </div>
 
@@ -178,7 +207,7 @@ const Experience = () => {
       </div>
 
       <div className="flex justify-between mt-12">
-        <button onClick={() => setTab("Basic Info")}
+        <button onClick={() => setActiveTab("Basic Info")}
           className="px-3 py-1 border border-[#D9D9D9] text-[#000000] rounded-lg flex items-center gap-2 cursor-pointer"
         >
           <ArrowLeft size={18} color="#2DC08D" />

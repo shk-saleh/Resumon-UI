@@ -5,10 +5,9 @@ import InputField from "./InputField";
 
 const Certifications = () => {
   const {
-    setActiveTab,setCurrentStep,
+    setActiveTab, setCurrentStep,
     certifications, addCertification, updateCertification, removeCertification,
   } = useResumeStore();
-
 
   const [errors, setErrors] = useState({});
 
@@ -27,31 +26,47 @@ const Certifications = () => {
     return Object.keys(newErrors).length === 0;
   };
 
- const validateFormat = () => {
-  const newErrors = {};
+  const validateFormat = () => {
+    const newErrors = {};
 
-  certifications.forEach((cert, idx) => {
-    if (!/^[A-Za-z\s]+$/.test(cert.title))
-      newErrors[`title-${idx}`] = "Title can contain only letters and spaces";
+    const dateRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
+    const today = new Date();
 
-    if (!/^[A-Za-z\s]+$/.test(cert.organization))
-      newErrors[`org-${idx}`] = "Organization can contain only letters and spaces";
+    const parseDate = (d) => {
+      const [day, month, year] = d.split("/");
+      return new Date(`${year}-${month}-${day}`);
+    };
 
-    if (!/^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/.test(cert.issueDate))
-      newErrors[`date-${idx}`] = "Enter a valid date (DD/MM/YYYY)";
+    certifications.forEach((cert, idx) => {
+      if (!/^[A-Za-z\s]+$/.test(cert.title))
+        newErrors[`title-${idx}`] = "Title can contain only letters and spaces";
 
-    if (
-      cert.link &&
-      !/^(https?:\/\/)?(?!localhost|127\.0\.0\.1)([\w-]+\.)+[\w-]{2,}([\/\w@:%_+.~#?&\-=]*)?$/.test(
-        cert.link
+      if (!/^[A-Za-z\s]+$/.test(cert.organization))
+        newErrors[`org-${idx}`] = "Organization can contain only letters and spaces";
+
+      if (!dateRegex.test(cert.issueDate)) {
+        newErrors[`date-${idx}`] = "Enter a valid date (DD/MM/YYYY)";
+      } 
+      else 
+      {
+        const issue = parseDate(cert.issueDate);
+        if (issue > today) {
+          newErrors[`date-${idx}`] = "Issue date cannot be in the future";
+        }
+      }
+
+      if (
+        cert.link &&
+        !/^(https?:\/\/)?(?!localhost|127\.0\.0\.1)([\w-]+\.)+[\w-]{2,}([\/\w@:%_+.~#?&\-=]*)?$/.test(
+          cert.link
+        )
       )
-    )
-      newErrors[`link-${idx}`] = "Enter a valid URL";
-  });
+        newErrors[`link-${idx}`] = "Enter a valid URL";
+    });
 
-  setErrors(newErrors);
-  return Object.keys(newErrors).length === 0;
-};
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleNext = () => {
     if (!validateRequired()) return;

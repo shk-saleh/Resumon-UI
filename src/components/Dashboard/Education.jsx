@@ -4,21 +4,17 @@ import { useResumeStore } from "../../store/useResumeStore";
 import InputField from "./InputField";
 
 const Education = () => {
-  const setTab = useResumeStore((s) => s.setActiveTab);
-  const educationList = useResumeStore((s) => s.education);
-  const addEducation = useResumeStore((s) => s.addEducation);
-  const updateEducation = useResumeStore((s) => s.updateEducation);
-  const removeEducation = useResumeStore((s) => s.removeEducation);
-
+  const { setActiveTab, education, addEducation, updateEducation,removeEducation} = useResumeStore();
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    if (educationList.length === 0) addEducation();
+    if (education.length === 0) addEducation();
   }, []);
 
   const validateRequired = () => {
     const newErrors = {};
-    educationList.forEach((edu, idx) => {
+
+    education.forEach((edu, idx) => {
       if (!edu.degree) newErrors[`degree-${idx}`] = "This field is required";
       if (!edu.grade) newErrors[`grade-${idx}`] = "This field is required";
       if (!edu.school) newErrors[`school-${idx}`] = "This field is required";
@@ -31,38 +27,66 @@ const Education = () => {
   };
 
   const validateFormat = () => {
-  const newErrors = {};
+    const newErrors = {};
+    const dateRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
+    const today = new Date();
 
-  educationList.forEach((edu, idx) => {
-    if (!/^[A-Za-z\s\.\-']+$/.test(edu.degree))
-      newErrors[`degree-${idx}`] = "Degree can contain only letters, spaces, or .,-";
+    const parseDate = (d) => {
+      const [day, month, year] = d.split("/").map(Number);
+      return new Date(year, month - 1, day);
+    };
 
-    if (!/^[A-Za-z\s\.\-']+$/.test(edu.school))
-      newErrors[`school-${idx}`] = "School can contain only letters, spaces, or .,-";
+    education.forEach((edu, idx) => {
+      if (!/^[A-Za-z\s\.\-']+$/.test(edu.degree))
+        newErrors[`degree-${idx}`] = "Degree can contain only letters, spaces, or .,-";
 
-    if (!/^[A-Za-z0-9\+\.\-]+$/.test(edu.grade))
-      newErrors[`grade-${idx}`] = "Grade can contain only letters, numbers or +.-";
+      if (!/^[A-Za-z\s\.\-']+$/.test(edu.school))
+        newErrors[`school-${idx}`] = "School can contain only letters, spaces, or .,-";
 
-    if (!/^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/.test(edu.startDate))
-      newErrors[`start-${idx}`] = "Enter a valid date (DD/MM/YYYY)";
+      if (!/^[A-Za-z0-9\+\.\-]+$/.test(edu.grade))
+        newErrors[`grade-${idx}`] = "Grade can contain only letters, numbers or +.-";
 
-    if (edu.endDate && !/^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/.test(edu.endDate))
-      newErrors[`end-${idx}`] = "Enter a valid date (DD/MM/YYYY)";
-  });
+      if (!dateRegex.test(edu.startDate))
+        newErrors[`start-${idx}`] = "Enter a valid date (DD/MM/YYYY)";
 
-  setErrors(newErrors);
-  return Object.keys(newErrors).length === 0;
-};
+      // Validate (only if user is not currently Enrolled)
+      if (!edu.currentlyEnrolled && edu.endDate && !dateRegex.test(edu.endDate)) {
+        newErrors[`end-${idx}`] = "Enter a valid date (DD/MM/YYYY)";
+      }
+
+      const startDate = parseDate(edu.startDate);
+      const endDate = edu.currentlyEnrolled ? null : edu.endDate ? parseDate(edu.endDate) : null;
+
+      //START DATE <= TODAY
+      if (startDate > today) {
+        newErrors[`start-${idx}`] = "Start date cannot be in the future.";
+      }
+
+      //END DATE <= TODAY
+      if (endDate && endDate > today) {
+        newErrors[`end-${idx}`] = "End date cannot be in the future.";
+      }
+
+      //START < END (if end exists)
+      if (endDate && startDate >= endDate) {
+        newErrors[`end-${idx}`] = "End date must be greater than start date.";
+      }
+    });
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
 
   const handleNext = () => {
     if (!validateRequired()) return;
     if (!validateFormat()) return;
-    setTab("Skills");
+    setActiveTab("Skills");
   };
 
   return (
     <div>
-      {educationList.map((edu, idx) => (
+      {education.map((edu, idx) => (
         <div key={edu.id} className="rounded-lg mb-6">
           {idx > 0 && (
             <button onClick={() => removeEducation(edu.id)}
@@ -157,7 +181,7 @@ const Education = () => {
       </div>
 
       <div className="flex justify-between mt-12">
-        <button onClick={() => setTab("Experience")}
+        <button onClick={() => setActiveTab("Experience")}
           className="px-3 py-1 border border-[#D9D9D9] text-[#000000] rounded-lg flex items-center gap-2 cursor-pointer"
         >
           <ArrowLeft size={18} color="#2DC08D" />

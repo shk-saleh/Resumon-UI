@@ -19,9 +19,9 @@ const Experience = () => {
     if (!experiences || experiences.length === 0) addExperience();
   }, []);
 
-  const validate = () => {
+  const validateRequired = () => {
     const newErrors = {};
-    (experiences || []).forEach((exp, idx) => {
+    experiences.forEach((exp, idx) => {
       if (!exp.jobTitle) newErrors[`jobTitle-${idx}`] = "This field is required";
       if (!exp.company) newErrors[`company-${idx}`] = "This field is required";
       if (!exp.start) newErrors[`start-${idx}`] = "This field is required";
@@ -31,8 +31,29 @@ const Experience = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  const validateFormat = () => {
+    const newErrors = {};
+    experiences.forEach((exp, idx) => {
+      if (!/^[A-Za-z\s\.\-']+$/.test(exp.jobTitle))
+        newErrors[`jobTitle-${idx}`] = "Title can contain only letters, spaces, or .,-";
+
+      if (!/^[A-Za-z\s\.\-']+$/.test(exp.company))
+        newErrors[`company-${idx}`] = "Company Name can contain only letters, spaces, or .,-";
+
+      if (!/^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/.test(exp.start))
+        newErrors[`start-${idx}`] = "Enter a valid date (DD/MM/YYYY)";
+
+      if (!/^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/.test(exp.end))
+        newErrors[`end-${idx}`] = "Enter a valid date (DD/MM/YYYY)";
+    });
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleNext = () => {
-    if (!validate()) return;
+    if (!validateRequired()) return;
+    if (!validateFormat()) return;
     setTab("Education");
   };
 
@@ -117,7 +138,7 @@ const Experience = () => {
                 updateExperience(exp.id, { currentlyWorking: e.target.checked, end: "" })
               }
               id={`current-${exp.id}`}
-               className="w-4 h-4 accent-[#2DC08D]"
+              className="w-4 h-4 accent-[#2DC08D]"
             />
             <label htmlFor={`current-${exp.id}`} className="text-sm text-[#000000]">
               I am currently working here

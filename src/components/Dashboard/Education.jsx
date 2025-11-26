@@ -16,7 +16,7 @@ const Education = () => {
     if (educationList.length === 0) addEducation();
   }, []);
 
-  const validate = () => {
+  const validateRequired = () => {
     const newErrors = {};
     educationList.forEach((edu, idx) => {
       if (!edu.degree) newErrors[`degree-${idx}`] = "This field is required";
@@ -30,8 +30,33 @@ const Education = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  const validateFormat = () => {
+  const newErrors = {};
+
+  educationList.forEach((edu, idx) => {
+    if (!/^[A-Za-z\s\.\-']+$/.test(edu.degree))
+      newErrors[`degree-${idx}`] = "Degree can contain only letters, spaces, or .,-";
+
+    if (!/^[A-Za-z\s\.\-']+$/.test(edu.school))
+      newErrors[`school-${idx}`] = "School can contain only letters, spaces, or .,-";
+
+    if (!/^[A-Za-z0-9\+\.\-]+$/.test(edu.grade))
+      newErrors[`grade-${idx}`] = "Grade can contain only letters, numbers or +.-";
+
+    if (!/^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/.test(edu.startDate))
+      newErrors[`start-${idx}`] = "Enter a valid date (DD/MM/YYYY)";
+
+    if (edu.endDate && !/^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/.test(edu.endDate))
+      newErrors[`end-${idx}`] = "Enter a valid date (DD/MM/YYYY)";
+  });
+
+  setErrors(newErrors);
+  return Object.keys(newErrors).length === 0;
+};
+
   const handleNext = () => {
-    if (!validate()) return;
+    if (!validateRequired()) return;
+    if (!validateFormat()) return;
     setTab("Skills");
   };
 

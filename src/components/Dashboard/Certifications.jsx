@@ -16,20 +16,46 @@ const Certifications = () => {
     if (certifications.length === 0) addCertification();
   }, []);
 
-  const validate = () => {
+  const validateRequired = () => {
     const newErrors = {};
     certifications.forEach((cert, idx) => {
       if (!cert.title) newErrors[`title-${idx}`] = "This field is required";
       if (!cert.organization) newErrors[`org-${idx}`] = "This field is required";
       if (!cert.issueDate) newErrors[`date-${idx}`] = "This field is required";
-      if (!cert.link) newErrors[`link-${idx}`] = "This field is required";
     });
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
+ const validateFormat = () => {
+  const newErrors = {};
+
+  certifications.forEach((cert, idx) => {
+    if (!/^[A-Za-z\s]+$/.test(cert.title))
+      newErrors[`title-${idx}`] = "Title can contain only letters and spaces";
+
+    if (!/^[A-Za-z\s]+$/.test(cert.organization))
+      newErrors[`org-${idx}`] = "Organization can contain only letters and spaces";
+
+    if (!/^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/.test(cert.issueDate))
+      newErrors[`date-${idx}`] = "Enter a valid date (DD/MM/YYYY)";
+
+    if (
+      cert.link &&
+      !/^(https?:\/\/)?(?!localhost|127\.0\.0\.1)([\w-]+\.)+[\w-]{2,}([\/\w@:%_+.~#?&\-=]*)?$/.test(
+        cert.link
+      )
+    )
+      newErrors[`link-${idx}`] = "Enter a valid URL";
+  });
+
+  setErrors(newErrors);
+  return Object.keys(newErrors).length === 0;
+};
+
   const handleNext = () => {
-    if (!validate()) return;
+    if (!validateRequired()) return;
+    if (!validateFormat()) return;
     setCurrentStep(5);
   };
 

@@ -1,8 +1,7 @@
 import React, {useState} from 'react'
 import { cardData } from "../../data/cardData";
 import TemplateCard from '../TemplateCard';
-import { Search, Loader2 } from "lucide-react";
-
+import { Search} from "lucide-react";
 
 const Template = () => {
 
@@ -34,8 +33,6 @@ const Template = () => {
   
     const displayedCards = filteredCards.slice(0, visibleCards);
     const hasMoreCards = visibleCards < filteredCards.length;
-
-
 
   return (
     <div>
@@ -70,5 +67,4 @@ const Template = () => {
     </div>
   )
 }
-
 export default Template

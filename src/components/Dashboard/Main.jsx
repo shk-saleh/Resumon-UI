@@ -9,10 +9,9 @@ import ATS from './ATS';
 import Template from './Template';
 
 const Main = ({className = ""}) => {
-  
-  const activePage = useDashboardStore((s) => s.activePage);
-  const setSidebarOpen = useDashboardStore((s) => s.setSidebarOpen);
-  const currentStep = useResumeStore((s) => s.currentStep);
+
+  const { activePage,setSidebarOpen } = useDashboardStore();
+    const { currentStep} = useResumeStore();
 
   useEffect(() => {
     if (activePage === "buildresume" && currentStep === 4) {

@@ -1,7 +1,11 @@
 import React from "react";
 import { Search, User} from "lucide-react";
+import { useAuthStore } from "../../store/useAuthStore"
 
 const Topbar = () => {
+
+  const { user } = useAuthStore();
+  
   return (
     <div className="bg-white w-full flex items-center justify-between px-4 h-16">
       <div className="flex items-center gap-2 justify-start max-w-sm w-full px-3 py-2 text-sm rounded-lg border border-[#D9D9D9] bg-[#D9D9D9]/30 text-gray-800 ">

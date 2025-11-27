@@ -16,7 +16,7 @@ const Logout = ({ isOpen, onClose }) => {
           className="btn btn-sm btn-circle absolute right-2 top-2"
           onClick={onClose}
         >
-          <X className="h-5 w-5"/>
+          <X className="h-5 w-5" />
         </button>
 
         <h3 className="font-bold text-lg">Confirm Logout</h3>
@@ -28,7 +28,11 @@ const Logout = ({ isOpen, onClose }) => {
           </button>
           <button
             className="btn btn-error"
-            onClick={() => { logout(); onClose();  navigate("/get-started"); }}>
+            onClick={() => {
+              navigate("/get-started");
+              onClose();
+              logout();
+            }}>
             Logout
           </button>
         </div>

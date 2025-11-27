@@ -17,9 +17,8 @@ import Template5 from "./Templates/Template5";
 const Step4 = () => {
 
   const tabs = ["Basic Info", "Experience", "Education", "Skills", "Certifications"];
-  const sidebarOpen = useDashboardStore((s) => s.sidebarOpen);
-  const setActivePage = useDashboardStore((s) => s.setActivePage);
   const { activeTab, template,resetResumeBuilder} = useResumeStore();
+  const { sidebarOpen, setActivePage} = useDashboardStore();
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 
 

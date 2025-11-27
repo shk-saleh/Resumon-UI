@@ -31,7 +31,6 @@ export const useResumeStore = create(
         })),
 
 
-
       // Experinece Section
       experiences: [],
       
@@ -49,7 +48,6 @@ export const useResumeStore = create(
 
       removeExperience: (id) =>
         set((s) => ({ experiences: s.experiences.filter((e) => e.id !== id), })),
-
 
 
       // Education Section

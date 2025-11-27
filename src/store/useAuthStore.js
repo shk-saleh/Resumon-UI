@@ -1,6 +1,8 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import api from "../axios/axios";
+import { useResumeStore } from "./useResumeStore";
+import { useDashboardStore } from "./useDashboardStore";
 
 export const useAuthStore = create(
     persist(
@@ -76,8 +78,10 @@ export const useAuthStore = create(
 
             logout: () => 
             {
-                localStorage.removeItem("token")
-                set({ user: null, token: null })
+                localStorage.removeItem("token");
+                set({ user: null, token: null });
+                useResumeStore.getState().resetResumeBuilder();
+                useDashboardStore.getState().resetDashboardStore();
             },
         }),
         {

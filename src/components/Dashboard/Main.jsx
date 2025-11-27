@@ -6,6 +6,7 @@ import Overview from "./Overview";
 import { useDashboardStore } from "../../store/useDashboardStore";
 import { useResumeStore } from "../../store/useResumeStore";
 import ATS from './ATS';
+import Template from './Template';
 
 const Main = ({className = ""}) => {
   
@@ -27,7 +28,7 @@ const Main = ({className = ""}) => {
           {activePage === "buildresume" && <BuildResume />}
           {activePage === "upwork" && <div>Upwork Proposal Page</div>}
           {activePage === "ats score" && <ATS/>}
-          {activePage === "templates" && <div>Templates Page</div>}
+          {activePage === "templates" && <Template/>}
           {activePage === "settings" && <Settings />}
         </div>
     </div>

@@ -1,5 +1,7 @@
 import React from "react";
 import { Phone, Mail, MapPin, Globe } from "lucide-react";
+import { useResumeStore } from '../../../store/useResumeStore';
+import './Template.css';
 
 const Template4 = ({ data }) => {
   const defaultData = {
@@ -66,7 +68,7 @@ const Template4 = ({ data }) => {
   } = resume;
 
   return (
-    <div className="max-w-5xl mx-auto bg-white shadow-2xl overflow-hidden print:shadow-none print:max-w-none print:text-black">
+    <div className="min-w-[70vw] w-auto bg-white overflow-hidden">
       {/* HEADER */}
       <header className="bg-gray-100 p-8 flex flex-col sm:flex-row items-start gap-8">
         <div className="flex-shrink-0">

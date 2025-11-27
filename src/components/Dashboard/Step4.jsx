@@ -8,9 +8,11 @@ import Education from "./Education";
 import Skills from "./Skills";
 import Certifications from "./Certifications";
 import { tipsData } from "../../data/tipsData";
-import Classic from "./Templates/Classic";
-import Modern from "./Templates/Modern"
+import Template1 from "./Templates/Template1";
+import Template2 from "./Templates/Template2"
 import Template3 from "./Templates/Template3";
+import Template4 from "./Templates/Template4";
+import Template5 from "./Templates/Template5";
 
 const Step4 = () => {
 
@@ -22,8 +24,8 @@ const Step4 = () => {
 
 
   const renderTemplate = () => {
-    if (template === 1) return <Modern />;
-    if (template === 2) return <Classic />;
+    if (template === 1) return <Template1 />;
+    if (template === 2) return <Template2 />;
     if (template === 3) return <Template3 />;
     if (template === 4) return <Template4 />;
     if (template === 5) return <Template5 />;
@@ -94,11 +96,11 @@ const Step4 = () => {
         <div className="w-[310px] flex flex-col gap-6 pt-30">
           <div className="relative group">
             <div
-              className="p-3 rounded-xl bg-white h-[350px] border border-gray-300 cursor-pointer group-hover:brightness-95 transition-all duration-200"
+              className={`p-3 rounded-xl h-[350px] border border-gray-300 cursor-pointer group-hover:brightness-95 transition-all duration-200 ${template === 5 ? 'bg-[#F8F7F3]' : 'bg-white'}`}
               onClick={() => setIsPreviewOpen(true)}
             >
               <div className="w-full h-full rounded-lg flex items-center justify-center">
-                <div className="transform origin-center scale-[0.28]"> {renderTemplate()} </div>
+                <div className={`transform origin-center scale-[0.28] `}> {renderTemplate()} </div>
               </div>
             </div>
           </div>

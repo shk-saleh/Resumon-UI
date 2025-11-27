@@ -2,7 +2,7 @@ import React from 'react';
 import { Phone, Mail,Globe } from 'lucide-react';
 import { useResumeStore } from '../../../store/useResumeStore';
 
-const Modern = () => {
+const Template2 = () => {
   
     const getFormattedResumeData = useResumeStore((s) => s.getFormattedResumeData);
     const data = getFormattedResumeData();
@@ -80,4 +80,4 @@ const Modern = () => {
     </div>
   );
 };
-export default Modern;
+export default Template2;

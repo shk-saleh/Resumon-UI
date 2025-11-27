@@ -2,7 +2,7 @@ import React from 'react';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import { useResumeStore } from '../../../store/useResumeStore';
 
-const ResumeTemplate = () => {
+const Template1 = () => {
   const getFormattedResumeData = useResumeStore((s) => s.getFormattedResumeData);
   const data = getFormattedResumeData();
   return (
@@ -114,4 +114,4 @@ const ResumeTemplate = () => {
   );
 };
 
-export default ResumeTemplate;
+export default Template1;

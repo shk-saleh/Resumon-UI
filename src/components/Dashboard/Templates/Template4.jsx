@@ -18,19 +18,21 @@ const Template4 = ({ data }) => {
         period: "2022–Present",
         position: "Business Consultant",
         description:
-          "Led strategic consulting initiatives for Fortune 500 clients...",
+          "Led strategic consulting initiatives for Fortune 500 clients with a focus on operational efficiency and digital transformation.",
       },
       {
         company: "Borcelle Industries",
         period: "2020–2022",
         position: "Account Sales Executive",
-        description: "Managed key accounts and drove 150% revenue growth...",
+        description:
+          "Managed high-value client relationships and exceeded annual sales targets by 150% through strategic account planning.",
       },
       {
         company: "Liceria & Co.",
         period: "2018–2019",
         position: "Senior Property Manager",
-        description: "Oversaw portfolio of 50+ commercial properties...",
+        description:
+          "Oversaw a portfolio of 50+ commercial properties valued at over $120M in total assets.",
       },
     ],
     education: [
@@ -47,7 +49,7 @@ const Template4 = ({ data }) => {
         period: "2010–2015",
         title: "Volunteer Administrator",
         description:
-          "Led community outreach programs and managed 200+ volunteers.",
+          "Led community outreach programs and coordinated 200+ volunteers across multiple initiatives.",
       },
       {
         organization: "Borcelle Company",
@@ -66,45 +68,45 @@ const Template4 = ({ data }) => {
   } = resume;
 
   return (
-    <div className="max-w-5xl mx-auto bg-white shadow-2xl overflow-hidden print:shadow-none print:max-w-none print:text-black">
+    <div className="max-w-4xl mx-auto bg-white font-sans text-black print:max-w-none print:text-black">
       {/* HEADER */}
-      <header className="bg-gray-100 p-8 flex flex-col sm:flex-row items-start gap-8">
+      <header className="p-8 pb-6 border-b-4 border-black flex gap-8">
         <div className="flex-shrink-0">
           <img
             src={personalInfo.profileImage || "https://via.placeholder.com/150"}
-            alt={personalInfo.fullName}
-            className="w-32 h-32 rounded-full object-cover border-4 border-white shadow-lg"
+            alt={personalInfo.fullName || "Profile"}
+            className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-md"
           />
         </div>
         <div className="flex-1">
-          <h1 className="text-4xl font-bold text-gray-900">
-            {personalInfo.fullName}
+          <h1 className="text-3xl font-bold text-black">
+            {personalInfo.fullName || "Your Name"}
           </h1>
-          <p className="text-xl text-blue-600 font-medium mt-1 mb-6">
-            {personalInfo.title}
+          <p className="text-xs uppercase tracking-widest text-gray-700 font-semibold mt-1 mb-4">
+            {personalInfo.title || "Professional Title"}
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-gray-700">
+          <div className="grid grid-cols-2 gap-x-8 gap-y-2 text-xs text-gray-800">
             {personalInfo.phone && (
               <div className="flex items-center gap-2">
-                <Phone size={16} className="text-gray-600" />
+                <Phone size={14} />
                 <span>{personalInfo.phone}</span>
               </div>
             )}
             {personalInfo.address && (
               <div className="flex items-center gap-2">
-                <MapPin size={16} className="text-gray-600" />
+                <MapPin size={14} />
                 <span>{personalInfo.address}</span>
               </div>
             )}
             {personalInfo.website && (
               <div className="flex items-center gap-2">
-                <Globe size={16} className="text-gray-600" />
+                <Globe size={14} />
                 <span>{personalInfo.website}</span>
               </div>
             )}
             {personalInfo.email && (
               <div className="flex items-center gap-2">
-                <Mail size={16} className="text-gray-600" />
+                <Mail size={14} />
                 <span>{personalInfo.email}</span>
               </div>
             )}
@@ -112,136 +114,153 @@ const Template4 = ({ data }) => {
         </div>
       </header>
 
-      {/* MAIN LAYOUT */}
-      <div className="flex flex-col lg:flex-row">
-        {/* LEFT SIDEBAR - Perfect Timeline */}
-        <aside className="w-full lg:w-1/3 bg-gray-50 p-8 relative">
-          {/* Continuous Vertical Line */}
-          <div className="absolute left-10 top-0 bottom-0 w-0.5 bg-gray-300"></div>
+      {/* MAIN LAYOUT WITH PERFECT TIMELINE */}
+      <div className="flex">
+        {/* LEFT SIDEBAR - TIMELINE */}
+        <aside className="w-40 bg-white border-r border-gray-300 relative">
+          {/* Vertical Timeline Line */}
+          <div className="absolute left-10 top-10 bottom-10 w-0.5 bg-black"></div>
 
-          {/* Work Experience */}
-          {workExperience.length > 0 && (
-            <div className="relative space-y-10">
-              {workExperience.map((work, index) => (
-                <div key={index} className="flex gap-6">
-                  <div className="flex-shrink-0 w-5 h-5 bg-blue-600 rounded-full border-4 border-white shadow-lg z-10"></div>
-                  <div className="pb-8">
-                    <p className="font-bold text-gray-900 text-sm leading-tight">
-                      {work.company}
-                    </p>
-                    <p className="text-xs text-gray-600">{work.period}</p>
+          <div className="pt-8 pb-8 pl-16 pr-6 space-y-12">
+            {/* Work Experience */}
+            {workExperience.length > 0 && (
+              <div className="relative space-y-10">
+                {workExperience.map((work, index) => (
+                  <div key={index} className="flex items-start gap-6">
+                    {/* Timeline Dot */}
+                    <div className="absolute left-[-26px] top-1.5 w-4 h-4 bg-black rounded-full border-4 border-white shadow-sm z-10"></div>
+                    <div className="pt-0.5">
+                      <p className="font-bold text-sm leading-tight">
+                        {work.company}
+                      </p>
+                      <p className="text-xs text-gray-600 mt-0.5">
+                        {work.period}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          )}
+                ))}
+              </div>
+            )}
 
-          {/* Education */}
-          {education.length > 0 && (
-            <div className="relative mt-12 space-y-10">
-              {education.map((edu, index) => (
-                <div key={index} className="flex gap-6">
-                  <div className="flex-shrink-0 w-5 h-5 bg-blue-600 rounded-full border-4 border-white shadow-lg z-10"></div>
-                  <div className="pb-8">
-                    <p className="font-bold text-gray-900 text-sm leading-tight">
-                      {edu.institution}
-                    </p>
-                    <p className="text-xs text-gray-600">{edu.period}</p>
+            {/* Education */}
+            {education.length > 0 && (
+              <div className="relative space-y-10">
+                {education.map((edu, index) => (
+                  <div key={index} className="flex items-start gap-6">
+                    <div className="absolute left-[-26px] top-1.5 w-4 h-4 bg-black rounded-full border-4 border-white shadow-sm z-10"></div>
+                    <div className="pt-0.5">
+                      <p className="font-bold text-sm leading-tight">
+                        {edu.institution}
+                      </p>
+                      <p className="text-xs text-gray-600 mt-0.5">
+                        {edu.period}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          )}
+                ))}
+              </div>
+            )}
 
-          {/* Certifications */}
-          {certifications.length > 0 && (
-            <div className="relative mt-12 space-y-10">
-              {certifications.map((cert, index) => (
-                <div key={index} className="flex gap-6">
-                  <div className="flex-shrink-0 w-5 h-5 bg-blue-600 rounded-full border-4 border-white shadow-lg z-10"></div>
-                  <div className="pb-8">
-                    <p className="font-bold text-gray-900 text-sm leading-tight">
-                      {cert.organization}
-                    </p>
-                    <p className="text-xs text-gray-600">{cert.period}</p>
+            {/* Certifications */}
+            {certifications.length > 0 && (
+              <div className="relative space-y-10">
+                {certifications.map((cert, index) => (
+                  <div key={index} className="flex items-start gap-6">
+                    <div className="absolute left-[-26px] top-1.5 w-4 h-4 bg-black rounded-full border-4 border-white shadow-sm z-10"></div>
+                    <div className="pt-0.5">
+                      <p className="font-bold text-sm leading-tight">
+                        {cert.organization}
+                      </p>
+                      <p className="text-xs text-gray-600 mt-0.5">
+                        {cert.period}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          )}
+                ))}
+              </div>
+            )}
+          </div>
         </aside>
 
         {/* RIGHT CONTENT */}
-        <main className="w-full lg:w-2/3 p-8 space-y-12">
-          {/* Work Experience */}
-          {workExperience.length > 0 && (
-            <section>
-              <h2 className="text-xl font-bold text-gray-900 uppercase tracking-wider mb-6 pb-2 border-b-2 border-blue-600">
-                Work Experience
-              </h2>
-              {workExperience.map((work, index) => (
-                <div key={index} className="mb-10 last:mb-0">
-                  <h3 className="text-lg font-bold text-gray-900">
-                    {work.position}
-                  </h3>
-                  <p className="text-sm text-gray-600 italic mb-2">
-                    {work.company} • {work.period}
-                  </p>
-                  <p className="text-sm text-gray-700 leading-relaxed">
-                    {work.description}
-                  </p>
+        <main className="flex-1 p-8 bg-gray-50">
+          <div className="space-y-10">
+            {/* Work Experience */}
+            {workExperience.length > 0 && (
+              <section>
+                <h2 className="text-xs font-bold uppercase tracking-widest text-black mb-6 pb-2 border-b-2 border-black inline-block">
+                  Work Experience
+                </h2>
+                <div className="space-y-8">
+                  {workExperience.map((work, index) => (
+                    <div key={index}>
+                      <h3 className="text-sm font-bold text-black">
+                        {work.position}
+                      </h3>
+                      <p className="text-xs text-gray-700 mt-1 mb-3">
+                        {work.company} • {work.period}
+                      </p>
+                      <p className="text-xs text-gray-800 leading-relaxed">
+                        {work.description}
+                      </p>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </section>
-          )}
+              </section>
+            )}
 
-          {/* Education */}
-          {education.length > 0 && (
-            <section>
-              <h2 className="text-xl font-bold text-gray-900 uppercase tracking-wider mb-6 pb-2 border-b-2 border-blue-600">
-                Education
-              </h2>
-              {education.map((edu, index) => (
-                <div key={index} className="mb-8 last:mb-0">
-                  <h3 className="text-lg font-bold text-gray-900">
-                    {edu.degree}
-                  </h3>
-                  <p className="text-sm text-gray-600">
-                    {edu.institution} • {edu.period}
-                  </p>
-                  {edu.gpa && (
-                    <p className="text-sm font-medium text-blue-600 mt-1">
-                      {edu.gpa}
-                    </p>
-                  )}
+            {/* Education */}
+            {education.length > 0 && (
+              <section>
+                <h2 className="text-xs font-bold uppercase tracking-widest text-black mb-6 pb-2 border-b-2 border-black inline-block">
+                  Education
+                </h2>
+                <div className="space-y-6">
+                  {education.map((edu, index) => (
+                    <div key={index}>
+                      <h3 className="text-sm font-bold text-black">
+                        {edu.degree}
+                      </h3>
+                      <p className="text-xs text-gray-700 mt-1">
+                        {edu.institution} • {edu.period}
+                      </p>
+                      {edu.gpa && (
+                        <p className="text-xs font-semibold text-black mt-2">
+                          {edu.gpa}
+                        </p>
+                      )}
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </section>
-          )}
+              </section>
+            )}
 
-          {/* Certifications */}
-          {certifications.length > 0 && (
-            <section>
-              <h2 className="text-xl font-bold text-gray-900 uppercase tracking-wider mb-6 pb-2 border-b-2 border-blue-600">
-                Certification & Volunteer Work
-              </h2>
-              {certifications.map((cert, index) => (
-                <div key={index} className="mb-8 last:mb-0">
-                  <h3 className="text-lg font-bold text-gray-900">
-                    {cert.title}
-                  </h3>
-                  <p className="text-sm text-gray-600">
-                    {cert.organization} • {cert.period}
-                  </p>
-                  {cert.description && (
-                    <p className="text-sm text-gray-700 mt-2 leading-relaxed">
-                      {cert.description}
-                    </p>
-                  )}
+            {/* Certifications */}
+            {certifications.length > 0 && (
+              <section>
+                <h2 className="text-xs font-bold uppercase tracking-widest text-black mb-6 pb-2 border-b-2 border-black inline-block">
+                  Certifications & Volunteer Work
+                </h2>
+                <div className="space-y-6">
+                  {certifications.map((cert, index) => (
+                    <div key={index}>
+                      <h3 className="text-sm font-bold text-black">
+                        {cert.title}
+                      </h3>
+                      <p className="text-xs text-gray-700 mt-1 mb-2">
+                        {cert.organization} • {cert.period}
+                      </p>
+                      {cert.description && (
+                        <p className="text-xs text-gray-800 leading-relaxed">
+                          {cert.description}
+                        </p>
+                      )}
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </section>
-          )}
+              </section>
+            )}
+          </div>
         </main>
       </div>
     </div>

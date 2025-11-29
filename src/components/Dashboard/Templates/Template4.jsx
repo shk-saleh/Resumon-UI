@@ -70,23 +70,25 @@ const Template4 = ({ data }) => {
   } = resume;
 
   return (
-    <div className="min-w-[70vw] w-auto bg-white overflow-hidden">
+    <div className="template min-w-[70vw] w-auto p-12 bg-red-50/20 overflow-hidden">
       {/* HEADER */}
-      <header className="p-8 pb-6 border-b-4 border-black flex gap-8">
+      <header className=" flex items-center p-8 gap-16">
         <div className="flex-shrink-0">
           <img
             src={personalInfo.profileImage || "https://via.placeholder.com/150"}
             alt={personalInfo.fullName || "Profile"}
-            className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-md"
+            className="w-48 h-48 rounded-full object-cover border-4 border-white shadow-md"
           />
         </div>
         <div className="flex-1">
-          <h1 className="text-3xl font-bold text-black">
-            {personalInfo.fullName || "Your Name"}
-          </h1>
-          <p className="text-xs uppercase tracking-widest text-gray-700 font-semibold mt-1 mb-4">
-            {personalInfo.title || "Professional Title"}
-          </p>
+          <div className="border-b-1 border-gray-200 mb-4">
+            <h1 className="text-3xl font-bold text-black">
+              {personalInfo.fullName || "Your Name"}
+            </h1>
+            <p className="text-xs uppercase tracking-widest text-gray-700 font-semibold mt-1 mb-4">
+              {personalInfo.title || "Professional Title"}
+            </p>
+          </div>
           <div className="grid grid-cols-2 gap-x-8 gap-y-2 text-xs text-gray-800">
             {personalInfo.phone && (
               <div className="flex items-center gap-2">

@@ -65,7 +65,7 @@ const Sidebar = () => {
   const getButtonClass = (page) =>
     `flex items-center gap-3 p-2 rounded-md cursor-pointer transition-colors duration-200 w-full ${activePage === page
       ? "bg-[#2DC08D]/15 text-[#2DC08D]"
-      : "hover:bg-gray-100 text-[#24272E]"
+      : "hover:bg-gray-100 text-[#BCBBBB]"
     }`;
 
   return (
@@ -90,7 +90,7 @@ const Sidebar = () => {
           <div key={index}>
 
             {section.label && sidebarOpen && (
-              <span className="text-[#B1B1B1] text-sm ml-2 mb-1 block">
+              <span className="text-[#989898] text-sm ml-2 mb-1 block">
                 {section.label}
               </span>
             )}
@@ -102,7 +102,7 @@ const Sidebar = () => {
                     className={`${getButtonClass(page)} ${gapTop ?? ""}`}
                     onClick={() => handlePageChange(page)}
                   >
-                    <Icon className="w-5 h-5 text-[#BCBBBB]" />
+                    <Icon className="w-5 h-5" />
                     {sidebarOpen && <span className="text-sm">{label}</span>}
                   </button>
                 </Tippy>

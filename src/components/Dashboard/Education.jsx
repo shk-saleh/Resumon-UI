@@ -147,7 +147,7 @@ const Education = () => {
               type="checkbox"
               checked={edu.currentlyEnrolled || false}
               onChange={(e) =>
-                updateEducation(edu.id, { currentlyEnrolled: e.target.checked, endDate: "" })
+                updateEducation(edu.id, { currentlyEnrolled: e.target.checked, endDate: "Present" })
               }
               id={`current-${edu.id}`}
               className="w-4 h-4 accent-[#2DC08D]"

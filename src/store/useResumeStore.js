@@ -22,7 +22,7 @@ export const useResumeStore = create(
       // Profile Section
       profile: 
       {
-        fullName: "", jobTitle: "", phone: "", email: "", address: "", website: "", linkedin: "", summary: "",
+        image: "", fullName: "", jobTitle: "", phone: "", email: "", address: "", website: "", linkedin: "", summary: "",
       },
 
       setProfileField: (field, value) =>
@@ -80,7 +80,6 @@ export const useResumeStore = create(
         })),
 
 
-
       // Certifications Section
       certifications: [],
 
@@ -98,12 +97,12 @@ export const useResumeStore = create(
         set((s) => ({ certifications: s.certifications.filter((c) => c.id !== id), })),
 
 
-      
       // Helper to get formatted resume data for templates
       getFormattedResumeData: () => {
         const state = get();
         return {
           personalInfo: {
+            image: state.profile.image || "",
             fullName: state.profile.fullName || "",
             title: state.profile.jobTitle || "",
             phone: state.profile.phone || "",
@@ -160,7 +159,7 @@ export const useResumeStore = create(
           currentStep: 1,
           activeTab: "Basic Info",
           profile: {
-            fullName: "", jobTitle: "", phone: "", email: "", address: "", website: "", linkedin: "", summary: "",
+            image: "", fullName: "", jobTitle: "", phone: "", email: "", address: "", website: "", linkedin: "", summary: "",
           },
           experiences: [],
           education: [],

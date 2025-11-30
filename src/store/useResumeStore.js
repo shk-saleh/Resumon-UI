@@ -67,7 +67,6 @@ export const useResumeStore = create(
         set((s) => ({ education: s.education.filter((ed) => ed.id !== id), })),
 
 
-
       // Skills Section
       skills: [],
 
@@ -78,7 +77,6 @@ export const useResumeStore = create(
         set((s) => ({
           skills: s.skills.filter((s2) => s2 !== skill),
         })),
-
 
 
       // Certifications Section

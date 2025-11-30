@@ -106,7 +106,7 @@ const Step4 = () => {
           <div className="pt-1">
             <h3 className="text-lg font-medium mb-2 text-[#2DC08D]">Tips</h3>
             <ul className="list-disc list-outside text-xs font-light text-[#858383] marker:text-[#000000]/40 space-y-2 ps-4">
-              {(tipsData[activeTab] || tipsData["Basic Info"] || []).map((tip, index) => (
+              {(tipsData[activeTab]).map((tip, index) => (
                 <li key={index}>{tip}</li>
               ))}
             </ul>

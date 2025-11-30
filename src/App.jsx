@@ -29,10 +29,9 @@ function App() {
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/support" element={<Support />} />
           <Route path="/templates" element={<Templates />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          {/* <Route path="/dashboard"
+          <Route path="/dashboard"
             element={ user && token ? <Dashboard />: <Navigate to="/get-started" replace />} 
-          />  */}
+          /> 
           <Route path="*" element={<NotFound />} />
         </Routes>
     </div>

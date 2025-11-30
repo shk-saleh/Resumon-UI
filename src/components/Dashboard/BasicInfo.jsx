@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles, ImageUp } from "lucide-react";
 import { useResumeStore } from "../../store/useResumeStore";
 import InputField from "./InputField";
 
 const BasicInfo = () => {
-  const { setActiveTab, profile,setProfileField} = useResumeStore();
+  const { setActiveTab, profile, setProfileField } = useResumeStore();
 
   const [errors, setErrors] = useState({});
 
@@ -58,6 +58,35 @@ const BasicInfo = () => {
 
   return (
     <>
+      <div className="flex items-center gap-6 mb-10">
+        <label htmlFor="profileImageInput"
+          className="w-30 h-30 rounded-full bg-[#F0F0F0] border border-[#DFDFDF]
+               flex items-center justify-center cursor-pointer overflow-hidden"
+        >
+          {profile.image ? 
+          ( <img src={profile.image} alt="profile" className="w-full h-full object-cover"/> ) 
+          : 
+          ( <ImageUp className="w-10 h-10 text-[#BCBBBB]" /> )
+          }
+        </label>
+
+        <div className="flex flex-col">
+          <span className="text-lg font-normal text-[#000000]"> Resume Image  </span>
+          <span className="text-xs text-[#858383] font-light"> Choose a professional image </span>
+        </div>
+
+        <input
+          type="file" id="profileImageInput" accept="image/*" className="hidden"
+          onChange={(e) => {
+            const file = e.target.files[0];
+            if (file) {
+              const imageUrl = URL.createObjectURL(file); 
+              setProfileField("image", imageUrl);
+            }
+          }}
+        />
+      </div>
+
       <div className="grid grid-cols-2 gap-6">
         <InputField
           label="Full Name"

@@ -118,16 +118,6 @@ const Sidebar = () => {
       >
         {sidebarOpen && (
           <div className="flex items-center gap-3 px-2">
-            <User className="w-6 h-6 text-gray-600" />
-            <div className="flex flex-col">
-              <span className="text-black font-medium">User</span>
-              <span className="text-gray-700 text-xs">user@gmail.com</span>
-            </div>
-          </div>
-        )}
-
-        {/* {sidebarOpen && (
-          <div className="flex items-center gap-3 px-2">
             {user.avatar ? (
               <img src={user.avatar} className="w-8 h-8 rounded-full object-cover"/>
             ) : (
@@ -140,7 +130,7 @@ const Sidebar = () => {
               <span className="text-gray-700 text-xs">{user.email}</span>
             </div>
           </div>
-        )} */}
+        )}
 
         <Tippy content="Logout" placement="right" disabled={sidebarOpen}>
           <button

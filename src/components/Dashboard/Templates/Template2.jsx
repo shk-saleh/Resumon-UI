@@ -1,26 +1,21 @@
 import React from 'react';
-import { Phone, Mail, MapPin, Globe } from 'lucide-react';
+import { Phone, Mail,Globe } from 'lucide-react';
 import { useResumeStore } from '../../../store/useResumeStore';
 
-
-const Modern = () => {
+const Template2 = () => {
   
     const getFormattedResumeData = useResumeStore((s) => s.getFormattedResumeData);
     const data = getFormattedResumeData();
   
     return (
-    <div className="w-[70vw] bg-white p-12 text-black">
+    <div className="template min-w-[70vw] w-auto p-12 bg-white text-gray-800">
 
-      {/* TOP HEADER */}
       <div className="flex items-center gap-8 mb-10">
-
-        {/* Name + Contact */}
-        <div>
+        <div> 
           <h1 className="text-4xl font-bold tracking-wider mb-2">
             {data.personalInfo.fullName}
           </h1>
 
-          {/* Contact Section */}
           <div className="text-sm space-y-1">
             <p><strong>Address:</strong> {data.personalInfo.address}</p>
             <p className="flex items-center gap-2">
@@ -36,17 +31,15 @@ const Modern = () => {
         </div>
       </div>
 
-      {/* SUMMARY */}
       <div className="mb-8">
         <h2 className="text-lg font-bold tracking-widest mb-3 pb-1 border-b-2 border-gray-800">
           SUMMARY
         </h2>
         <p className="text-sm text-gray-700 leading-relaxed">
-          {data.summary}
+          {data.aboutMe.description}
         </p>
       </div>
 
-      {/* WORK EXPERIENCE */}
       <div className="mb-8">
         <h2 className="text-lg font-bold tracking-widest mb-3 pb-1 border-b-2 border-gray-800">
           WORK EXPERIENCE
@@ -54,21 +47,15 @@ const Modern = () => {
 
         {data.workExperience.items.map((job, index) => (
           <div key={index} className="mb-5">
-            <div className="flex justify-between">
-              <p className="font-bold text-gray-900">{job.position}, {job.company}</p>
+            <div className="flex justify-between mb-2">
+              <p className="font-medium text-gray-900">{job.position}, {job.company}</p>
               <p className="text-gray-600 text-sm">{job.duration}</p>
             </div>
-
-            {/* <ul className="text-sm text-gray-700 list-disc ml-5 mt-2 space-y-1">
-              {job.responsibilities.map((item, idx) => (
-                <li key={idx}>{item}</li>
-              ))}
-            </ul> */}
+            <p className="text-gray-600 text-sm">{job.description}</p>
           </div>
         ))}
       </div>
 
-      {/* EDUCATION */}
       <div className="mb-8">
         <h2 className="text-lg font-bold tracking-widest mb-3 pb-1 border-b-2 border-gray-800">
           EDUCATION
@@ -76,37 +63,22 @@ const Modern = () => {
 
         {data.education.items.map((edu, index) => (
           <div key={index} className="mb-5">
-            <div className="flex justify-between">
-              <p className="font-bold text-gray-900">{edu.degree}</p>
+            <div className="flex justify-between mb-2">
+              <p className="font-bold text-gray-900">{edu.degree} | {edu.institution}</p>
               <p className="text-gray-600 text-sm">{edu.duration}</p>
             </div>
-
-            <p className="text-sm text-gray-700">{edu.institution}</p>
-
-            {/* Bullet Points */}
-            {/* <ul className="text-sm text-gray-700 list-disc ml-5 mt-2 space-y-1">
-              {edu.details.map((d, idx) => (
-                <li key={idx}>{d}</li>
-              ))}
-            </ul> */}
+            <p className="text-sm text-gray-700">{edu.description}</p>
           </div>
         ))}
       </div>
 
-      {/* ADDITIONAL INFORMATION */}
       <div>
         <h2 className="text-lg font-bold tracking-widest mb-3 pb-1 border-b-2 border-gray-800">
           ADDITIONAL INFORMATION
         </h2>
-
-        {/* <ul className="text-sm text-gray-700 space-y-2">
-          {data.additionalInfo.map((info, index) => (
-            <li key={index}>• {info}</li>
-          ))}
-        </ul> */}
+        
       </div>
     </div>
   );
 };
-
-export default Modern;
+export default Template2;

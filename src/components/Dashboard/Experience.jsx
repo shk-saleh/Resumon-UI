@@ -4,12 +4,7 @@ import { useResumeStore } from "../../store/useResumeStore";
 import InputField from "./InputField";
 
 const Experience = () => {
-  const setTab = useResumeStore((s) => s.setActiveTab);
-  const experiences = useResumeStore((s) => s.experiences);
-  const addExperience = useResumeStore((s) => s.addExperience);
-  const updateExperience = useResumeStore((s) => s.updateExperience);
-  const removeExperience = useResumeStore((s) => s.removeExperience);
-
+  const { setActiveTab, experiences, addExperience, updateExperience, removeExperience} = useResumeStore();
   const [errors, setErrors] = useState({});
 
   const employmentTypes = ["Full Time", "Part Time", "Internship", "Contract"];
@@ -19,9 +14,9 @@ const Experience = () => {
     if (!experiences || experiences.length === 0) addExperience();
   }, []);
 
-  const validate = () => {
+  const validateRequired = () => {
     const newErrors = {};
-    (experiences || []).forEach((exp, idx) => {
+    experiences.forEach((exp, idx) => {
       if (!exp.jobTitle) newErrors[`jobTitle-${idx}`] = "This field is required";
       if (!exp.company) newErrors[`company-${idx}`] = "This field is required";
       if (!exp.start) newErrors[`start-${idx}`] = "This field is required";
@@ -31,15 +26,70 @@ const Experience = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  const validateFormat = () => {
+  const newErrors = {};
+  const today = new Date();
+
+  const dateRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
+
+  const parseDate = (d) => {
+    const [day, month, year] = d.split("/");
+    return new Date(`${year}-${month}-${day}`);
+  };
+
+  experiences.forEach((exp, idx) => {
+
+      if (!/^[A-Za-z\s\.\-']+$/.test(exp.jobTitle))
+        newErrors[`jobTitle-${idx}`] = "Title can contain only letters, spaces, or .,-";
+
+      if (!/^[A-Za-z\s\.\-']+$/.test(exp.company))
+        newErrors[`company-${idx}`] = "Company Name can contain only letters, spaces, or .,-";
+
+    if (!dateRegex.test(exp.start)) {
+      newErrors[`start-${idx}`] = "Enter a valid date (DD/MM/YYYY)";
+      return;
+    }
+
+    // Validate (only if user is not currently working)
+    if (!exp.currentlyWorking && exp.end && !dateRegex.test(exp.end)) {
+      newErrors[`end-${idx}`] = "Enter a valid date (DD/MM/YYYY)";
+      return;
+    }
+
+    const startDate = parseDate(exp.start);
+    const endDate = exp.currentlyWorking ? null : exp.end ? parseDate(exp.end) : null;
+
+    //START DATE <= TODAY
+    if (startDate > today) {
+      newErrors[`start-${idx}`] = "Start date cannot be in the future.";
+    }
+
+    //END DATE <= TODAY
+    if (endDate && endDate > today) {
+      newErrors[`end-${idx}`] = "End date cannot be in the future.";
+    }
+
+    //START < END (if end exists)
+    if (endDate && startDate >= endDate) {
+      newErrors[`end-${idx}`] = "End date must be greater than start date.";
+    }
+  });
+
+  setErrors(newErrors);
+  return Object.keys(newErrors).length === 0;
+};
+
+
   const handleNext = () => {
-    if (!validate()) return;
-    setTab("Education");
+    if (!validateRequired()) return;
+    if (!validateFormat()) return;
+    setActiveTab("Education");
   };
 
   return (
     <div>
       {experiences.map((exp, idx) => (
-        <div key={exp.id} className="relative rounded-lg mb-6">
+        <div key={exp.id} className="rounded-lg mb-6">
           {idx > 0 && (
             <button
               onClick={() => removeExperience(exp.id)}
@@ -104,8 +154,8 @@ const Experience = () => {
               placeholder="DD/MM/YYYY"
               value={exp.end}
               error={errors[`end-${idx}`]}
-              onChange={(v) => updateExperience(exp.id, { end: v })}
               disabled={exp.currentlyWorking}
+              onChange={(v) => updateExperience(exp.id, { end: v })}
             />
           </div>
 
@@ -117,7 +167,7 @@ const Experience = () => {
                 updateExperience(exp.id, { currentlyWorking: e.target.checked, end: "" })
               }
               id={`current-${exp.id}`}
-               className="w-4 h-4 accent-[#2DC08D]"
+              className="w-4 h-4 accent-[#2DC08D]"
             />
             <label htmlFor={`current-${exp.id}`} className="text-sm text-[#000000]">
               I am currently working here
@@ -157,7 +207,7 @@ const Experience = () => {
       </div>
 
       <div className="flex justify-between mt-12">
-        <button onClick={() => setTab("Basic Info")}
+        <button onClick={() => setActiveTab("Basic Info")}
           className="px-3 py-1 border border-[#D9D9D9] text-[#000000] rounded-lg flex items-center gap-2 cursor-pointer"
         >
           <ArrowLeft size={18} color="#2DC08D" />

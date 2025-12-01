@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import Sidebar from "../components/Dashboard/Sidebar";
-import Main from "../components/Main";
+import Main from "../components/Dashboard/Main";
 import {useDashboardStore} from "../store/useDashboardStore";
-
 
 const Dashboard = () => {
 
@@ -15,5 +14,4 @@ const Dashboard = () => {
     </div>
   );
 };
-
 export default Dashboard;

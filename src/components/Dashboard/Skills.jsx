@@ -3,20 +3,27 @@ import { ArrowRight, ArrowLeft, Plus, X } from "lucide-react";
 import { useResumeStore } from "../../store/useResumeStore";
 
 const Skills = () => {
-  const setTab = useResumeStore((s) => s.setActiveTab);
-  const skills = useResumeStore((s) => s.skills);
-  const addSkill = useResumeStore((s) => s.addSkill);
-  const removeSkill = useResumeStore((s) => s.removeSkill);
+  const { setActiveTab, skills, addSkill, removeSkill } = useResumeStore();
 
   const [inputSkill, setInputSkill] = useState("");
   const [error, setError] = useState("");
 
   const handleAddSkill = () => {
     const trimmed = inputSkill.trim();
-    if (trimmed && !skills.includes(trimmed)) {
-      addSkill(trimmed);
-      setInputSkill("");
+
+    if (!/^[a-zA-Z\s]+$/.test(trimmed)) {
+      setError("Skill can contain only letters and spaces.");
+      return;
     }
+
+    if (skills.includes(trimmed)) {
+      setError("This skill is already added.");
+      return;
+    }
+
+    addSkill(trimmed);
+    setInputSkill("");
+    setError("");
   };
 
   const handleNext = () => {
@@ -25,7 +32,7 @@ const Skills = () => {
       return;
     }
     setError("");
-    setTab("Certifications");
+    setActiveTab("Certifications");
   };
 
   return (
@@ -66,7 +73,7 @@ const Skills = () => {
           Add
         </button>
       </div>
-      {error && ( <p className="text-red-500 text-sm mt-1 mb-4">{error}</p>)}
+      {error && (<p className="text-red-500 text-xs mt-1 mb-4">{error}</p>)}
 
       <div className="mt-6 mb-20">
         <h3 className="text-sm font-normal mb-3 text-[#2DC08D]">Suggested Skills</h3>
@@ -83,7 +90,7 @@ const Skills = () => {
       </div>
 
       <div className="flex justify-between mt-12">
-        <button onClick={() => setTab("Education")}
+        <button onClick={() => setActiveTab("Education")}
           className="px-3 py-1 border border-[#D9D9D9] text-[#000000] rounded-lg flex items-center gap-2 cursor-pointer"
         >
           <ArrowLeft size={18} color="#2DC08D" />

@@ -8,10 +8,10 @@ const Step2 = () => {
     const { setMethod, setTemplate, setCurrentStep, } = useResumeStore();
 
   return (
-    <div className="w-full flex flex-col items-center justify-center mt-20">
+    <div className="w-full flex flex-col items-center justify-center mt-13 mb-5">
       <div className="flex items-start justify-start gap-60 w-full max-w-4xl mb-10">
          <button onClick={() => { setMethod(null); setCurrentStep(1); }}
-          className="px-3 py-1 border border-[#D9D9D9] text-[#000000] rounded-lg flex items-center gap-2 cursor-pointer"
+          className="px-3 py-1 bg-white border border-[#D9D9D9] text-[#000000] rounded-lg flex items-center gap-2 cursor-pointer"
         >
           <ChevronLeft size={18} color="#2DC08D" />
           Back
@@ -21,7 +21,7 @@ const Step2 = () => {
         </h3> 
       </div>
 
-      <div className="flex gap-4 w-auto max-w-4xl overflow-x-auto cursor-grab touch-pan-x snap-x snap-mandatory scroll-smooth">
+      <div className="pb-8 flex gap-4 w-auto max-w-4xl overflow-x-auto cursor-grab touch-pan-x snap-x snap-mandatory scroll-smooth">
         {cardData.map((card, index) => (
           <div key={index} onClick={() => {setTemplate(card.id)}} className={`rounded-2xl p-4 w-[250px] min-w-[250px] max-w-[250px] ${card.bgColor} ${card.border} flex flex-col flex-shrink-0 snap-start`}>
             <div className="w-full relative rounded-xl overflow-hidden aspect-[4/5]">

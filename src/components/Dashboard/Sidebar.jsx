@@ -1,28 +1,26 @@
 import React, { useState } from "react";
-import { ChartPie, PanelRightOpen, LogOut, User,Files, Settings, FileText, FileCheck, CheckCheck} from "lucide-react";
+import { ChartPie, PanelRightOpen, LogOut, User, Files, Settings, FileText, FileCheck, CheckCheck } from "lucide-react";
 import { useDashboardStore } from "../../store/useDashboardStore";
 import { useResumeStore } from "../../store/useResumeStore";
+import { useAuthStore } from "../../store/useAuthStore"
 import logo from "../../assets/images/logo.png";
+import { useNavigate } from "react-router-dom";
 import Logout from "../Logout";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 
 const Sidebar = () => {
 
+  const navigate = useNavigate();
+  const { user } = useAuthStore();
+
   const [isLogoutOpen, setIsLogoutOpen] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [confirmAction, setConfirmAction] = useState(null);
 
-  const sidebarOpen = useDashboardStore((s) => s.sidebarOpen);
-  const toggleSidebar = useDashboardStore((s) => s.toggleSidebar);
-  const activePage = useDashboardStore((s) => s.activePage);
-  const setActivePage = useDashboardStore((s) => s.setActivePage);
+  const { sidebarOpen, toggleSidebar, activePage, setActivePage } = useDashboardStore();
+  const { setMethod, currentStep, setCurrentStep } = useResumeStore();
 
-  const currentStep = useResumeStore((s) => s.currentStep);
-  const setMethod = useResumeStore((s) => s.setMethod);
-  const setCurrentStep = useResumeStore((s) => s.setCurrentStep);
-
-  // MENU CONFIG
   const menuSections = [
     {
       label: null,
@@ -65,22 +63,19 @@ const Sidebar = () => {
   };
 
   const getButtonClass = (page) =>
-    `flex items-center gap-3 p-2 rounded-md cursor-pointer transition-colors duration-200 w-full ${
-      activePage === page
-        ? "bg-[#2DC08D]/15 text-[#2DC08D]"
-        : "hover:bg-gray-100 text-[#24272E]"
+    `flex items-center gap-3 p-2 rounded-md cursor-pointer transition-colors duration-200 w-full ${activePage === page
+      ? "bg-[#2DC08D]/15 text-[#2DC08D]"
+      : "hover:bg-gray-100 text-[#BCBBBB]"
     }`;
 
   return (
     <div
-      className={`fixed top-0 h-screen flex flex-col bg-white border border-gray-200 transition-all duration-300 ${
-        sidebarOpen ? "w-72" : "w-14"
-      }`}
+      className={`fixed top-0 h-screen flex flex-col bg-white border border-gray-200 transition-all duration-300 ${sidebarOpen ? "w-72" : "w-14"
+        }`}
     >
-      {/* LOGO + TOGGLE */}
       <div className="mt-4 px-2 flex gap-2 justify-between items-center">
         {sidebarOpen && (
-          <img src={logo} alt="Logo" className="w-28 md:w-32 ml-2 rounded-lg object-contain" />
+          <img src={logo} alt="Logo" onClick={() => navigate("/")} className="w-28 md:w-32 ml-2 rounded-lg object-contain" />
         )}
         <button
           onClick={toggleSidebar}
@@ -90,19 +85,16 @@ const Sidebar = () => {
         </button>
       </div>
 
-      {/* MENU */}
       <div className="px-2 flex flex-col gap-3 mt-2">
         {menuSections.map((section, index) => (
           <div key={index}>
 
-            {/* LABEL */}
             {section.label && sidebarOpen && (
-              <span className="text-[#B1B1B1] text-sm ml-2 mb-1 block">
+              <span className="text-[#989898] text-sm ml-2 mb-1 block">
                 {section.label}
               </span>
             )}
 
-            {/* ITEMS */}
             <div className={`${sidebarOpen ? "pl-2" : ""} flex flex-col gap-2`}>
               {section.items.map(({ page, icon: Icon, label, gapTop }) => (
                 <Tippy key={page} content={label} placement="right" disabled={sidebarOpen}>
@@ -110,7 +102,7 @@ const Sidebar = () => {
                     className={`${getButtonClass(page)} ${gapTop ?? ""}`}
                     onClick={() => handlePageChange(page)}
                   >
-                    <Icon className="w-5 h-5 text-[#BCBBBB]" />
+                    <Icon className="w-5 h-5" />
                     {sidebarOpen && <span className="text-sm">{label}</span>}
                   </button>
                 </Tippy>
@@ -120,18 +112,22 @@ const Sidebar = () => {
         ))}
       </div>
 
-      {/* USER + LOGOUT */}
       <div
-        className={`absolute bottom-0 mb-4 w-full px-2 flex items-center ${
-          sidebarOpen ? "justify-between" : "justify-center"
-        }`}
+        className={`absolute bottom-0 mb-4 w-full px-2 flex items-center ${sidebarOpen ? "justify-between" : "justify-center"
+          }`}
       >
         {sidebarOpen && (
           <div className="flex items-center gap-3 px-2">
-            <User className="w-6 h-6 text-gray-600" />
+            {user.avatar ? (
+              <img src={user.avatar} className="w-8 h-8 rounded-full object-cover"/>
+            ) : (
+              <div className="w-8 h-8 rounded-full bg-[#EB7C4A] text-lg flex items-center justify-center text-white">
+                {user.name.charAt(0).toUpperCase()}
+              </div>
+            )}
             <div className="flex flex-col">
-              <span className="text-gray-700 font-medium">User</span>
-              <span className="text-gray-400 text-xs">user@gmail.com</span>
+              <span className="text-black font-medium">{user.name}</span>
+              <span className="text-gray-700 text-xs">{user.email}</span>
             </div>
           </div>
         )}
@@ -148,7 +144,6 @@ const Sidebar = () => {
         <Logout isOpen={isLogoutOpen} onClose={() => setIsLogoutOpen(false)} />
       </div>
 
-      {/* CONFIRMATION MODAL */}
       {showConfirm && (
         <div className="fixed inset-0 z-100 flex items-center justify-center bg-black/60">
           <div className="bg-white rounded-xl shadow-2xl p-6 max-w-md w-full mx-4">
@@ -178,5 +173,4 @@ const Sidebar = () => {
     </div>
   );
 };
-
 export default Sidebar;

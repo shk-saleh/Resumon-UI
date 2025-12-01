@@ -1,7 +1,11 @@
 import React from "react";
-import { Search, User, ChevronUp } from "lucide-react";
+import { Search, User} from "lucide-react";
+import { useAuthStore } from "../../store/useAuthStore"
 
 const Topbar = () => {
+
+  const { user } = useAuthStore();
+  
   return (
     <div className="bg-white w-full flex items-center justify-between px-4 h-16">
       <div className="flex items-center gap-2 justify-start max-w-sm w-full px-3 py-2 text-sm rounded-lg border border-[#D9D9D9] bg-[#D9D9D9]/30 text-gray-800 ">
@@ -19,9 +23,6 @@ const Topbar = () => {
           <span>10/10</span>
         </button>
         <User className="w-9 h-9 bg-gray-200 p-2  border border-gray-300 rounded-full text-gray-700" />
-        {/* <button className="flex items-center gap-1 text-gray-800 font-medium">
-          <ChevronUp className="w-4 h-4" />
-        </button> */}
       </div>
     </div>
   );

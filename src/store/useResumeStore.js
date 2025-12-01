@@ -12,7 +12,6 @@ export const useResumeStore = create(
       activeTab: "Basic Info",
       hasUnsavedChanges: false, // Track if form has unsaved changes
 
-
       setMethod: (m) => set({ method: m }),
       setTemplate: (t) => set({ template: t }),
       setCurrentStep: (step) => set({ currentStep: step }),
@@ -20,18 +19,16 @@ export const useResumeStore = create(
       setHasUnsavedChanges: (value) => set({ hasUnsavedChanges: value }),
 
 
-
       // Profile Section
       profile: 
       {
-        fullName: "", jobTitle: "", phone: "", email: "", address: "", website: "", linkedin: "", summary: "",
+        image: "", fullName: "", jobTitle: "", phone: "", email: "", address: "", website: "", linkedin: "", summary: "",
       },
 
       setProfileField: (field, value) =>
         set((s) => ({
           profile: { ...s.profile, [field]: value },
         })),
-
 
 
       // Experinece Section
@@ -51,7 +48,6 @@ export const useResumeStore = create(
 
       removeExperience: (id) =>
         set((s) => ({ experiences: s.experiences.filter((e) => e.id !== id), })),
-
 
 
       // Education Section
@@ -84,7 +80,6 @@ export const useResumeStore = create(
         })),
 
 
-
       // Certifications Section
       certifications: [],
 
@@ -102,12 +97,12 @@ export const useResumeStore = create(
         set((s) => ({ certifications: s.certifications.filter((c) => c.id !== id), })),
 
 
-      
       // Helper to get formatted resume data for templates
       getFormattedResumeData: () => {
         const state = get();
         return {
           personalInfo: {
+            image: state.profile.image || "",
             fullName: state.profile.fullName || "",
             title: state.profile.jobTitle || "",
             phone: state.profile.phone || "",
@@ -164,7 +159,7 @@ export const useResumeStore = create(
           currentStep: 1,
           activeTab: "Basic Info",
           profile: {
-            fullName: "", jobTitle: "", phone: "", email: "", address: "", website: "", linkedin: "", summary: "",
+            image: "", fullName: "", jobTitle: "", phone: "", email: "", address: "", website: "", linkedin: "", summary: "",
           },
           experiences: [],
           education: [],
@@ -172,7 +167,6 @@ export const useResumeStore = create(
           certifications: [],
         }),
     }),
-
     {
       name: "resume-store",
     }

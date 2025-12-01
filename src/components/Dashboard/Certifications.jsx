@@ -4,11 +4,10 @@ import { useResumeStore } from "../../store/useResumeStore";
 import InputField from "./InputField";
 
 const Certifications = () => {
-  const setTab = useResumeStore((s) => s.setActiveTab);
-  const certifications = useResumeStore((s) => s.certifications);
-  const addCertification = useResumeStore((s) => s.addCertification);
-  const updateCertification = useResumeStore((s) => s.updateCertification);
-  const removeCertification = useResumeStore((s) => s.removeCertification);
+  const {
+    setActiveTab, setCurrentStep,
+    certifications, addCertification, updateCertification, removeCertification,
+  } = useResumeStore();
 
   const [errors, setErrors] = useState({});
 
@@ -16,27 +15,69 @@ const Certifications = () => {
     if (certifications.length === 0) addCertification();
   }, []);
 
-  const validate = () => {
+  const validateRequired = () => {
     const newErrors = {};
     certifications.forEach((cert, idx) => {
       if (!cert.title) newErrors[`title-${idx}`] = "This field is required";
       if (!cert.organization) newErrors[`org-${idx}`] = "This field is required";
       if (!cert.issueDate) newErrors[`date-${idx}`] = "This field is required";
-      if (!cert.link) newErrors[`link-${idx}`] = "This field is required";
     });
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
+  const validateFormat = () => {
+    const newErrors = {};
+
+    const dateRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
+    const today = new Date();
+
+    const parseDate = (d) => {
+      const [day, month, year] = d.split("/");
+      return new Date(`${year}-${month}-${day}`);
+    };
+
+    certifications.forEach((cert, idx) => {
+      if (!/^[A-Za-z\s]+$/.test(cert.title))
+        newErrors[`title-${idx}`] = "Title can contain only letters and spaces";
+
+      if (!/^[A-Za-z\s]+$/.test(cert.organization))
+        newErrors[`org-${idx}`] = "Organization can contain only letters and spaces";
+
+      if (!dateRegex.test(cert.issueDate)) {
+        newErrors[`date-${idx}`] = "Enter a valid date (DD/MM/YYYY)";
+      } 
+      else 
+      {
+        const issue = parseDate(cert.issueDate);
+        if (issue > today) {
+          newErrors[`date-${idx}`] = "Issue date cannot be in the future";
+        }
+      }
+
+      if (
+        cert.link &&
+        !/^(https?:\/\/)?(?!localhost|127\.0\.0\.1)([\w-]+\.)+[\w-]{2,}([\/\w@:%_+.~#?&\-=]*)?$/.test(
+          cert.link
+        )
+      )
+        newErrors[`link-${idx}`] = "Enter a valid URL";
+    });
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleNext = () => {
-    if (!validate()) return;
-    setTab("Download&Share");
+    if (!validateRequired()) return;
+    if (!validateFormat()) return;
+    setCurrentStep(5);
   };
 
   return (
     <div>
       {certifications.map((cert, idx) => (
-        <div key={cert.id} className="relative rounded-lg mb-6">
+        <div key={cert.id} className="rounded-lg mb-6">
           {idx > 0 && (
             <button
               onClick={() => removeCertification(cert.id)}
@@ -90,15 +131,14 @@ const Certifications = () => {
 
       <div className="flex justify-between mt-12">
         <button
-          onClick={() => setTab("Skills")}
+          onClick={() => setActiveTab("Skills")}
           className="px-3 py-1 border border-[#D9D9D9] text-[#000000] rounded-lg flex items-center gap-2 cursor-pointer"
         >
           <ArrowLeft size={18} color="#2DC08D" />
           Back
         </button>
 
-        <button
-          onClick={handleNext}
+        <button onClick={handleNext}
           className="px-3 py-1 bg-white border border-[#D9D9D9] text-[#000000] rounded-lg flex items-center gap-2 cursor-pointer"
         >
           Finish

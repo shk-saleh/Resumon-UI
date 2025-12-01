@@ -27,7 +27,7 @@ export const useCreditStore = create((set, get) => ({
         return { success: false, needsUpgrade: true };
       }
       
-      const res = await api.post('/users/use-credit');
+      const res = await api.post('/users/deduct-credit');
       set({ credits: res.data.credits });
       return { success: true };
     } catch (err) {

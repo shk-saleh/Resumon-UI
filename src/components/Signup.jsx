@@ -7,6 +7,8 @@ const Signup = ({ setMode }) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ name: '', email: '', password: '' });
   const {signup, loading, err} = useAuthStore();
+  const [show, setShow] = useState(false);
+  
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -46,12 +48,13 @@ const Signup = ({ setMode }) => {
         />
       </div>
 
-      <div>
+      <div className='relative'>
         <label id="password" htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2"> Password </label>
           <input
-            type="password" id="password" name="password" placeholder="Enter password" value={formData.password} onChange={handleChange} required
+            type={show? 'text': 'password'} id="password" name="password" placeholder="Enter password" value={formData.password} onChange={handleChange} required
             className="w-full px-4 py-2.5 text-(--gray-color) rounded-lg border border-gray-300 focus:outline-none focus:ring-1 focus:ring-[#1A9B7F] focus:border-transparent transition"
           />
+          <button className='absolute right-3 top-9 text-lg cursor-pointer' onClick={() => setShow((prev) => !prev)}>{show ? "🙈" : "👁️"}</button>
       </div>
 
       <div className="text-sm text-gray-600 text-right"> Already have an account?{' '}

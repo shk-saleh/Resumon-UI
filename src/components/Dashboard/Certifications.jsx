@@ -5,147 +5,213 @@ import InputField from "./InputField";
 
 const Certifications = () => {
   const {
-    setActiveTab, setCurrentStep,
-    certifications, addCertification, updateCertification, removeCertification,
+    setActiveTab,
+    setCurrentStep,
+    activeResume,
+    addCertification,
+    updateCertification,
+    removeCertification,
+    createResume
   } = useResumeStore();
 
+  const certifications = activeResume?.certifications || [];
   const [errors, setErrors] = useState({});
+  const [isCreating, setIsCreating] = useState(false);
+  const [createError, setCreateError] = useState("");
+
+
+  console.log(activeResume);
 
   useEffect(() => {
-    if (certifications.length === 0) addCertification();
+    if (certifications.length === 0) {
+      addCertification();
+    }
   }, []);
 
   const validateRequired = () => {
     const newErrors = {};
+    let valid = true;
+
     certifications.forEach((cert, idx) => {
-      if (!cert.title) newErrors[`title-${idx}`] = "This field is required";
-      if (!cert.organization) newErrors[`org-${idx}`] = "This field is required";
-      if (!cert.issueDate) newErrors[`date-${idx}`] = "This field is required";
+      if (!cert.title?.trim()) {
+        newErrors[`title-${idx}`] = "Certification title is required";
+        valid = false;
+      }
+      if (!cert.organization?.trim()) {
+        newErrors[`org-${idx}`] = "Organization is required";
+        valid = false;
+      }
+      if (!cert.issueDate?.trim()) {
+        newErrors[`date-${idx}`] = "Issue date is required";
+        valid = false;
+      }
     });
+
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    return valid;
   };
 
   const validateFormat = () => {
     const newErrors = {};
-
     const dateRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
     const today = new Date();
 
-    const parseDate = (d) => {
-      const [day, month, year] = d.split("/");
-      return new Date(`${year}-${month}-${day}`);
+    const parseDate = (str) => {
+      const [d, m, y] = str.split("/").map(Number);
+      return new Date(y, m - 1, d);
     };
 
     certifications.forEach((cert, idx) => {
-      if (!/^[A-Za-z\s]+$/.test(cert.title))
-        newErrors[`title-${idx}`] = "Title can contain only letters and spaces";
+      // Title & Organization: letters, spaces, basic punctuation
+      if (cert.title && !/^[A-Za-z0-9\s\.\,\-\&\'\(\)]+$/.test(cert.title))
+        newErrors[`title-${idx}`] = "Invalid title format";
 
-      if (!/^[A-Za-z\s]+$/.test(cert.organization))
-        newErrors[`org-${idx}`] = "Organization can contain only letters and spaces";
+      if (cert.organization && !/^[A-Za-z0-9\s\.\,\-\&\'\(\)]+$/.test(cert.organization))
+        newErrors[`org-${idx}`] = "Invalid organization name";
 
-      if (!dateRegex.test(cert.issueDate)) {
-        newErrors[`date-${idx}`] = "Enter a valid date (DD/MM/YYYY)";
-      } 
-      else 
-      {
-        const issue = parseDate(cert.issueDate);
-        if (issue > today) {
+      // Issue Date format
+      if (cert.issueDate && !dateRegex.test(cert.issueDate)) {
+        newErrors[`date-${idx}`] = "Use DD/MM/YYYY format";
+      } else if (cert.issueDate) {
+        const issueDate = parseDate(cert.issueDate);
+        if (issueDate > today) {
           newErrors[`date-${idx}`] = "Issue date cannot be in the future";
         }
       }
 
-      if (
-        cert.link &&
-        !/^(https?:\/\/)?(?!localhost|127\.0\.0\.1)([\w-]+\.)+[\w-]{2,}([\/\w@:%_+.~#?&\-=]*)?$/.test(
-          cert.link
-        )
-      )
-        newErrors[`link-${idx}`] = "Enter a valid URL";
+      // Optional link validation
+      if (cert.link && !/^https?:\/\/.+/i.test(cert.link)) {
+        newErrors[`link-${idx}`] = "Must be a valid URL (include https://)";
+      }
     });
 
-    setErrors(newErrors);
+    setErrors((prev) => ({ ...prev, ...newErrors }));
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleNext = () => {
+  const handleFinish = async () => {
+    setErrors({});
+    setCreateError("");
+
     if (!validateRequired()) return;
     if (!validateFormat()) return;
-    setCurrentStep(5);
+
+    setIsCreating(true);
+
+    try {
+
+      let data =  await createResume("My Professional Resume"); 
+
+      if(data.message === 'success'){
+        setCurrentStep(5);
+      }
+
+    } catch (err) {
+      console.error("Failed to create resume:", err);
+      setCreateError(
+        err.response?.data?.message || "Failed to save resume. Please try again."
+      );
+    } finally {
+      setIsCreating(false);
+    }
   };
 
   return (
-    <div>
+    <div className="space-y-8 text-gray-600">
+
       {certifications.map((cert, idx) => (
-        <div key={cert.id} className="rounded-lg mb-6">
+        <div
+          key={cert._id}
+          className="relative bg-white border border-gray-200 rounded-xl p-6 shadow-sm"
+        >
           {idx > 0 && (
             <button
-              onClick={() => removeCertification(cert.id)}
-              className="absolute top-2 right-2 p-1 hover:bg-red-100 rounded-full"
+              onClick={() => removeCertification(cert._id)}
+              className="absolute top-4 right-4 p-2 hover:bg-red-50 rounded-full transition"
             >
-              <Trash2 size={16} color="#FF4D4F" />
+              <Trash2 size={18} className="text-red-500" />
             </button>
           )}
 
           <div className="grid grid-cols-2 gap-6">
             <InputField
               label="Certification Title"
-              placeholder="Frontend Development"
-              value={cert.title}
+              placeholder="AWS Certified Solutions Architect"
+              value={cert.title || ""}
               error={errors[`title-${idx}`]}
-              onChange={(v) => updateCertification(cert.id, { title: v })}
+              onChange={(v) => updateCertification(cert._id, { title: v })}
             />
+
             <InputField
               label="Issuing Organization"
-              placeholder="Udemy, Coursera"
-              value={cert.organization}
+              placeholder="Amazon Web Services, Google, Microsoft"
+              value={cert.organization || ""}
               error={errors[`org-${idx}`]}
-              onChange={(v) => updateCertification(cert.id, { organization: v })}
+              onChange={(v) => updateCertification(cert._id, { organization: v })}
             />
+
             <InputField
               label="Issue Date"
-              placeholder="DD/MM/YYYY"
-              value={cert.issueDate}
+              placeholder="15/06/2023"
+              value={cert.issueDate || ""}
               error={errors[`date-${idx}`]}
-              onChange={(v) => updateCertification(cert.id, { issueDate: v })}
+              onChange={(v) => updateCertification(cert._id, { issueDate: v })}
             />
+
             <InputField
-              label="Credential Link"
-              placeholder="www.udemy/frontend-dev"
-              value={cert.link}
+              label="Credential URL (Optional)"
+              placeholder="https://www.credly.com/badges/abc123"
+              value={cert.link || ""}
               error={errors[`link-${idx}`]}
-              onChange={(v) => updateCertification(cert.id, { link: v })}
+              onChange={(v) => updateCertification(cert._id, { link: v })}
             />
           </div>
         </div>
       ))}
 
-      <div>
-        <button onClick={addCertification}
-          className="w-full flex items-center justify-center gap-2 mt-6 mb-12 py-2 border border-dashed border-[#2DC08D] text-[#000000]/60 rounded-lg bg-transparent"
-        >
-          <Plus size={16} color="#2DC08D" />
-          Add Another Certificate
-        </button>
-      </div>
+      {/* Add Another */}
+      <button
+        onClick={addCertification}
+        className="w-full py-4 border-2 border-dashed border-green-500 text-green-600 rounded-xl hover:bg-green-50 transition flex items-center justify-center gap-2 font-medium"
+      >
+        <Plus size={20} />
+        Add Another Certification
+      </button>
 
-      <div className="flex justify-between mt-12">
+      {/* Navigation */}
+      <div className="flex justify-between items-center pt-8 border-t border-gray-200">
         <button
           onClick={() => setActiveTab("Skills")}
-          className="px-3 py-1 border border-[#D9D9D9] text-[#000000] rounded-lg flex items-center gap-2 cursor-pointer"
+          className="px-6 py-3 border border-gray-300 cursor-pointer rounded-xl hover:bg-gray-50 flex items-center gap-2 font-medium transition"
         >
-          <ArrowLeft size={18} color="#2DC08D" />
+          <ArrowLeft size={18} />
           Back
         </button>
 
-        <button onClick={handleNext}
-          className="px-3 py-1 bg-white border border-[#D9D9D9] text-[#000000] rounded-lg flex items-center gap-2 cursor-pointer"
+        <button
+          onClick={handleFinish}
+          disabled={isCreating}
+          className={`px-8 py-3 rounded-xl cursor-pointer flex items-center gap-3 font-medium transition shadow-md ${
+            isCreating
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-[#2DC08D] hover:bg-[#25a877] text-white"
+          }`}
         >
-          Finish
-          <ArrowRight size={18} color="#2DC08D" />
+          {isCreating ? (
+            <>
+              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+              Creating Resume...
+            </>
+          ) : (
+            <>
+              Finish & Download
+              <ArrowRight size={20} />
+            </>
+          )}
         </button>
       </div>
     </div>
   );
 };
+
 export default Certifications;

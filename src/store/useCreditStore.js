@@ -13,8 +13,11 @@ export const useCreditStore = create((set, get) => ({
   
   fetchCredits: async () => {
     try {
-      const res = await api.get('/users/credits');
+
+      const res = await api.get('resumes/users/credits');
       set({ credits: res.data.credits });
+      console.log(res);
+
     } catch (err) {
       set({ error: err.response?.data.message });
     }
@@ -27,7 +30,7 @@ export const useCreditStore = create((set, get) => ({
         return { success: false, needsUpgrade: true };
       }
       
-      const res = await api.post('/users/deduct-credit');
+      const res = await api.post('resumes/users/deduct-credit');
       set({ credits: res.data.credits });
       return { success: true };
     } catch (err) {
@@ -39,4 +42,5 @@ export const useCreditStore = create((set, get) => ({
   checkCredit: () => {
     return get().credits.remaining > 0;
   }
+
 }));

@@ -21,11 +21,11 @@ function App() {
   }, []);
   
   return (
-    <div className='bg-(--white-color) min-h-screen overflow-x-hidden'>
+    <div className='bg-(--white-color) min-h-screen overflow-hidden'>
         <ScrollToTop/>
         <Routes>    
-          <Route path="/" element={<Home />} />
-          <Route path="/get-started" element={<GetStarted />} />
+          <Route path="/" element={<Home />} /> 
+          {/* <Route path="/get-started" element={<GetStarted />} /> */}
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/support" element={<Support />} />
           <Route path="/templates" element={<Templates />} />

@@ -102,6 +102,8 @@ const Certifications = () => {
 
       let data =  await createResume("My Professional Resume"); 
 
+      console.log(data);
+      
       if(data.message === 'success'){
         setCurrentStep(5);
       }

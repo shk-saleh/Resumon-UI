@@ -12,6 +12,8 @@ export const useDashboardStore = create(
       setSidebarOpen: (open) => set({ sidebarOpen: open }),
       toggleSidebar: () => set((s) => ({ sidebarOpen: !s.sidebarOpen })),
 
+      
+
       resetDashboardStore: () =>
         set({
           activePage: "overview",

@@ -4,6 +4,7 @@ import { persist } from "zustand/middleware";
 import { v4 as uuidv4 } from "uuid";
 import api from "../axios/axios";
 import { useAuthStore } from "./useAuthStore";
+import { CloudCog } from "lucide-react";
 
 
 const API_BASE = "/resumes";
@@ -402,7 +403,8 @@ export const useResumeStore = create(
       fetchResumes: async () => {
         try {
           const { data } = await api.get(API_BASE);
-          set({ resumes: data });
+          set({ resumes: data.resumes || [] })
+          console.log(data);
         } catch (err) {
           console.error("Failed to fetch resumes:", err);
         }
@@ -451,8 +453,8 @@ export const useResumeStore = create(
 
           set({
             resumes: [...get().resumes.filter((r) => r._id !== data._id), data],
-            activeResumeId: data._id,
-            activeResume: data,
+            // activeResumeId: data.resume._id,
+            // activeResume: data.resume,
             hasUnsavedChanges: false,
           });
 

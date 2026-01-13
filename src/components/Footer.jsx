@@ -1,21 +1,37 @@
 import React from "react";
 import { Facebook, Github, Linkedin } from "lucide-react";
 import { Link } from "react-router-dom";
-import logo from '../assets/images/logo.png'
+import { motion } from "framer-motion";
+import logo from "../assets/images/logo.png";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  show: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.7, ease: "easeOut" } 
+  },
+};
 
 const Footer = () => {
   return (
-    <footer className="bg-[#F4F4F4] border border-gray-200 rounded-4xl-tl rounded-4xl">
+    <motion.footer
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.2 }}
+      variants={fadeUp}
+      className="bg-[#F4F4F4] border border-gray-200 rounded-4xl-tl"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-14 py-20">
           <div className="md:col-span-2 lg:col-span-2">
             <img
-              src= {logo}
+              src={logo}
               alt="Resumon"
               className="w-36 rounded-lg object-contain"
             />
             <p className="mt-6 text-(--dark-color) text-sm">
-              Create, customize and downlaod in just few clicks!
+              Create, customize and download in just a few clicks!
             </p>
             <p className="my-4 text-(--dark-color) text-sm">
               LT 512, New York, America
@@ -91,7 +107,7 @@ const Footer = () => {
         </div>
 
         <div className="py-4 text-[#858383] border-t border-[#d6d6d6] flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm">Copyright reserved 2025 by resumon</p>
+          <p className="text-sm">Copyright reserved 2025 by Resumon</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link to="#" className="underline text-sm">
               Terms & Conditions
@@ -102,7 +118,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 };
+
 export default Footer;

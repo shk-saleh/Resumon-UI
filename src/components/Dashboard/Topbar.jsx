@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useEffectEvent } from "react";
 import { Search, User} from "lucide-react";
 import { useAuthStore } from "../../store/useAuthStore"
 import { useCreditStore } from "../../store/useCreditStore";
@@ -6,7 +6,12 @@ import { useCreditStore } from "../../store/useCreditStore";
 const Topbar = () => {
 
   const { user } = useAuthStore();
-  const { credits } = useCreditStore();
+  const { credits, fetchCredits } = useCreditStore();
+
+  useEffect(() => {
+    fetchCredits();
+  }, credits);
+  
   
   return (
     <div className="bg-white w-full flex items-center justify-between px-4 h-16">
@@ -22,7 +27,7 @@ const Topbar = () => {
       <div className="flex items-center gap-2 ml-4 cursor-pointer">
         <button className="border border-gray-300 bg-[#00ce8c] p-2 text-sm text-white rounded-lg">
           <span>Credits: </span>
-          <span>{credits.total}/{credits.remaining}</span>
+          <span>{credits.remaining}/{credits.total}</span>
         </button>
         {user.avatar ? (
           <img src={user.avatar} className="w-8 h-8 rounded-full object-cover"/>

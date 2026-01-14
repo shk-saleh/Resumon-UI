@@ -65,7 +65,7 @@ const Sidebar = () => {
   const getButtonClass = (page) =>
     `flex items-center gap-3 p-2 rounded-md cursor-pointer transition-colors duration-200 w-full ${activePage === page
       ? "bg-[#2DC08D]/15 text-[#2DC08D]"
-      : "hover:bg-gray-100 text-[#BCBBBB]"
+      : "hover:bg-gray-100 text-[#848484]"
     }`;
 
   return (
@@ -79,7 +79,7 @@ const Sidebar = () => {
         )}
         <button
           onClick={toggleSidebar}
-          className="flex items-center justify-center p-2 hover:bg-gray-100 rounded-md"
+          className="flex items-center justify-center p-2 hover:bg-gray-100 rounded-md cursor-pointer"
         >
           <PanelRightOpen className="w-5 h-5 text-[#BCBBBB]" />
         </button>
@@ -117,7 +117,7 @@ const Sidebar = () => {
           }`}
       >
         {sidebarOpen && (
-          <div className="flex items-center gap-3 px-2">
+          <div className="flex items-center gap-2 px-2">
             {user.avatar ? (
               <img src={user.avatar} className="w-8 h-8 rounded-full object-cover"/>
             ) : (
@@ -126,8 +126,8 @@ const Sidebar = () => {
               </div>
             )}
             <div className="flex flex-col">
-              <span className="text-black font-medium">{user.name}</span>
-              <span className="text-gray-700 text-xs">{user.email}</span>
+              <span className="text-black font-medium text-md">{user.name}</span>
+              <span className="text-gray-700 text-[10px]">{user.email}</span>
             </div>
           </div>
         )}

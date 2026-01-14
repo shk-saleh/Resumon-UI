@@ -3,108 +3,145 @@ import { ArrowRight, ArrowLeft, Plus, X } from "lucide-react";
 import { useResumeStore } from "../../store/useResumeStore";
 
 const Skills = () => {
-  const { setActiveTab, skills, addSkill, removeSkill } = useResumeStore();
+
+  const { activeResume, setSkills, setActiveTab } = useResumeStore();
+  const skills = activeResume?.skills || [];
 
   const [inputSkill, setInputSkill] = useState("");
   const [error, setError] = useState("");
 
-  const handleAddSkill = () => {
-    const trimmed = inputSkill.trim();
-
-    if (!/^[a-zA-Z\s]+$/.test(trimmed)) {
-      setError("Skill can contain only letters and spaces.");
+  const handleAddSkill = (skillToAdd = inputSkill.trim()) => {
+    if (!skillToAdd) {
+      setError("Please enter a skill");
       return;
     }
 
-    if (skills.includes(trimmed)) {
-      setError("This skill is already added.");
+    const formatted = skillToAdd.charAt(0).toUpperCase() + skillToAdd.slice(1).toLowerCase();
+
+    if (skills.some(s => s.toLowerCase() === formatted.toLowerCase())) {
+      setError("This skill is already added");
       return;
     }
 
-    addSkill(trimmed);
+    setSkills([...skills, formatted]);
     setInputSkill("");
     setError("");
   };
 
+  const handleRemoveSkill = (skillToRemove) => {
+    setSkills(skills.filter(s => s !== skillToRemove));
+  };
+
   const handleNext = () => {
     if (skills.length === 0) {
-      setError("Please add at least one skill.");
+      setError("Please add at least one skill");
       return;
     }
     setError("");
     setActiveTab("Certifications");
   };
 
+  // Popular skills suggestions
+  const suggestedSkills = [
+    "JavaScript", "React", "Node.js", "TypeScript", "Python", "Tailwind CSS",
+    "MongoDB", "Git", "Docker", "AWS", "Next.js", "GraphQL", "Figma", "UI/UX"
+  ];
+
   return (
-    <div>
-      <label className="text-lg font-normal text-gray-800">
-        Skills
-      </label>
-      <div className="flex items-center gap-2 mt-3 mb-2">
-        <div className="flex flex-wrap items-center gap-2 bg-white border border-[#C8C8C8] rounded-lg px-2 py-2 flex-1">
-          {skills.map((skill, idx) => (
-            <div
-              key={idx}
-              className="flex items-center gap-2 bg-[#F1F0F0] text-gray-700 px-4 py-1 rounded-md text-sm"
-            >
-              {skill}
-              <button
-                onClick={() => removeSkill(skill)}
-                className="rounded-full"
+    <div className="text-gray-600">
+      {/* Skill Input + Tags */}
+      <div className="mb-6">
+        <div className="flex items-stretch gap-3">
+          <div className="flex-1 bg-white border border-gray-300 rounded-xl px-2 py-2 flex flex-wrap items-center gap-3 min-h-[50px]">
+            {skills.length === 0 && (
+              <span className="text-gray-400 text-sm">Start typing to add skills...</span>
+            )}
+            {skills.map((skill) => (
+              <span
+                key={skill}
+                className="inline-flex items-center gap-2 bg-green-100 text-green-800 px-4 py-2 rounded-xl text-sm font-medium"
               >
-                <X size={18} color="#858383" />
-              </button>
-            </div>
-          ))}
+                {skill}
+                <button
+                  onClick={() => handleRemoveSkill(skill)}
+                  className="hover:bg-green-200 rounded-xl p-0.5 transition"
+                >
+                  <X size={16} />
+                </button>
+              </span>
+            ))}
 
-          <input
-            type="text"
-            value={inputSkill}
-            onChange={(e) => setInputSkill(e.target.value)}
-            className="flex-1 outline-none text-base  text-gray-700"
-            onKeyDown={(e) => e.key === "Enter" && handleAddSkill()}
-          />
+            <input
+              type="text"
+              value={inputSkill}
+              onChange={(e) => setInputSkill(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  handleAddSkill();
+                }
+              }}
+              placeholder={skills.length === 0 ? "e.g. React, Python, Leadership" : ""}
+              className="flex-1 outline-none text-gray-700 min-w-[200px]"
+            />
+          </div>
+
+          <button
+            onClick={handleAddSkill}
+            className="px-4 py-2 bg-[#2DC08D] cursor-pointer text-white rounded-xl hover:bg-[#25a877] transition flex items-center gap-2 font-medium shadow-sm"
+          >
+            <Plus size={20} />
+            Add
+          </button>
         </div>
-        <button
-          onClick={handleAddSkill}
-          className="flex items-center gap-1 px-4 py-3 cursor-pointer border border-[#2DC08D] bg-[#2DC08D]/10 text-[#000000] rounded-md text-sm hover:bg-[#2DC08D]/20"
-        >
-          <Plus size={18} color="#2DC08D" />
-          Add
-        </button>
-      </div>
-      {error && (<p className="text-red-500 text-xs mt-1 mb-4">{error}</p>)}
 
-      <div className="mt-6 mb-20">
-        <h3 className="text-sm font-normal mb-3 text-[#2DC08D]">Suggested Skills</h3>
-        <div className="flex gap-2">
-          {["React", "Redux", "Tailwind"].map((skill) => (
+        {error && (
+          <p className="text-red-500 text-sm mt-2 ml-1">{error}</p>
+        )}
+      </div>
+
+      {/* Suggested Skills */}
+      <div className="mb-12">
+        <h3 className="text-sm font-medium text-[#2DC08D] mb-4">Suggested Skills</h3>
+        <div className="flex flex-wrap gap-3">
+          {suggestedSkills.map((skill) => (
             <button
               key={skill}
-              className="px-4 py-1 bg-white text-gray-700 border border-[#C8C8C8] rounded-2xl text-sm"
+              onClick={() => handleAddSkill(skill)}
+              disabled={skills.some(s => s.toLowerCase() === skill.toLowerCase())}
+              className={`px-5 py-2.5 rounded-full text-xs font-normal cursor-pointer transition ${
+                skills.some(s => s.toLowerCase() === skill.toLowerCase())
+                  ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                  : "bg-gray-100 text-gray-700 hover:bg-gray-200 hover:shadow-sm border border-gray-300"
+              }`}
             >
               {skill}
+              {skills.some(s => s.toLowerCase() === skill.toLowerCase()) && " ✓"}
             </button>
           ))}
         </div>
       </div>
 
-      <div className="flex justify-between mt-12">
-        <button onClick={() => setActiveTab("Education")}
-          className="px-3 py-1 border border-[#D9D9D9] text-[#000000] rounded-lg flex items-center gap-2 cursor-pointer"
+      {/* Navigation */}
+      <div className="flex justify-between items-center pt-8 border-t border-gray-200">
+        <button
+          onClick={() => setActiveTab("Education")}
+          className="px-6 py-3 border border-gray-300 rounded-xl hover:bg-gray-50 flex items-center gap-2 font-medium transition"
         >
-          <ArrowLeft size={18} color="#2DC08D" />
+          <ArrowLeft size={18} />
           Back
         </button>
 
-        <button onClick={handleNext}
-          className="px-3 py-1 bg-white border border-[#D9D9D9] text-[#000000] rounded-lg flex items-center gap-2 cursor-pointer"
+        <button
+          onClick={handleNext}
+          className="px-8 py-3 bg-[#2DC08D] text-white rounded-xl hover:bg-[#25a877] flex items-center gap-2 font-medium transition shadow-md"
         >
           Next
-          <ArrowRight size={18} color="#2DC08D" />
+          <ArrowRight size={18} />
         </button>
       </div>
     </div>
   );
 };
+
 export default Skills;

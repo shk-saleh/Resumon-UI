@@ -14,7 +14,7 @@ const Step1 = () => {
       <div className="flex flex-col sm:flex-row gap-6 justify-center items-center w-full">
 
         <button
-          onClick={() => setMethod("AI Build")}
+          onClick={() => setMethod("ai")}
           className="flex flex-col justify-center items-center gap-5 w-44 md:w-50 border border-gray-100 bg-white
             p-10 rounded-xl cursor-pointer shadow-[0_0_2px_#00000026] transition-all duration-200 hover:bg-[#F9FAFB]"
         >
@@ -25,7 +25,7 @@ const Step1 = () => {
         </button>
 
         <button
-          onClick={() => setMethod("Custom Build")}
+          onClick={() => setMethod("smart")}
           className="flex flex-col justify-center items-center gap-5 w-44 md:w-50 border border-gray-100 bg-white
             p-10 rounded-xl cursor-pointer shadow-[0_0_2px_#00000026] transition-all duration-200 hover:bg-[#F9FAFB]"
         >

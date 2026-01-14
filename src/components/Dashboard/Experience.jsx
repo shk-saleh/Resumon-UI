@@ -4,224 +4,275 @@ import { useResumeStore } from "../../store/useResumeStore";
 import InputField from "./InputField";
 
 const Experience = () => {
-  const { setActiveTab, experiences, addExperience, updateExperience, removeExperience} = useResumeStore();
+
+  const {
+    setActiveTab,
+    activeResume,
+    addExperience,
+    updateExperience,
+    removeExperience,
+  } = useResumeStore();
+
+
+  const experiences = activeResume?.experience || [];
+
   const [errors, setErrors] = useState({});
 
-  const employmentTypes = ["Full Time", "Part Time", "Internship", "Contract"];
-  const locations = ["Remote", "On-site", "Hybrid"];
-
+  // Auto-add first experience if none exist
   useEffect(() => {
-    if (!experiences || experiences.length === 0) addExperience();
+    if (experiences.length === 0) {
+      addExperience();
+    }
   }, []);
 
   const validateRequired = () => {
     const newErrors = {};
+    let isValid = true;
+
     experiences.forEach((exp, idx) => {
-      if (!exp.jobTitle) newErrors[`jobTitle-${idx}`] = "This field is required";
-      if (!exp.company) newErrors[`company-${idx}`] = "This field is required";
-      if (!exp.start) newErrors[`start-${idx}`] = "This field is required";
-      if (!exp.currentlyWorking && !exp.end) newErrors[`end-${idx}`] = "This field is required";
+      if (!exp.position?.trim()) {
+        newErrors[`position-${idx}`] = "Job title is required";
+        isValid = false;
+      }
+      if (!exp.company?.trim()) {
+        newErrors[`company-${idx}`] = "Company is required";
+        isValid = false;
+      }
+      if (!exp.startDate?.trim()) {
+        newErrors[`startDate-${idx}`] = "Start date is required";
+        isValid = false;
+      }
+      if (!exp.current && !exp.endDate?.trim()) {
+        newErrors[`endDate-${idx}`] =
+          "End date is required if not currently working";
+        isValid = false;
+      }
     });
+
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    return isValid;
   };
 
   const validateFormat = () => {
-  const newErrors = {};
-  const today = new Date();
+    const newErrors = {};
+    const dateRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
+    const today = new Date();
 
-  const dateRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
+    const parseDate = (str) => {
+      const [d, m, y] = str.split("/");
+      return new Date(`${y}-${m}-${d}`);
+    };
 
-  const parseDate = (d) => {
-    const [day, month, year] = d.split("/");
-    return new Date(`${year}-${month}-${day}`);
+    experiences.forEach((exp, idx) => {
+      // Text format
+      if (exp.position && !/^[A-Za-z\s\.\-,'&]+$/.test(exp.position))
+        newErrors[`position-${idx}`] = "Invalid characters";
+
+      if (exp.company && !/^[A-Za-z\s\.\-,'&0-9]+$/.test(exp.company))
+        newErrors[`company-${idx}`] = "Invalid company name";
+
+      // Start date format
+      if (exp.startDate && !dateRegex.test(exp.startDate)) {
+        newErrors[`startDate-${idx}`] = "Use DD/MM/YYYY";
+      } else if (exp.startDate) {
+        const start = parseDate(exp.startDate);
+        if (start > today)
+          newErrors[`startDate-${idx}`] = "Cannot be in future";
+      }
+
+      // End date format (only if not current)
+      if (!exp.current && exp.endDate) {
+        if (!dateRegex.test(exp.endDate)) {
+          newErrors[`endDate-${idx}`] = "Use DD/MM/YYYY";
+        } else {
+          const end = parseDate(exp.endDate);
+          const start = parseDate(exp.startDate);
+          if (end > today) newErrors[`endDate-${idx}`] = "Cannot be in future";
+          if (end <= start)
+            newErrors[`endDate-${idx}`] = "Must be after start date";
+        }
+      }
+    });
+
+    setErrors((prev) => ({ ...prev, ...newErrors }));
+    return Object.keys(newErrors).length === 0;
   };
 
-  experiences.forEach((exp, idx) => {
-
-      if (!/^[A-Za-z\s\.\-']+$/.test(exp.jobTitle))
-        newErrors[`jobTitle-${idx}`] = "Title can contain only letters, spaces, or .,-";
-
-      if (!/^[A-Za-z\s\.\-']+$/.test(exp.company))
-        newErrors[`company-${idx}`] = "Company Name can contain only letters, spaces, or .,-";
-
-    if (!dateRegex.test(exp.start)) {
-      newErrors[`start-${idx}`] = "Enter a valid date (DD/MM/YYYY)";
-      return;
-    }
-
-    // Validate (only if user is not currently working)
-    if (!exp.currentlyWorking && exp.end && !dateRegex.test(exp.end)) {
-      newErrors[`end-${idx}`] = "Enter a valid date (DD/MM/YYYY)";
-      return;
-    }
-
-    const startDate = parseDate(exp.start);
-    const endDate = exp.currentlyWorking ? null : exp.end ? parseDate(exp.end) : null;
-
-    //START DATE <= TODAY
-    if (startDate > today) {
-      newErrors[`start-${idx}`] = "Start date cannot be in the future.";
-    }
-
-    //END DATE <= TODAY
-    if (endDate && endDate > today) {
-      newErrors[`end-${idx}`] = "End date cannot be in the future.";
-    }
-
-    //START < END (if end exists)
-    if (endDate && startDate >= endDate) {
-      newErrors[`end-${idx}`] = "End date must be greater than start date.";
-    }
-  });
-
-  setErrors(newErrors);
-  return Object.keys(newErrors).length === 0;
-};
-
-
   const handleNext = () => {
+    setErrors({});
     if (!validateRequired()) return;
     if (!validateFormat()) return;
     setActiveTab("Education");
   };
 
+  const employmentTypes = [
+    "Full Time",
+    "Part Time",
+    "Internship",
+    "Contract",
+    "Freelance",
+  ];
+  const workLocations = ["Remote", "On-site", "Hybrid"];
+
   return (
-    <div>
+    <div className="space-y-8 text-gray-600">
       {experiences.map((exp, idx) => (
-        <div key={exp.id} className="rounded-lg mb-6">
+        <div
+          key={exp._id}
+          className="relative bg-white border border-gray-200 rounded-xl p-6"
+        >
           {idx > 0 && (
             <button
-              onClick={() => removeExperience(exp.id)}
-              className="absolute top-2 right-2 p-1 hover:bg-red-100 rounded-full"
+              onClick={() => removeExperience(exp._id)}
+              className="absolute top-4 right-4 p-2 hover:bg-red-50 rounded-full transition"
             >
-              <Trash2 size={16} color="#FF4D4F" />
+              <Trash2 size={18} className="text-red-500" />
             </button>
           )}
 
           <div className="grid grid-cols-2 gap-6">
             <InputField
               label="Job Title"
-              placeholder="Web Developer"
-              value={exp.jobTitle}
-              error={errors[`jobTitle-${idx}`]}
-              onChange={(v) => updateExperience(exp.id, { jobTitle: v })}
-            />
-            <InputField
-              label="Company Name"
-              placeholder="XeroSoft Tech"
-              value={exp.company}
-              error={errors[`company-${idx}`]}
-              onChange={(v) => updateExperience(exp.id, { company: v })}
+              placeholder="Senior Frontend Developer"
+              value={exp.position || ""}
+              error={errors[`position-${idx}`]}
+              onChange={(v) => updateExperience(exp._id, { position: v })}
             />
 
-            <div className="flex flex-col">
-              <label className="mb-2 text-[#000000] text-sm">Employment Type</label>
+            <InputField
+              label="Company Name"
+              placeholder="Google Inc."
+              value={exp.company || ""}
+              error={errors[`company-${idx}`]}
+              onChange={(v) => updateExperience(exp._id, { company: v })}
+            />
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Employment Type</label>
               <select
-                value={exp.type || employmentTypes[0]}
-                onChange={(e) => updateExperience(exp.id, { type: e.target.value })}
-                className="border border-[#C8C8C8] text-gray-700 bg-white px-3 py-2 rounded-lg focus:outline-none"
+                value={exp.type || ""}
+                onChange={(e) =>
+                  updateExperience(exp._id, { type: e.target.value })
+                }
+                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500"
               >
-                {employmentTypes.map((type) => (
-                  <option key={type} value={type}>{type}</option>
+                <option value="">Select type</option>
+                {employmentTypes.map((t) => (
+                  <option key={t} value={t}>
+                    {t}
+                  </option>
                 ))}
               </select>
             </div>
 
-            <div className="flex flex-col">
-              <label className="text-sm text-[#000000] mb-2">Location</label>
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Work Location</label>
               <select
-                value={exp.location || locations[0]}
-                onChange={(e) => updateExperience(exp.id, { location: e.target.value })}
-                className="border border-[#C8C8C8] text-gray-700 bg-white px-3 py-2 rounded-lg focus:outline-none"
+                value={exp.location || ""}
+                onChange={(e) =>
+                  updateExperience(exp._id, { location: e.target.value })
+                }
+                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500"
               >
-                {locations.map((loc) => (
-                  <option key={loc} value={loc}>{loc}</option>
+                <option value="">Select location</option>
+                {workLocations.map((loc) => (
+                  <option key={loc} value={loc}>
+                    {loc}
+                  </option>
                 ))}
               </select>
             </div>
 
             <InputField
               label="Start Date"
-              placeholder="DD/MM/YYYY"
-              value={exp.start}
-              error={errors[`start-${idx}`]}
-              onChange={(v) => updateExperience(exp.id, { start: v })}
+              placeholder="15/03/2021"
+              value={exp.startDate || ""}
+              error={errors[`startDate-${idx}`]}
+              onChange={(v) => updateExperience(exp._id, { startDate: v })}
             />
 
             <InputField
               label="End Date"
-              placeholder="DD/MM/YYYY"
-              value={exp.end}
-              error={errors[`end-${idx}`]}
-              disabled={exp.currentlyWorking}
-              onChange={(v) => updateExperience(exp.id, { end: v })}
+              placeholder="Present"
+              value={exp.current ? "Present" : exp.endDate || ""}
+              error={errors[`endDate-${idx}`]}
+              disabled={exp.current}
+              onChange={(v) => updateExperience(exp._id, { endDate: v })}
             />
           </div>
 
-          <div className="mt-6 flex items-center gap-2">
+          <div className="mt-6 flex items-center gap-3">
             <input
               type="checkbox"
-              checked={exp.currentlyWorking || false}
-              onChange={(e) =>
-                updateExperience(exp.id, { currentlyWorking: e.target.checked, end: "" })
-              }
-              id={`current-${exp.id}`}
-              className="w-4 h-4 accent-[#2DC08D]"
+              id={`current-${exp._id}`}
+              checked={exp.current || false}
+              onChange={(e) => {
+                updateExperience(exp._id, {
+                  current: e.target.checked,
+                  endDate: e.target.checked ? null : exp.endDate,
+                });
+              }}
+              className="w-5 h-5 text-green-600 rounded focus:ring-green-500"
             />
-            <label htmlFor={`current-${exp.id}`} className="text-sm text-[#000000]">
-              I am currently working here
+            <label
+              htmlFor={`current-${exp._id}`}
+              className="text-sm font-medium text-gray-700"
+            >
+              I currently work here
             </label>
           </div>
 
-          <div className="mt-12">
-            <div className="flex justify-between items-center">
-              <label className="text-base font-normal text-[#000000]">
-                Job Description and Achievements
+          <div className="mt-8">
+            <div className="flex justify-between items-center mb-3">
+              <label className="font-medium text-sm">
+                Job Description & Achievements
               </label>
-
-              <button className="px-3 py-1 text-sm bg-[#2DC08D]/10 text-[#2DC08D] border border-[#2DC08D] rounded-lg flex items-center gap-1 cursor-pointer">
-                <Sparkles size={16} color="#2DC08D" />
-                AI Generate
+              <button className="text-sm text-[#2DC08D] flex items-center gap-1 hover:underline cursor-pointer">
+                <Sparkles size={16} />
+                Generate with AI
               </button>
             </div>
-
             <textarea
-              placeholder="I have worked ...."
-              value={exp.description}
-              onChange={(e) => updateExperience(exp.id, { description: e.target.value })}
-              className="w-full mt-4 p-3 bg-white border text-gray-700 placeholder-[#9CA3AF] border-[#C8C8C8] rounded-md h-40 outline-none"
+              placeholder="• Led a team of 5 developers...
+• Reduced load time by 60%...
+• Built scalable microservices..."
+              value={exp.description || ""}
+              onChange={(e) =>
+                updateExperience(exp._id, { description: e.target.value })
+              }
+              className="w-full text-sm p-4 border border-gray-300 rounded-lg resize-none h-32 focus:border-green-500 outline-none"
             />
           </div>
         </div>
       ))}
 
-
-      <div>
-        <button onClick={addExperience}
-          className="w-full flex items-center justify-center gap-2 mt-6 mb-12 px-3 py-2 border border-dashed border-[#2DC08D] text-[#000000]/60 rounded-lg bg-transparent"
-        >
-          <Plus size={16} color="#2DC08D" />
-          Add Another Experience
-        </button>
-      </div>
+      <button
+        onClick={addExperience}
+        className="w-full py-4 border-2 border-dashed border-green-500 text-green-600 rounded-xl hover:bg-green-50 transition flex items-center justify-center gap-2 font-medium"
+      >
+        <Plus size={20} />
+        Add Another Experience
+      </button>
 
       <div className="flex justify-between mt-12">
-        <button onClick={() => setActiveTab("Basic Info")}
-          className="px-3 py-1 border border-[#D9D9D9] text-[#000000] rounded-lg flex items-center gap-2 cursor-pointer"
+        <button
+          onClick={() => setActiveTab("Basic Info")}
+          className="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2"
         >
-          <ArrowLeft size={18} color="#2DC08D" />
+          <ArrowLeft size={18} />
           Back
         </button>
 
-        <button onClick={handleNext}
-          className="px-3 py-1 bg-white border border-[#D9D9D9] text-[#000000] rounded-lg flex items-center gap-2 cursor-pointer"
+        <button
+          onClick={handleNext}
+          className="px-8 py-3 bg-[#2DC08D] hover:bg-[#25a877] text-white rounded-lg cursor-pointer flex items-center gap-2 font-medium"
         >
           Next
-          <ArrowRight size={18} color="#2DC08D" />
+          <ArrowRight size={18} />
         </button>
       </div>
     </div>
   );
 };
+
 export default Experience;

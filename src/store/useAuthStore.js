@@ -75,6 +75,35 @@ export const useAuthStore = create(
                     return { success: false };
                 }
             },
+            
+            waitlist: async ({ email }) => {
+                try 
+                {
+                    set({ loading: true, error: null })
+                    const res = await api.post("/auth/waitlist", { email });
+
+                    set({
+                        loading: false,
+                    });
+
+                    return { success: true };
+                }
+                catch (err) {
+                    const errorMessage = err.response?.data?.message || "Unable to add email to waitlist!";
+                    
+                    set({ 
+                        error: errorMessage,
+                        loading: false 
+                    });
+                    
+                    // Return both success: false AND the error type
+                    return { 
+                        success: false,
+                        message: errorMessage,
+                        isAlreadyAdded: errorMessage.toLowerCase().includes('already')
+                    };
+                }
+            },
 
             logout: () => 
             {

@@ -17,23 +17,23 @@ import Template5 from "./Templates/Template5";
 const Step4 = () => {
 
   const tabs = ["Basic Info", "Experience", "Education", "Skills", "Certifications"];
-  const { activeTab, template,resetResumeBuilder} = useResumeStore();
+  const { activeTab, selectedTemplate, resetBuilder} = useResumeStore();
   const { sidebarOpen, setActivePage} = useDashboardStore();
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 
 
   const renderTemplate = () => {
-    if (template === 1) return <Template1 />;
-    if (template === 2) return <Template2 />;
-    if (template === 3) return <Template3 />;
-    if (template === 4) return <Template4 />;
-    if (template === 5) return <Template5 />;
+    if (selectedTemplate === 1) return <Template1 />;
+    if (selectedTemplate === 2) return <Template2 />;
+    if (selectedTemplate === 3) return <Template3 />;
+    if (selectedTemplate === 4) return <Template4 />;
+    if (selectedTemplate === 5) return <Template5 />;
     return null;
   };
 
   const handleSaveAsDraft = () => {
     //Here we can call an API to save the current store data, then reset store
-    resetResumeBuilder();
+    resetBuilder();
     setActivePage("overview");
   };
 
@@ -95,7 +95,7 @@ const Step4 = () => {
         <div className="w-[310px] flex flex-col gap-6 pt-30">
           <div className="relative group">
             <div
-              className={`p-3 rounded-xl h-[350px] border border-gray-300 cursor-pointer group-hover:brightness-95 transition-all duration-200 ${template === 5 ? 'bg-[#F8F7F3]' : 'bg-white'}`}
+              className={`p-3 rounded-xl h-[350px] border border-gray-300 cursor-pointer group-hover:brightness-95 transition-all duration-200`}
               onClick={() => setIsPreviewOpen(true)}
             >
               <div className="w-full h-full rounded-lg flex items-center justify-center">
